@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon app",
-    "client": "cd Front && react-scripts start",
+    "client": "cd Front && npm start",
     "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

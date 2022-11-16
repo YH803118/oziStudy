@@ -5,6 +5,7 @@ const app = express();
 const db = require("./models");
 const { Member } = db;
 
+const path = require("path");
 app.use(express.static(path.join(__dirname, "Front/build")));
 
 app.get("/", (req, res) => {
