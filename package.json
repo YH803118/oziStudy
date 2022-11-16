@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/YH803118/oziStudy#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.6",
+    "sequelize-cli": "^6.5.2"
   }
 }
