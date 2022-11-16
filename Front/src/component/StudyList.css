@@ -1,0 +1,9 @@
+.StudyList {
+  width: 1000px;
+  height: 100%;
+  margin: 60px auto;
+  background-color: aliceblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: auto; */
+}

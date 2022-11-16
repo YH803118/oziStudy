@@ -13,5 +13,7 @@ app.get("/api/members", async (req, res) => {
   const members = await Member.findAll();
   res.send(members);
 });
-
-app.listen(3000);
+const port = 3001;
+app.listen(port, () => {
+  console.log(`${port} 접속 성공`);
+});

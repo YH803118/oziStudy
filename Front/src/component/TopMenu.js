@@ -1,6 +1,9 @@
+import { getUser } from "../api";
 import "./TopMenu.css";
 
 function TopMenu({ login }) {
+  const user = getUser();
+  console.log(user);
   return (
     <div className="TopMenu">
       {login ? (
