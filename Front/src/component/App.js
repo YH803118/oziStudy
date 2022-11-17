@@ -1,7 +1,8 @@
 // import { useEffect, useState } from "react";
-import JoinForm from "./JoinForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudyList from "./StudyList";
 import TopMenu from "./TopMenu";
+import JoinForm from "./JoinForm";
 
 function App() {
   // const [login, setLogin] = useState(false);
@@ -10,11 +11,22 @@ function App() {
   // false일 경우(정보가 없는 경우=로그인 하지 않은 경우) 아이디 비밀번호 인풋을 리턴
 
   return (
-    <div>
-      <TopMenu />
-      <StudyList />
-      <JoinForm />
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <TopMenu />
+                <StudyList />
+              </>
+            }
+          />
+          <Route path="joinForm" element={<JoinForm />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

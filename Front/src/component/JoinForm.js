@@ -26,7 +26,7 @@ function JoinForm() {
 
     console.log(joinData);
     console.log(formData);
-    let result = await joinMember(formData);
+    await joinMember(formData);
   };
 
   const handleOverlapCheck = (e) => {

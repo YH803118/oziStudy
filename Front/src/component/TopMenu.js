@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getUser } from "../api";
-import JoinForm from "./JoinForm";
 import "./TopMenu.css";
 const LOGIN_INFO = {
   userId: "",
