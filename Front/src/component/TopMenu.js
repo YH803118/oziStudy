@@ -11,7 +11,6 @@ function TopMenu() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(loginInfo);
     setLogin(
       await getUser({ userId: loginInfo.userId, password: loginInfo.password })
     );
@@ -21,14 +20,29 @@ function TopMenu() {
     console.log(loginInfo);
     setLoginInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
   // handleLoad();
   useEffect(() => {}, []);
+
   return (
     <div className="TopMenu">
       {login ? (
         <div className="TopMenuItem">
-          {/* <img /> 프로플사진*/}
-          <button>{loginInfo.userId}</button>
+          <label className="menu" htmlFor="menu">
+            {loginInfo.userId}
+          </label>
+          <input id="menu" type="checkbox" />
+          <ul className="myMenu">
+            <li>
+              <a href="#">내 스터디</a>
+            </li>
+            <li>
+              <a href="#">계정 관리</a>
+            </li>
+            <li>
+              <a href="#">로그아웃</a>
+            </li>
+          </ul>
         </div>
       ) : (
         <form className="TopMenuItem" onSubmit={handleLogin}>
@@ -47,6 +61,9 @@ function TopMenu() {
             onChange={handleChange}
           />{" "}
           | <button type="submit">로그인</button>
+          <button>
+            <a href="#">회원가입</a>
+          </button>
         </form>
       )}
     </div>
