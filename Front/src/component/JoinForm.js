@@ -33,13 +33,6 @@ function JoinForm() {
       console.log(error);
     }
     console.log(result);
-<<<<<<< HEAD
-=======
-
-    console.log(joinData);
-    console.log(formData);
-    await joinMember(formData);
->>>>>>> 799ebdac47bf9b5ad3101f9e1821f09f26c5a381
   };
 
   const handleOverlapCheck = (e) => {
