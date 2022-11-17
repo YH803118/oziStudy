@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { joinMember } from "../api";
 import "./JoinForm.css";
-
+const INITIAL_VALUES = {
+  userId: "",
+  password: "",
+  name: "",
+  email: "",
+};
 function JoinForm() {
-  const [joinData, setJoinData] = useState({
-    userId: "",
-    password: "",
-    name: "",
-    email: "",
-  });
+  const [joinData, setJoinData] = useState(INITIAL_VALUES);
 
   const handleChange = (e) => {
     setJoinData((prev) => ({
@@ -19,20 +19,20 @@ function JoinForm() {
 
   const handleJoinSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("userId", joinData.userId);
-    formData.append("password", joinData.password);
-    formData.append("name", joinData.name);
-    formData.append("email", joinData.email);
-    formData.append("tag", "Front");
-    formData.append("imageUrl", "");
-    let result;
+    // const formData = new FormData();
+    // formData.append("userId", joinData.userId);
+    // formData.append("password", joinData.password);
+    // formData.append("name", joinData.name);
+    // formData.append("email", joinData.email);
+    // formData.append("tag", "Front");
+    // formData.append("imageUrl", "");
+    // let result;
     try {
-      result = await joinMember(formData);
+      await joinMember(joinData);
     } catch (error) {
       console.log(error);
     }
-    console.log(result);
+    // console.log(result);
   };
 
   const handleOverlapCheck = (e) => {
