@@ -40,7 +40,6 @@ app.get("/api/members/:userId", async (req, res) => {
 app.post("/api/members", async (req, res) => {
   //회원추가
   const newMember = req.body;
-  console.log(newMember);
   const member = Member.build(newMember);
   await member.save();
   res.send(newMember);

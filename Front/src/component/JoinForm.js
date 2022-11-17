@@ -11,7 +11,10 @@ function JoinForm() {
   });
 
   const handleChange = (e) => {
-    setJoinData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setJoinData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleJoinSubmit = async (e) => {
@@ -23,10 +26,13 @@ function JoinForm() {
     formData.append("email", joinData.email);
     formData.append("tag", "Front");
     formData.append("imageUrl", "");
-
-    console.log(joinData);
-    console.log(formData);
-    let result = await joinMember(formData);
+    let result;
+    try {
+      result = await joinMember(formData);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(result);
   };
 
   const handleOverlapCheck = (e) => {
@@ -39,7 +45,7 @@ function JoinForm() {
     <div>
       <form onSubmit={handleJoinSubmit} className="joinForm">
         아이디 : <input name="userId" onChange={handleChange} />{" "}
-        <button onClick={handleOverlapCheck}>중복확인</button>
+        {/* <button onClick={handleOverlapCheck}>중복확인</button> */}
         <br />
         비밀번호 : <input name="password" onChange={handleChange} />
         <br />

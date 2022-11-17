@@ -17,7 +17,9 @@ export async function joinMember(member) {
     method: "POST",
     body: member,
   });
-  if (!res) throw new Error("회원등록에 실패하였습니다");
+  if (!res.ok) {
+    throw new Error("회원등록에 실패하였습니다");
+  }
   const body = await res.json();
   return body;
 }
