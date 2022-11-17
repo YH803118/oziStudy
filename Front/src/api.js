@@ -13,7 +13,7 @@ export async function getUser({ userId, password }) {
 }
 
 export async function joinMember(member) {
-  const res = await fetch(`htttp://localhost:3000/api/members`, {
+  const res = await fetch(`http://localhost:3000/api/members`, {
     method: "POST",
     body: member,
   });
@@ -23,7 +23,7 @@ export async function joinMember(member) {
 }
 
 export async function modMember(userId, member) {
-  const res = await fetch(`htttp://localhost:3000/api/members/${userId}`, {
+  const res = await fetch(`http://localhost:3000/api/members/${userId}`, {
     method: "PUT",
     body: member,
   });
@@ -33,7 +33,7 @@ export async function modMember(userId, member) {
 }
 
 export async function delMember(userId) {
-  const res = await fetch(`htttp://localhost:3000/api/members/${userId}`, {
+  const res = await fetch(`http://localhost:3000/api/members/${userId}`, {
     method: "DELETE",
   });
   if (!res) throw new Error("회원 삭제에 실패하였습니다");

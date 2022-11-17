@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUser } from "../api";
+import JoinForm from "./JoinForm";
 import "./TopMenu.css";
 const LOGIN_INFO = {
   userId: "",
@@ -61,9 +62,9 @@ function TopMenu() {
             onChange={handleChange}
           />{" "}
           | <button type="submit">로그인</button>
-          <button>
-            <a href="#">회원가입</a>
-          </button>
+          {/* <button>
+            <a href={JoinForm}>회원가입</a>
+          </button> */}
         </form>
       )}
     </div>

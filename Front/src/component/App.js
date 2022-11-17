@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import JoinForm from "./JoinForm";
 import StudyList from "./StudyList";
 import TopMenu from "./TopMenu";
 
@@ -12,6 +13,7 @@ function App() {
     <div>
       <TopMenu />
       <StudyList />
+      <JoinForm />
     </div>
   );
 }
