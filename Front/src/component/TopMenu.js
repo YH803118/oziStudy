@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUser } from "../api";
 import "./TopMenu.css";
@@ -61,9 +62,9 @@ function TopMenu() {
             onChange={handleChange}
           />{" "}
           | <button type="submit">로그인</button>
-          {/* <button>
-            <a href={JoinForm}>회원가입</a>
-          </button> */}
+          <Link to="/joinForm">
+            <button>회원가입</button>
+          </Link>
         </form>
       )}
     </div>
