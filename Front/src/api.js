@@ -1,9 +1,8 @@
 export async function getUser({ userId, password }) {
-  console.log(userId);
-  console.log(password);
-  const response = await fetch(`http://localhost:3000/api/members/${userId}`);
-  const body = await response.json();
-  console.log(body);
+  const res = await fetch(`http://localhost:3000/api/members/${userId}`);
+  if (!res) throw new Error("회원 조회에 실패했습니다");
+  const body = await res.json();
+
   if (body.password === password) {
     console.log("로그인성공");
     return body;
