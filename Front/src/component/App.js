@@ -20,6 +20,7 @@ function App() {
               <>
                 <TopMenu />
                 <StudyList />
+                <JoinForm />
               </>
             }
           />
