@@ -26,6 +26,7 @@ function JoinForm() {
     formData.append("email", joinData.email);
     formData.append("tag", "Front");
     formData.append("imageUrl", "");
+<<<<<<< HEAD
     let result;
     try {
       result = await joinMember(formData);
@@ -33,6 +34,12 @@ function JoinForm() {
       console.log(error);
     }
     console.log(result);
+=======
+
+    console.log(joinData);
+    console.log(formData);
+    await joinMember(formData);
+>>>>>>> 31ef0741763897988ccaed0150ee793f7d5ccbe1
   };
 
   const handleOverlapCheck = (e) => {
