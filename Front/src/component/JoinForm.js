@@ -19,16 +19,16 @@ function JoinForm() {
 
   const handleJoinSubmit = async (e) => {
     e.preventDefault();
-    // const formData = new FormData();
-    // formData.append("userId", joinData.userId);
-    // formData.append("password", joinData.password);
-    // formData.append("name", joinData.name);
-    // formData.append("email", joinData.email);
-    // formData.append("tag", "Front");
-    // formData.append("imageUrl", "");
+    const formData = new FormData();
+    formData.append("userId", joinData.userId);
+    formData.append("password", joinData.password);
+    formData.append("name", joinData.name);
+    formData.append("email", joinData.email);
+    formData.append("tag", "Front");
+    formData.append("imageUrl", "");
     // let result;
     try {
-      await joinMember(joinData);
+      await joinMember(formData);
     } catch (error) {
       console.log(error);
     }

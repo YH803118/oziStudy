@@ -8,6 +8,15 @@ const { Member } = db;
 const path = require("path");
 app.use(express.static(path.join(__dirname, "Front/build")));
 
+app.use(express.urlencoded({ extended: true }));
+// form 태그로 요청된 body를 읽을 수 있도록
+// false인 경우 string, array형태만 파싱, true이면 모든 형태를 파싱
+
+// npm install --save multer
+const multer = require("multer");
+const upload = multer({ dest: "upload" });
+// app.post 파라미터에 upload.single("file") 추가
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "Front/build/index.html"));
 });
@@ -37,8 +46,9 @@ app.get("/api/members/:userId", async (req, res) => {
   }
 });
 
-app.post("/api/members", async (req, res) => {
+app.post("/api/members", upload.single("file"), async (req, res) => {
   //회원추가
+  console.log(req.body);
   const newMember = req.body;
   const member = Member.build(newMember);
   await member.save();

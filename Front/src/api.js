@@ -12,15 +12,17 @@ export async function getUser({ userId, password }) {
   }
 }
 
-export async function joinMember(member) {
-  const res = await fetch(`http://localhost:3000/api/members`, {
+export async function joinMember(formData) {
+  console.log(formData);
+  console.log(JSON.stringify(formData));
+  const response = await fetch(`http://localhost:3000/api/members/`, {
     method: "POST",
-    body: member,
+    body: formData,
   });
-  if (!res.ok) {
-    throw new Error("회원등록에 실패하였습니다");
+  if (!response.ok) {
+    throw new Error("불러오기 실패");
   }
-  const body = await res.json();
+  const body = await response.json();
   return body;
 }
 
