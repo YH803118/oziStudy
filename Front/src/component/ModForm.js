@@ -10,7 +10,11 @@ const INITIAL_VALUES = {
   imgFile: null,
 };
 
-function ModForm({ initialPreView, initailValues = INITIAL_VALUES }) {
+function ModForm({
+  userId = "marrtil",
+  initialPreView,
+  initailValues = INITIAL_VALUES,
+}) {
   //아직 넘겨받을걸 설정하지않아서 이렇게
   const [modData, setModData] = useState(initailValues);
 
@@ -30,7 +34,7 @@ function ModForm({ initialPreView, initailValues = INITIAL_VALUES }) {
     formData.append("tag", "Front");
     formData.append("imgFile", modData.imgFile);
 
-    await modMember(modData.userId, formData);
+    await modMember(userId, formData);
   };
   return (
     <>

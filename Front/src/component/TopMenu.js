@@ -35,13 +35,13 @@ function TopMenu() {
           <input id="menu" type="checkbox" />
           <ul className="myMenu">
             <li>
-              <a href="#">내 스터디</a>
+              <a href="/">내 스터디</a>
             </li>
             <li>
-              <Link to="/modForm">내 정보</Link>
+              <a href="/">정보 수정</a>
             </li>
             <li>
-              <a href="#">로그아웃</a>
+              <a href="/">로그아웃</a>
             </li>
           </ul>
         </div>
