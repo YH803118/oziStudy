@@ -1,4 +1,4 @@
-import e from "express";
+// import e from "express";
 import { useState } from "react";
 import { modMember } from "../api";
 import FileInput from "./FileInput";
@@ -11,7 +11,7 @@ const INITIAL_VALUES = {
   imgFile: null,
 };
 
-function modForm({ initialPreView, initailValues = INITIAL_VALUES }) {
+function ModForm({ initialPreView, initailValues = INITIAL_VALUES, userId }) {
   //아직 넘겨받을걸 설정하지않아서 이렇게
   const [modData, setModData] = useState(initailValues);
 
@@ -24,14 +24,14 @@ function modForm({ initialPreView, initailValues = INITIAL_VALUES }) {
 
   const handleModify = async () => {
     const formData = new FormData();
-    formData.append("userId", modData.userId);
+    formData.append("userId", userId);
     formData.append("password", modData.password);
     formData.append("name", modData.name);
     formData.append("email", modData.email);
     formData.append("tag", "Front");
     formData.append("imgFile", modData.imgFile);
 
-    const result = await modMember(modData.userId, formData);
+    const result = await modMember(userId, formData);
   };
   return (
     <>
@@ -44,12 +44,7 @@ function modForm({ initialPreView, initailValues = INITIAL_VALUES }) {
           initialPreview={initialPreView}
         />
         아이디 :{" "}
-        <input
-          name="userId"
-          onChange={handleChange}
-          value={modData.userId}
-          readOnly
-        />
+        <input name="userId" onChange={handleChange} value={userId} readOnly />
         <br />
         비밀번호 :{" "}
         <input
@@ -70,4 +65,4 @@ function modForm({ initialPreView, initailValues = INITIAL_VALUES }) {
   );
 }
 
-export default modForm();
+export default ModForm;
