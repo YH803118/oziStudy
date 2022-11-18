@@ -1,4 +1,3 @@
-// import e from "express";
 import { useState } from "react";
 import { modMember } from "../api";
 import FileInput from "./FileInput";
@@ -11,7 +10,11 @@ const INITIAL_VALUES = {
   imgFile: null,
 };
 
-function ModForm({ initialPreView, initailValues = INITIAL_VALUES, userId }) {
+function ModForm({
+  userId = "marrtil",
+  initialPreView,
+  initailValues = INITIAL_VALUES,
+}) {
   //아직 넘겨받을걸 설정하지않아서 이렇게
   const [modData, setModData] = useState(initailValues);
 
@@ -30,8 +33,7 @@ function ModForm({ initialPreView, initailValues = INITIAL_VALUES, userId }) {
     formData.append("email", modData.email);
     formData.append("tag", "Front");
     formData.append("imgFile", modData.imgFile);
-
-    const result = await modMember(userId, formData);
+    await modMember(userId, formData);
   };
   return (
     <>
