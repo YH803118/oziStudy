@@ -38,7 +38,7 @@ function TopMenu() {
               <a href="#">내 스터디</a>
             </li>
             <li>
-              <a href="#">계정 관리</a>
+              <Link to="/modForm">내 정보</Link>
             </li>
             <li>
               <a href="#">로그아웃</a>

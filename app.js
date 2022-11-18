@@ -48,14 +48,13 @@ app.get("/api/members/:userId", async (req, res) => {
 
 app.post("/api/members", upload.single("file"), async (req, res) => {
   //회원추가
-  console.log(req.body);
   const newMember = req.body;
   const member = Member.build(newMember);
   await member.save();
   res.send(newMember);
 });
 
-app.put("/api/members/:id", async (req, res) => {
+app.put("/api/members/:id", upload.single("file"), async (req, res) => {
   //회원정보 수정
   const { id } = req.params;
   const newInfo = req.body; //수정할 회원정보       db연동일땐 수정할정보만 보내도됨
