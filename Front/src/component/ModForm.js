@@ -33,13 +33,14 @@ function ModForm({
   const handleModify = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("userId", userId);
+    formData.append("userId", modData.userId);
     formData.append("password", modData.password);
     formData.append("name", modData.name);
     formData.append("email", modData.email);
     formData.append("tag", "Front");
-    formData.append("imageUrl", modData.imgFile);
-    await modMember(userId, formData);
+    // formData.append("imageUrl", modData.imgFile);
+    formData.append("imageUrl", "");
+    await modMember(modData.userId, formData);
   };
   return (
     <>
@@ -51,7 +52,8 @@ function ModForm({
           onChange={handleChange}
           initialPreview={initialPreView}
         />
-        아이디 : <input name="userId" value={userId} readOnly />
+        {/* 아이디 : <input name="userId" value={userId} readOnly /> */}
+        아이디 : <input name="userId" onChange={handleInputChange} />
         <br />
         비밀번호 :{" "}
         <input

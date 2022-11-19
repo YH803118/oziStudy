@@ -56,9 +56,11 @@ app.post("/api/members", upload.single("file"), async (req, res) => {
 
 app.put("/api/members/:id", upload.single("file"), async (req, res) => {
   //회원정보 수정
+  console.log(req.params);
+  // const id = 1;
   const { id } = req.params;
   const newInfo = req.body; //수정할 회원정보       db연동일땐 수정할정보만 보내도됨
-  const result = await Member.update(newInfo, { where: { id } });
+  const result = await Member.update(newInfo, { where: { userId: id } });
   if (result[0]) {
     res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
   } else {
