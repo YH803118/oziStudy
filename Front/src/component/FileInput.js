@@ -5,7 +5,8 @@ function FileInput({ name, value, initialPreview, onChange }) {
   const inputRef = useRef();
 
   const handleChange = (e) => {
-    const nextValue = URL.createObjectURL(e.target.files[0]);
+    // const nextValue = URL.createObjectURL(e.target.files[0]);
+    const nextValue = e.target.files[0];
     onChange(name, nextValue);
   };
 

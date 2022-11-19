@@ -54,7 +54,7 @@ app.post("/api/members", upload.single("file"), async (req, res) => {
   res.send(newMember);
 });
 
-app.put("/api/members/:id", upload.single("file"), async (req, res) => {
+app.put("/api/members/:id", upload.single("imageUrl"), async (req, res) => {
   //회원정보 수정
   console.log(req.params);
   // const id = 1;
