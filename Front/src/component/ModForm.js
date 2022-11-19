@@ -11,7 +11,7 @@ const INITIAL_VALUES = {
 };
 
 function ModForm({
-  userId = "marrtiler",
+  userId = "marrtil",
   initialPreView,
   initailValues = INITIAL_VALUES,
 }) {
@@ -53,7 +53,6 @@ function ModForm({
           onChange={handleChange}
           initialPreview={initialPreView}
         />
-        {/* 아이디 : <input name="userId" value={userId} readOnly /> */}
         아이디 :{" "}
         <input name="userId" value={userId} onChange={handleInputChange} />
         <br />
