@@ -7,7 +7,7 @@ const INITIAL_VALUES = {
   password: "",
   name: "",
   email: "",
-  imgFile: null,
+  imgUrl: null,
 };
 
 function ModForm({
@@ -38,7 +38,7 @@ function ModForm({
     formData.append("name", modData.name);
     formData.append("email", modData.email);
     formData.append("tag", "Front");
-    // formData.append("imageUrl", modData.imgFile);
+    formData.append("imageUrl", modData.imgUrl);
     formData.append("imageUrl", "");
     await modMember(modData.userId, formData);
   };
@@ -48,12 +48,13 @@ function ModForm({
         프로필 이미지 등록
         <FileInput
           name="imageUrl"
-          value={modData.imgFile}
+          value={modData.imageUrl}
           onChange={handleChange}
           initialPreview={initialPreView}
         />
         {/* 아이디 : <input name="userId" value={userId} readOnly /> */}
-        아이디 : <input name="userId" onChange={handleInputChange} />
+        아이디 :{" "}
+        <input name="userId" value={userId} onChange={handleInputChange} />
         <br />
         비밀번호 :{" "}
         <input
