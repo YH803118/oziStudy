@@ -3,7 +3,6 @@ import { modMember } from "../api";
 import FileInput from "./FileInput";
 
 const INITIAL_VALUES = {
-  userId: "",
   password: "",
   name: "",
   email: "",
@@ -31,13 +30,12 @@ function ModForm({ userId, initialPreView, initailValues = INITIAL_VALUES }) {
     console.log(modData.imageUrl);
     e.preventDefault();
     const formData = new FormData();
-    formData.append("userId", modData.userId);
     formData.append("password", modData.password);
     formData.append("name", modData.name);
     formData.append("email", modData.email);
     formData.append("tag", "Front");
     formData.append("imageUrl", modData.imageUrl);
-    await modMember(modData.userId, formData);
+    await modMember(userId, formData);
   };
   return (
     <>

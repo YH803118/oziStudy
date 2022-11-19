@@ -3,3 +3,5 @@ config/config.json
 node_modules/
 
 Front/node_modules/
+
+migrations
