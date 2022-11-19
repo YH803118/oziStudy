@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudyList from "./StudyList";
 import TopMenu from "./TopMenu";
 import JoinForm from "./JoinForm";
+import ModForm from "./ModForm";
 
 function App() {
   // const [login, setLogin] = useState(false);
@@ -24,6 +25,7 @@ function App() {
             }
           />
           <Route path="joinForm" element={<JoinForm />} />
+          <Route path="modForm" element={<ModForm />} />
         </Routes>
       </BrowserRouter>
     </>

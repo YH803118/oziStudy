@@ -11,28 +11,34 @@ const INITIAL_VALUES = {
 };
 
 function ModForm({
-  userId = "marrtil",
+  userId = "marrtiler",
   initialPreView,
   initailValues = INITIAL_VALUES,
 }) {
   //아직 넘겨받을걸 설정하지않아서 이렇게
   const [modData, setModData] = useState(initailValues);
 
-  const handleChange = (e) => {
+  const handleChange = (name, value) => {
     setModData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
-  const handleModify = async () => {
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
+  };
+
+  const handleModify = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("userId", userId);
     formData.append("password", modData.password);
     formData.append("name", modData.name);
     formData.append("email", modData.email);
     formData.append("tag", "Front");
-    formData.append("imgFile", modData.imgFile);
+    formData.append("imageUrl", modData.imgFile);
     await modMember(userId, formData);
   };
   return (
@@ -40,26 +46,29 @@ function ModForm({
       <form onSubmit={handleModify}>
         프로필 이미지 등록
         <FileInput
-          name="imgFile"
+          name="imageUrl"
           value={modData.imgFile}
           onChange={handleChange}
           initialPreview={initialPreView}
         />
-        아이디 :{" "}
-        <input name="userId" onChange={handleChange} value={userId} readOnly />
+        아이디 : <input name="userId" value={userId} readOnly />
         <br />
         비밀번호 :{" "}
         <input
           name="password"
-          onChange={handleChange}
+          onChange={handleInputChange}
           value={modData.password}
         />
         <br />
         이름 :{" "}
-        <input name="name" onChange={handleChange} value={modData.name} />
+        <input name="name" onChange={handleInputChange} value={modData.name} />
         <br />
         이메일 :{" "}
-        <input name="email" onChange={handleChange} value={modData.email} />
+        <input
+          name="email"
+          onChange={handleInputChange}
+          value={modData.email}
+        />
         <br />
         <button type="submit">수정하기</button>
       </form>
