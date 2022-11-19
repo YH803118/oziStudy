@@ -9,12 +9,13 @@ const LOGIN_INFO = {
 function TopMenu() {
   const [login, setLogin] = useState(false);
   const [loginInfo, setLoginInfo] = useState(LOGIN_INFO);
-
+  let sessionStorage = window.sessionStorage;
   const handleLogin = async (e) => {
     e.preventDefault();
     setLogin(
       await getUser({ userId: loginInfo.userId, password: loginInfo.password })
     );
+    sessionStorage.setItem("userId", "marrtil");
   };
 
   const handleChange = (e) => {

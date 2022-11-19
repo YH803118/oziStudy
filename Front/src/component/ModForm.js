@@ -10,14 +10,11 @@ const INITIAL_VALUES = {
   imageUrl: null,
 };
 
-function ModForm({
-  userId = "marrtil",
-  initialPreView,
-  initailValues = INITIAL_VALUES,
-}) {
+function ModForm({ userId, initialPreView, initailValues = INITIAL_VALUES }) {
   //아직 넘겨받을걸 설정하지않아서 이렇게
   const [modData, setModData] = useState(initailValues);
-
+  let sessionStorage = window.sessionStorage;
+  console.log(sessionStorage.getItem("userId"));
   const handleChange = (name, value) => {
     setModData((prev) => ({
       ...prev,
@@ -40,7 +37,6 @@ function ModForm({
     formData.append("email", modData.email);
     formData.append("tag", "Front");
     formData.append("imageUrl", modData.imageUrl);
-
     await modMember(modData.userId, formData);
   };
   return (
