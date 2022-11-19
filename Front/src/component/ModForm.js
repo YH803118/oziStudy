@@ -40,6 +40,7 @@ function ModForm({
     formData.append("email", modData.email);
     formData.append("tag", "Front");
     formData.append("imageUrl", modData.imageUrl);
+
     await modMember(modData.userId, formData);
   };
   return (
@@ -53,7 +54,8 @@ function ModForm({
           initialPreview={initialPreView}
         />
         {/* 아이디 : <input name="userId" value={userId} readOnly /> */}
-        아이디 : <input name="userId" onChange={handleInputChange} />
+        아이디 :{" "}
+        <input name="userId" value={userId} onChange={handleInputChange} />
         <br />
         비밀번호 :{" "}
         <input
