@@ -5,6 +5,7 @@ export async function getUser({ userId, password }) {
 
   if (body.password === password) {
     console.log("로그인성공");
+    console.log(body);
     return body;
   } else {
     console.log("로그인실패ㅜㅜ");

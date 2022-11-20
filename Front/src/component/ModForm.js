@@ -48,7 +48,11 @@ function ModForm({ userId, initialPreView, initailValues = INITIAL_VALUES }) {
           initialPreview={initialPreView}
         />
         아이디 :{" "}
-        <input name="userId" value={userId} onChange={handleInputChange} />
+        <input
+          name="userId"
+          value={sessionStorage.getItem("userId")}
+          onChange={handleInputChange}
+        />
         <br />
         비밀번호 :{" "}
         <input

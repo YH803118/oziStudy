@@ -15,23 +15,32 @@ function TopMenu() {
     setLogin(
       await getUser({ userId: loginInfo.userId, password: loginInfo.password })
     );
-    sessionStorage.setItem("userId", "marrtil");
   };
 
   const handleChange = (e) => {
-    console.log(loginInfo);
     setLoginInfo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // handleLoad();
-  useEffect(() => {}, []);
+  const handleLogout = () => {
+    // sessionStorage.removeItem("userId");
+    sessionStorage.clear();
+    setLogin(false);
+  };
 
+  // handleLoad();
+  useEffect(() => {
+    if (login) sessionStorage.setItem("userId", login.userId);
+    return () => {
+      // sessionStorage.clear();
+      // setLogin(false);
+    };
+  }, [login, sessionStorage]);
   return (
     <div className="TopMenu">
-      {login ? (
+      {sessionStorage.getItem("userId") ? (
         <div className="TopMenuItem">
           <label className="menu" htmlFor="menu">
-            {loginInfo.userId}
+            {sessionStorage.getItem("userId")}
           </label>
           <input id="menu" type="checkbox" />
           <ul className="myMenu">
@@ -42,7 +51,7 @@ function TopMenu() {
               <Link to="/modForm">정보 수정</Link>
             </li>
             <li>
-              <a href="/">로그아웃</a>
+              <button onClick={handleLogout}>로그아웃</button>
             </li>
           </ul>
         </div>
