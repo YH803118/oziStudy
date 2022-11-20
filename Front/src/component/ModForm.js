@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { modMember } from "../api";
 import FileInput from "./FileInput";
+import "./ModForm.css";
 
 const INITIAL_VALUES = {
   password: "",
@@ -28,57 +29,51 @@ function ModForm({ userId, initialPreView, initailValues = INITIAL_VALUES }) {
 
   const handleModify = async (e) => {
     console.log(modData.imageUrl);
-    e.preventDefault();
     const formData = new FormData();
     formData.append("password", modData.password);
     formData.append("name", modData.name);
     formData.append("email", modData.email);
     formData.append("tag", "Front");
     formData.append("imageUrl", modData.imageUrl);
-    await modMember(userId, formData);
+    await modMember(sessionStorage.getItem("userId"), formData);
   };
   return (
     <>
-      <div id="modForm">
-        <form onSubmit={handleModify}>
-          프로필 이미지 등록
-          <FileInput
-            name="imageUrl"
-            value={modData.imageUrl}
-            onChange={handleChange}
-            initialPreview={initialPreView}
-          />
-          아이디 :{" "}
-          <input
-            name="userId"
-            value={sessionStorage.getItem("userId")}
-            onChange={handleInputChange}
-          />
-          <br />
-          비밀번호 :{" "}
-          <input
-            name="password"
-            onChange={handleInputChange}
-            value={modData.password}
-          />
-          <br />
-          이름 :{" "}
-          <input
-            name="name"
-            onChange={handleInputChange}
-            value={modData.name}
-          />
-          <br />
-          이메일 :{" "}
-          <input
-            name="email"
-            onChange={handleInputChange}
-            value={modData.email}
-          />
-          <br />
-          <button type="submit">수정하기</button>
-        </form>
-      </div>
+      <form onSubmit={handleModify} action="/" id="modForm">
+        프로필 이미지 등록
+        <FileInput
+          name="imageUrl"
+          value={modData.imageUrl}
+          onChange={handleChange}
+          initialPreview={initialPreView}
+        />
+        아이디 :{" "}
+        <input
+          name="userId"
+          value={sessionStorage.getItem("userId")}
+          onChange={handleInputChange}
+        />
+        <br />
+        비밀번호 :{" "}
+        <input
+          name="password"
+          type="password"
+          onChange={handleInputChange}
+          value={modData.password}
+        />
+        <br />
+        이름 :{" "}
+        <input name="name" onChange={handleInputChange} value={modData.name} />
+        <br />
+        이메일 :{" "}
+        <input
+          name="email"
+          onChange={handleInputChange}
+          value={modData.email}
+        />
+        <br />
+        <button type="submit">수정하기</button>
+      </form>
     </>
   );
 }

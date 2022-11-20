@@ -34,6 +34,7 @@ function FileInput({ name, value, initialPreview, onChange }) {
         accept="image/png, image/jpeg"
         onChange={handleChange}
         ref={inputRef}
+        id="fileInput"
       />
       {value && <button onClick={handleClearClick}>X</button>}
     </div>
