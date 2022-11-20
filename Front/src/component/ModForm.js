@@ -39,40 +39,46 @@ function ModForm({ userId, initialPreView, initailValues = INITIAL_VALUES }) {
   };
   return (
     <>
-      <form onSubmit={handleModify}>
-        프로필 이미지 등록
-        <FileInput
-          name="imageUrl"
-          value={modData.imageUrl}
-          onChange={handleChange}
-          initialPreview={initialPreView}
-        />
-        아이디 :{" "}
-        <input
-          name="userId"
-          value={sessionStorage.getItem("userId")}
-          onChange={handleInputChange}
-        />
-        <br />
-        비밀번호 :{" "}
-        <input
-          name="password"
-          onChange={handleInputChange}
-          value={modData.password}
-        />
-        <br />
-        이름 :{" "}
-        <input name="name" onChange={handleInputChange} value={modData.name} />
-        <br />
-        이메일 :{" "}
-        <input
-          name="email"
-          onChange={handleInputChange}
-          value={modData.email}
-        />
-        <br />
-        <button type="submit">수정하기</button>
-      </form>
+      <div id="modForm">
+        <form onSubmit={handleModify}>
+          프로필 이미지 등록
+          <FileInput
+            name="imageUrl"
+            value={modData.imageUrl}
+            onChange={handleChange}
+            initialPreview={initialPreView}
+          />
+          아이디 :{" "}
+          <input
+            name="userId"
+            value={sessionStorage.getItem("userId")}
+            onChange={handleInputChange}
+          />
+          <br />
+          비밀번호 :{" "}
+          <input
+            name="password"
+            onChange={handleInputChange}
+            value={modData.password}
+          />
+          <br />
+          이름 :{" "}
+          <input
+            name="name"
+            onChange={handleInputChange}
+            value={modData.name}
+          />
+          <br />
+          이메일 :{" "}
+          <input
+            name="email"
+            onChange={handleInputChange}
+            value={modData.email}
+          />
+          <br />
+          <button type="submit">수정하기</button>
+        </form>
+      </div>
     </>
   );
 }
