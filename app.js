@@ -70,7 +70,7 @@ app.put("/api/members/:id", upload.single("imageUrl"), async (req, res) => {
 
 app.delete("/api/members/:id", async (req, res) => {
   const { id } = req.params;
-  const deleteCount = await Member.destroy({ where: { id } }); //조건대로 삭제
+  const deleteCount = await Member.destroy({ where: { userId } }); //조건대로 삭제
   if (deleteCount) {
     res.send({ message: `${deleteCount} row(s) deleted` });
   } else {
@@ -78,26 +78,31 @@ app.delete("/api/members/:id", async (req, res) => {
   }
 });
 
-const { Study } = db;
-app.get("/api/study", async (req, res) => {
-  //스터디목록(처음화면)
-  const study = await Study.findAll({ order: [["updatedAt", "DESC"]] });
-  if (study) {
-    res.send(study);
+// Tables --------------------------------------------------------------------------------
+const { Table } = db;
+app.get("/api/tables", async (req, res) => {
+  // 스터디목록
+  const { tag } = req.query;
+  if (tag) {
+    const tableSearch = await Table.findAll({
+      where: { tag },
+      order: [["updatedAt", "DESC"]],
+    });
+    res.send(tableSearch);
   } else {
-    res.status(404).send({ message: "study : zero" });
+    const tables = await Table.findAll();
+    res.send(tables);
   }
 });
 
-app.get("/api/study/:userid", async (req, res) => {
-  //내 스터디
-  const { userId } = req.params;
-  const mystudy = await Member.findAll({ where: { userId } });
-  if (mystudy) {
-    res.send(mystudy);
-  } else {
-    res.status(404).send({ message: "you have not study or search failed" });
-  }
+app.get("/api/tables/:userId", async (req, res) => {
+  // 내 스터디
+  const { userId } = req.query;
+  const tableSearch = await Table.findAll({
+    where: { userId },
+    order: [["updatedAt", "DESC"]],
+  });
+  res.send(tableSearch);
 });
 
 const port = 3001;
