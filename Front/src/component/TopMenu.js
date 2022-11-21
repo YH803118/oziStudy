@@ -10,6 +10,7 @@ function TopMenu(handleMyStudy) {
   const [login, setLogin] = useState(false);
   const [loginInfo, setLoginInfo] = useState(LOGIN_INFO);
   let sessionStorage = window.sessionStorage;
+  const [login2, setLogin2] = useState(sessionStorage.getItem("userId"));
   const handleLogin = async (e) => {
     e.preventDefault();
     setLogin(
@@ -25,12 +26,16 @@ function TopMenu(handleMyStudy) {
     // sessionStorage.removeItem("userId");
     sessionStorage.clear();
     setLogin(false);
+    setLogin2(false);
   };
 
   // handleLoad();
   useEffect(() => {
     console.log(login);
-    if (login) sessionStorage.setItem("userId", login.userId);
+    if (login) {
+      sessionStorage.setItem("userId", login.userId);
+      setLogin2(sessionStorage.getItem("userId"));
+    }
 
     console.log(login + " " + sessionStorage.getItem("userId"));
     return () => {
@@ -41,10 +46,10 @@ function TopMenu(handleMyStudy) {
 
   return (
     <div className="TopMenu">
-      {login ? (
+      {login2 ? (
         <div className="TopMenuItem">
           <label className="menu" htmlFor="menu">
-            {login.userId}
+            {sessionStorage.getItem("userId")}
           </label>
           <input id="menu" type="checkbox" />
           <ul className="myMenu">
