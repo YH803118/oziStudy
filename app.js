@@ -88,6 +88,7 @@ app.get("/api/tables", async (req, res) => {
       where: { tag },
       order: [["updatedAt", "DESC"]],
     });
+    console.log("로드결과 : " + tableSearch);
     res.send(tableSearch);
   } else {
     const tables = await Table.findAll();

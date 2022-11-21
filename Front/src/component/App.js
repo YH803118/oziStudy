@@ -5,10 +5,11 @@ import TopMenu from "./TopMenu";
 import JoinForm from "./JoinForm";
 import ModForm from "./ModForm";
 import { getStudyList } from "../api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [item, setItem] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   // const [login, setLogin] = useState(false);
   // 유저 정보를 담아올 예정
   // TopMenu에 넘겨주면 true일 경우(정보가 있는 경우=로그인 한 경우) 프사와 이름을 리턴
@@ -16,9 +17,23 @@ function App() {
 
   const handleLoad = async () => {
     let result;
+    // try {
+    //   setIsLoading(true);
     result = await getStudyList();
+    // } catch (error) {
+    //   console.log("로드실패");
+    //   console.log(error);
+    //   return;
+    // } finally {
+    //   setIsLoading(false);
+    // }
     setItem(result);
   };
+
+  useEffect(() => {
+    handleLoad();
+    console.log(item);
+  }, []);
 
   return (
     <>
@@ -29,7 +44,7 @@ function App() {
             element={
               <>
                 <TopMenu />
-                <StudyList itmes={item} />
+                <StudyList items={item} />
               </>
             }
           />
