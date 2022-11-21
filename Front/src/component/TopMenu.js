@@ -6,7 +6,7 @@ const LOGIN_INFO = {
   userId: "",
   password: "",
 };
-function TopMenu() {
+function TopMenu(handleMyStudy) {
   const [login, setLogin] = useState(false);
   const [loginInfo, setLoginInfo] = useState(LOGIN_INFO);
   let sessionStorage = window.sessionStorage;
@@ -29,7 +29,7 @@ function TopMenu() {
 
   // handleLoad();
   useEffect(() => {
-    console.log("확인");
+    console.log(login);
     if (login) sessionStorage.setItem("userId", login.userId);
 
     console.log(login + " " + sessionStorage.getItem("userId"));
@@ -44,12 +44,12 @@ function TopMenu() {
       {login ? (
         <div className="TopMenuItem">
           <label className="menu" htmlFor="menu">
-            {sessionStorage.getItem("userId")}
+            {login.userId}
           </label>
           <input id="menu" type="checkbox" />
           <ul className="myMenu">
             <li>
-              <a href="/">내 스터디</a>
+              <Link to="/myStudy">내 스터디</Link>
             </li>
             <li>
               <Link to="/modForm">정보 수정</Link>

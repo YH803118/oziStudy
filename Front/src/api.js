@@ -44,3 +44,17 @@ export async function delMember(userId) {
   const body = await res.json();
   return body;
 }
+
+export async function getStudyList() {
+  const res = await fetch(`http://localhost:3000/api/study`);
+  if (!res) throw new error("스터디조회실패!");
+  const body = await res.json();
+  return body;
+}
+
+export async function getMyStudy() {
+  const res = await fetch(`http://localhost:3000/api/study/${userId}`);
+  if (!res) throw new error("스터디조회실패!");
+  const body = await res.json();
+  return body;
+}

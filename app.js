@@ -77,6 +77,29 @@ app.delete("/api/members/:id", async (req, res) => {
     res.status(404).send({ message: "There is no member with the id!" });
   }
 });
+
+const { Study } = db;
+app.get("/api/study", async (req, res) => {
+  //스터디목록(처음화면)
+  const study = await Study.findAll({ order: [["updatedAt", "DESC"]] });
+  if (study) {
+    res.send(study);
+  } else {
+    res.status(404).send({ message: "study : zero" });
+  }
+});
+
+app.get("/api/study/:userid", async (req, res) => {
+  //내 스터디
+  const { userId } = req.params;
+  const mystudy = await Member.findAll({ where: { userId } });
+  if (mystudy) {
+    res.send(mystudy);
+  } else {
+    res.status(404).send({ message: "you have not study or search failed" });
+  }
+});
+
 const port = 3001;
 app.listen(port, () => {
   console.log(`${port} 접속 성공`);

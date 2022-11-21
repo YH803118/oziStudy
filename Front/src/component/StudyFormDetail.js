@@ -1,6 +1,5 @@
-import "./StudyForm.css";
 function StudyForm(item) {
-  const { title, tag, userId, content, endDate } = item;
+  const { leader, title, tag, userId, content, endDate } = item;
   return (
     <div className="StudyForm">
       <div className="title">{title}</div>
