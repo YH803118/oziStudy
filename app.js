@@ -4,6 +4,7 @@ const app = express();
 
 const db = require("./models");
 const { Member } = db;
+const { Table } = db;
 
 const path = require("path");
 app.use(express.static(path.join(__dirname, "Front/build")));
@@ -32,6 +33,20 @@ app.get("/api/members", async (req, res) => {
   } else {
     const members = await Member.findAll();
     res.send(members);
+  }
+});
+
+app.get("/api/tables", async (req, res) => {
+  const { tag } = req.query;
+  if (tag) {
+    const tableSearch = await Table.findAll({
+      where: { tag },
+      order: [["id", "DESC"]],
+    });
+    res.send(tableSearch);
+  } else {
+    const tables = await Table.findAll();
+    res.send(tables);
   }
 });
 
@@ -70,7 +85,7 @@ app.put("/api/members/:id", upload.single("imageUrl"), async (req, res) => {
 
 app.delete("/api/members/:id", async (req, res) => {
   const { id } = req.params;
-  const deleteCount = await Member.destroy({ where: { id } }); //조건대로 삭제
+  const deleteCount = await Member.destroy({ where: { userId } }); //조건대로 삭제
   if (deleteCount) {
     res.send({ message: `${deleteCount} row(s) deleted` });
   } else {
