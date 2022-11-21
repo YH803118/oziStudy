@@ -29,15 +29,19 @@ function TopMenu() {
 
   // handleLoad();
   useEffect(() => {
+    console.log("확인");
     if (login) sessionStorage.setItem("userId", login.userId);
+
+    console.log(login + " " + sessionStorage.getItem("userId"));
     return () => {
       // sessionStorage.clear();
       // setLogin(false);
     };
   }, [login, sessionStorage]);
+
   return (
     <div className="TopMenu">
-      {sessionStorage.getItem("userId") ? (
+      {login ? (
         <div className="TopMenuItem">
           <label className="menu" htmlFor="menu">
             {sessionStorage.getItem("userId")}

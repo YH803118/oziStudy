@@ -18,7 +18,6 @@ function JoinForm() {
   };
 
   const handleJoinSubmit = async (e) => {
-    e.preventDefault();
     const formData = new FormData();
     formData.append("userId", joinData.userId);
     formData.append("password", joinData.password);
@@ -43,7 +42,7 @@ function JoinForm() {
 
   return (
     <div>
-      <form onSubmit={handleJoinSubmit} className="joinForm">
+      <form onSubmit={handleJoinSubmit} className="joinForm" action="/">
         아이디 : <input name="userId" onChange={handleChange} />{" "}
         {/* <button onClick={handleOverlapCheck}>중복확인</button> */}
         <br />
