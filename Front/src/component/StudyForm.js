@@ -1,8 +1,6 @@
 import "./StudyForm.css";
 function StudyForm(item) {
-  console.log(item);
   const { title, tag, leader, content, endDate } = item.item;
-  console.log(item.item);
   return (
     <div className="StudyForm">
       <div className="title">{title}</div>

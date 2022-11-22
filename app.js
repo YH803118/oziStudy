@@ -106,9 +106,9 @@ app.get("/api/tables", async (req, res) => {
 
 app.get("/api/tables/:userId", async (req, res) => {
   // 내 스터디
-  const { userId } = req.query;
+  const { userId } = req.params;
   const tableSearch = await Table.findAll({
-    where: { userId },
+    where: { id: userId },
     order: [["updatedAt", "DESC"]],
   });
   res.send(tableSearch);

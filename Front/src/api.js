@@ -12,6 +12,14 @@ export async function getUser({ userId, password }) {
   }
 }
 
+export async function getUserInfo(userId) {
+  const res = await fetch(`http://localhost:3000/api/members/${userId}`);
+  if (!res) throw new Error("회원 조회에 실패했습니다");
+  const body = await res.json();
+
+  return body;
+}
+
 export async function joinMember(formData) {
   console.log(formData);
   console.log(JSON.stringify(formData));
@@ -49,7 +57,6 @@ export async function getStudyList() {
   const res = await fetch(`http://localhost:3000/api/tables`);
   if (!res) throw new Error("스터디조회실패!");
   const body = await res.json();
-  console.log(body);
   return body;
 }
 
@@ -57,6 +64,7 @@ export async function getMyStudy(userId) {
   const res = await fetch(`http://localhost:3000/api/tables/${userId}`);
   if (!res) throw new Error("스터디조회실패!");
   const body = await res.json();
+  console.log(body);
   return body;
 }
 
