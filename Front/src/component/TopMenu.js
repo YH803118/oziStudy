@@ -6,7 +6,7 @@ const LOGIN_INFO = {
   userId: "",
   password: "",
 };
-function TopMenu(handleMyStudy) {
+function TopMenu({ onMyStudy }) {
   const [login, setLogin] = useState(false);
   const [loginInfo, setLoginInfo] = useState(LOGIN_INFO);
   let sessionStorage = window.sessionStorage;
@@ -54,7 +54,7 @@ function TopMenu(handleMyStudy) {
           <input id="menu" type="checkbox" />
           <ul className="myMenu">
             <li>
-              <Link to="/myStudy">내 스터디</Link>
+              <label onClick={onMyStudy}>내 스터디</label>
             </li>
             <li>
               <Link to="/modForm">정보 수정</Link>

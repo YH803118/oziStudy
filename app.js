@@ -106,6 +106,14 @@ app.get("/api/tables/:userId", async (req, res) => {
   res.send(tableSearch);
 });
 
+app.post("/api/tables", upload.single("file"), async (req, res) => {
+  //회원추가
+  const newStudy = req.body;
+  const study = Table.build(newStudy);
+  await study.save();
+  res.send(newStudy);
+});
+
 const port = 3001;
 app.listen(port, () => {
   console.log(`${port} 접속 성공`);

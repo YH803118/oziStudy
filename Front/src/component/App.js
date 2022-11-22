@@ -1,15 +1,19 @@
 // import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import StudyList from "./StudyList";
 import TopMenu from "./TopMenu";
 import JoinForm from "./JoinForm";
 import ModForm from "./ModForm";
+// import MyStudy from "./MyStudy";
 import { getStudyList } from "../api";
 import { useEffect, useState } from "react";
 
+import "./App.css";
+import StudyInputForm from "./StudyInputForm";
+
 function App() {
   const [item, setItem] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [myStudy, setMyStudy] = useState(false);
   // const [login, setLogin] = useState(false);
   // 유저 정보를 담아올 예정
   // TopMenu에 넘겨주면 true일 경우(정보가 있는 경우=로그인 한 경우) 프사와 이름을 리턴
@@ -29,6 +33,10 @@ function App() {
     // }
     setItem(result);
   };
+  const handleMyStudy = () => {
+    console.log("MYSTUDY");
+    // 내 스터디 검색해서 넣을 예정
+  };
 
   useEffect(() => {
     handleLoad();
@@ -43,13 +51,16 @@ function App() {
             path="/"
             element={
               <>
-                <TopMenu />
+                <TopMenu onMyStudy={handleMyStudy} />
                 <StudyList items={item} />
+                <Link to="studyInputForm" id="studyInputBtn">
+                  스터디만들기
+                </Link>
               </>
             }
           />
           <Route path="joinForm" element={<JoinForm />} />
-          <Route path="myStudy" element={<myStudy />} />
+          <Route path="studyInputForm" element={<StudyInputForm />} />
           <Route path="modForm" element={<ModForm />} />
         </Routes>
       </BrowserRouter>
