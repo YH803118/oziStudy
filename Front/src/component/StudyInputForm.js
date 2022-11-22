@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { regiStudy } from "../api";
+import Tag from "./Tag";
 const INITIAL_VALUES = {
   leader: sessionStorage.getItem("userId"),
   title: "",
@@ -45,7 +46,8 @@ function StudyInputForm() {
           placeholder="내용을 입력해주세요.."
           onChange={handleChange}
         />
-        모집분야 태그: <input type="text" name="tag" />
+        <br />
+        모집분야 태그: <Tag />
       </form>
     </>
   );
