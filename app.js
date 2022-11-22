@@ -54,6 +54,14 @@ app.post("/api/members", upload.single("file"), async (req, res) => {
   res.send(newMember);
 });
 
+app.post("/api/tables", upload.single("file"), async (req, res) => {
+  //회원추가
+  const newTable = req.body;
+  const table = Table.build(newTable);
+  await table.save();
+  res.send(newTable);
+});
+
 app.put("/api/members/:id", upload.single("imageUrl"), async (req, res) => {
   //회원정보 수정
   console.log(req.params);

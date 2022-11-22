@@ -20,7 +20,7 @@ export async function joinMember(formData) {
     body: formData,
   });
   if (!response.ok) {
-    throw new Error("불러오기 실패");
+    throw new Error("회원정보 등록에 실패");
   }
   const body = await response.json();
   return body;
@@ -69,6 +69,20 @@ export async function StudyInput(formData) {
   });
   if (!response.ok) {
     throw new Error("불러오기 실패");
+  }
+  const body = await response.json();
+  return body;
+}
+
+export async function regiStudy(formData) {
+  console.log(formData);
+  console.log(JSON.stringify(formData));
+  const response = await fetch(`http://localhost:3000/api/table/`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!response.ok) {
+    throw new Error("스터디 등록 실패");
   }
   const body = await response.json();
   return body;

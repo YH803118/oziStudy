@@ -1,5 +1,54 @@
+import { useState } from "react";
+import { regiStudy } from "../api";
+const INITIAL_VALUES = {
+  leader: sessionStorage.getItem("userId"),
+  title: "",
+  content: "",
+  tag: "",
+};
+
 function StudyInputForm() {
-  return <div>스터디등록폼</div>;
+  const [regiData, setRegiData] = useState(INITIAL_VALUES);
+  const handleRegiSubmit = async () => {
+    const formData = new FormData();
+    formData.append("leader", regiData.leader);
+    formData.append("title", regiData.title);
+    formData.append("content", regiData.content);
+    formData.append("tag", regiData.tag);
+
+    await regiStudy(formData);
+  };
+
+  const handleChange = (e) => {
+    setRegiData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  return (
+    <>
+      <form onSubmit={handleRegiSubmit} action="/">
+        제목:
+        <input
+          type="text"
+          name="title"
+          placeholder="제목"
+          onChange={handleChange}
+        />
+        <br />
+        내용:
+        <br />
+        <textarea
+          name="content"
+          rows="5"
+          cols="50"
+          placeholder="내용을 입력해주세요.."
+          onChange={handleChange}
+        />
+        모집분야 태그: <input type="text" name="tag" />
+      </form>
+    </>
+  );
 }
 
 export default StudyInputForm;
