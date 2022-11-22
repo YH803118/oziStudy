@@ -17,7 +17,7 @@ const Tag = () => {
   };
 
   const deleteTagItem = (e) => {
-    const deleteTagItem = e.target.parentElement.firstChild.innerText;
+    const deleteTagItem = e.target.innerText;
     const filteredTagList = tagList.filter(
       (tagItem) => tagItem !== deleteTagItem
     );
