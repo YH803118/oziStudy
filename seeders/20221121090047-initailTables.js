@@ -9,6 +9,14 @@ module.exports = {
         title: "시작",
         content: "확인용",
         tag: "front",
+        userList: "1,2",
+      },
+      {
+        leader: "dudghks1045",
+        title: "세컨",
+        content: "확인용",
+        tag: "front",
+        userList: "2,3",
       },
     ]);
   },

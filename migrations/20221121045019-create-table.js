@@ -24,6 +24,9 @@ module.exports = {
       tag: {
         type: Sequelize.STRING,
       },
+      userList: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

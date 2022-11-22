@@ -24,6 +24,9 @@ module.exports = {
       tag: {
         type: Sequelize.STRING,
       },
+      studyList: {
+        type: Sequelize.STRING,
+      },
       imageUrl: {
         type: Sequelize.STRING,
       },

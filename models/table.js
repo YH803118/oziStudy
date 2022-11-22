@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       content: DataTypes.STRING,
       endDate: DataTypes.DATE,
       tag: DataTypes.STRING,
+      userList: DataTypes.STRING,
     },
     {
       sequelize,
