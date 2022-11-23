@@ -13,7 +13,7 @@ import StudyInputForm from "./StudyInputForm";
 
 function App() {
   const [item, setItem] = useState([]);
-  const [login, setLogin] = useState("Logout");
+  const [login, setLogin] = useState(false);
 
   let sessionStorage = window.sessionStorage;
 
@@ -50,11 +50,10 @@ function App() {
   // };
 
   const handleLogout = () => {
-    setLogin("Login");
+    setLogin(false);
   };
 
   useEffect(() => {
-    setLogin("Logout");
     // setItem([]);
     console.log("useEffect");
     handleLoad();
@@ -71,12 +70,15 @@ function App() {
                 <TopMenu
                   onMyStudy={handleMyStudy}
                   onLogout={handleLogout}
+                  onLogin={setLogin}
                   // onSessionClear={handleSessionClear}
                 />
                 <StudyList items={item} />
-                <Link to="studyInputForm" id="studyInputBtn">
-                  스터디만들기
-                </Link>
+                {login && (
+                  <Link to="studyInputForm" id="studyInputBtn">
+                    스터디만들기
+                  </Link>
+                )}
               </>
             }
           />

@@ -6,7 +6,7 @@ const LOGIN_INFO = {
   userId: "",
   password: "",
 };
-function TopMenu({ onMyStudy, onLogout }) {
+function TopMenu({ onMyStudy, onLogout, onLogin }) {
   const [login, setLogin] = useState(false);
   const [loginInfo, setLoginInfo] = useState(LOGIN_INFO);
   let sessionStorage = window.sessionStorage;
@@ -39,6 +39,7 @@ function TopMenu({ onMyStudy, onLogout }) {
       setLogin2(sessionStorage.getItem("userId"));
       console.log(login);
       sessionStorage.setItem("userInfo", login.id);
+      onLogin(true);
     }
 
     return () => {

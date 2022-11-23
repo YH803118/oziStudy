@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Tag.css";
 
-const Tag = () => {
+const Tag = ({ onChange, value }) => {
   const [tagItem, setTagItem] = useState("");
   const [tagList, setTagList] = useState([]);
 
@@ -23,6 +23,12 @@ const Tag = () => {
     );
     setTagList(filteredTagList);
   };
+
+  useEffect(() => {
+    const tagData = tagList.join(",");
+    onChange("tag", tagData);
+    console.log(value);
+  }, [tagList]);
 
   return (
     <>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { regiStudy } from "../api";
 import Tag from "./Tag";
+import "./StudyInputForm.css";
 const INITIAL_VALUES = {
   leader: sessionStorage.getItem("userId"),
   title: "",
@@ -20,21 +21,27 @@ function StudyInputForm() {
     await regiStudy(formData);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (name, value) => {
+    console.log(name + "  " + value);
     setRegiData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    handleChange(name, value);
   };
   return (
     <>
-      <form onSubmit={handleRegiSubmit} action="/">
+      <form onSubmit={handleRegiSubmit}>
         제목:
         <input
           type="text"
           name="title"
           placeholder="제목"
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <br />
         내용:
@@ -44,10 +51,11 @@ function StudyInputForm() {
           rows="5"
           cols="50"
           placeholder="내용을 입력해주세요.."
-          onChange={handleChange}
+          onChange={handleInputChange}
         />
         <br />
-        모집분야 태그: <Tag />
+        모집분야 태그: <Tag onChange={handleChange} value={regiData.tag} />
+        <br />
       </form>
     </>
   );

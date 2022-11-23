@@ -68,24 +68,10 @@ export async function getMyStudy(userId) {
   return body;
 }
 
-export async function StudyInput(formData) {
-  console.log(formData);
-  console.log(JSON.stringify(formData));
-  const response = await fetch(`http://localhost:3000/api/tables/`, {
-    method: "POST",
-    body: formData,
-  });
-  if (!response.ok) {
-    throw new Error("불러오기 실패");
-  }
-  const body = await response.json();
-  return body;
-}
-
 export async function regiStudy(formData) {
   console.log(formData);
   console.log(JSON.stringify(formData));
-  const response = await fetch(`http://localhost:3000/api/table/`, {
+  const response = await fetch(`http://localhost:3000/api/tables/`, {
     method: "POST",
     body: formData,
   });
