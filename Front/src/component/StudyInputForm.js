@@ -3,17 +3,18 @@ import { regiStudy } from "../api";
 import Tag from "./Tag";
 import "./StudyInputForm.css";
 const INITIAL_VALUES = {
-  leader: sessionStorage.getItem("userId"),
+  leader: "",
   title: "",
   content: "",
   tag: "",
 };
 
-function StudyInputForm() {
+function StudyInputForm({ userId }) {
   const [regiData, setRegiData] = useState(INITIAL_VALUES);
+
   const handleRegiSubmit = async () => {
     const formData = new FormData();
-    formData.append("leader", regiData.leader);
+    formData.append("leader", userId);
     formData.append("title", regiData.title);
     formData.append("content", regiData.content);
     formData.append("tag", regiData.tag);

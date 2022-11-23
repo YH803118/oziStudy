@@ -62,6 +62,8 @@ function App() {
     }
   };
 
+  const userId = sessionStorage.getItem("userId");
+
   useEffect(() => {
     // setItem([]);
     console.log("useEffect");
@@ -96,7 +98,10 @@ function App() {
             }
           />
           <Route path="joinForm" element={<JoinForm />} />
-          <Route path="studyInputForm" element={<StudyInputForm />} />
+          <Route
+            path="studyInputForm"
+            element={<StudyInputForm userId={userId} />}
+          />
           <Route path="modForm" element={<ModForm />} />
           <Route
             path="studyFormDetail/:id"
