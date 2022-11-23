@@ -4,6 +4,7 @@ import StudyList from "./StudyList";
 import TopMenu from "./TopMenu";
 import JoinForm from "./JoinForm";
 import ModForm from "./ModForm";
+import StudyFormDetail from "./StudyFormDetail";
 // import MyStudy from "./MyStudy";
 import { getMyStudy, getStudyList, getUser, getUserInfo } from "../api";
 import { useEffect, useState } from "react";
@@ -53,6 +54,14 @@ function App() {
     setLogin(false);
   };
 
+  const handleLink = (e) => {
+    console.log("handleLInk");
+    if (!sessionStorage.getItem("userId")) {
+      alert("로그인한 회원만 만들 수 있습니다.");
+      e.preventDefault();
+    }
+  };
+
   useEffect(() => {
     // setItem([]);
     console.log("useEffect");
@@ -75,7 +84,11 @@ function App() {
                 />
                 <StudyList items={item} />
                 {login && (
-                  <Link to="studyInputForm" id="studyInputBtn">
+                  <Link
+                    onClick={handleLink}
+                    to="studyInputForm"
+                    id="studyInputBtn"
+                  >
                     스터디만들기
                   </Link>
                 )}
@@ -85,6 +98,10 @@ function App() {
           <Route path="joinForm" element={<JoinForm />} />
           <Route path="studyInputForm" element={<StudyInputForm />} />
           <Route path="modForm" element={<ModForm />} />
+          <Route
+            path="studyFormDetail/:id"
+            element={<StudyFormDetail item={item} />}
+          />
         </Routes>
       </BrowserRouter>
     </>

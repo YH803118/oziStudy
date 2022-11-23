@@ -38,7 +38,7 @@ const Tag = ({ onChange, value }) => {
         onChange={(e) => setTagItem(e.target.value)}
         value={tagItem}
       />
-      <ul class="tag">
+      <ul className="tag">
         {tagList.map((tag) => {
           return (
             <>
