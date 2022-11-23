@@ -19,6 +19,8 @@ function StudyInputForm() {
     formData.append("tag", regiData.tag);
 
     await regiStudy(formData);
+
+    document.getElementById("submit").submit();
   };
 
   const handleChange = (name, value) => {
@@ -35,7 +37,7 @@ function StudyInputForm() {
   };
   return (
     <>
-      <form onSubmit={handleRegiSubmit}>
+      <form action="/" id="submit">
         제목:
         <input
           type="text"
@@ -54,9 +56,10 @@ function StudyInputForm() {
           onChange={handleInputChange}
         />
         <br />
-        모집분야 태그: <Tag onChange={handleChange} value={regiData.tag} />
+        모집분야 태그: <Tag onChange={handleChange} />
         <br />
       </form>
+      <button onClick={handleRegiSubmit}>작성하기</button>
     </>
   );
 }

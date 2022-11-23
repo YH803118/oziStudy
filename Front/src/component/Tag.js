@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Tag.css";
 
-const Tag = ({ onChange, value }) => {
+const Tag = ({ onChange }) => {
   const [tagItem, setTagItem] = useState("");
   const [tagList, setTagList] = useState([]);
 
@@ -27,7 +27,6 @@ const Tag = ({ onChange, value }) => {
   useEffect(() => {
     const tagData = tagList.join(",");
     onChange("tag", tagData);
-    console.log(value);
   }, [tagList]);
 
   return (
@@ -38,6 +37,7 @@ const Tag = ({ onChange, value }) => {
         onChange={(e) => setTagItem(e.target.value)}
         value={tagItem}
       />
+      <input type="text" id="hidden" />
       <ul className="tag">
         {tagList.map((tag) => {
           return (
