@@ -13,10 +13,11 @@ import "./App.css";
 import StudyInputForm from "./StudyInputForm";
 
 function App() {
-  const [item, setItem] = useState([]);
-  const [login, setLogin] = useState(false);
-
   let sessionStorage = window.sessionStorage;
+  const [item, setItem] = useState([]);
+  const [login, setLogin] = useState(
+    sessionStorage.getItem(sessionStorage.getItem("userId"))
+  );
 
   const handleLoad = async () => {
     let result;
