@@ -44,6 +44,16 @@ export async function modMember(userId, member) {
   return body;
 }
 
+export async function modTable(id, table) {
+  const res = await fetch(`http://localhost:3000/api/tables/${id}`, {
+    method: "PUT",
+    body: table,
+  });
+  if (!res) throw new Error("스터디 정보 수정에 실패하였습니다");
+  const body = await res.json();
+  return body;
+}
+
 export async function delMember(userId) {
   const res = await fetch(`http://localhost:3000/api/members/${userId}`, {
     method: "DELETE",

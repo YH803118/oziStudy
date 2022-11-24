@@ -36,7 +36,6 @@ function TopMenu({ onMyStudy, onLogout, onLogin }) {
     if (login) {
       sessionStorage.setItem("userId", login.userId);
       setLogin2(sessionStorage.getItem("userId"));
-      console.log(login);
       sessionStorage.setItem("userInfo", login.id);
       onLogin(sessionStorage.getItem("userId"));
     }

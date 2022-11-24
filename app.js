@@ -79,6 +79,20 @@ app.put("/api/members/:id", upload.single("imageUrl"), async (req, res) => {
   }
 });
 
+app.put("/api/tables/:id", upload.single("imageUrl"), async (req, res) => {
+  //회원정보 수정
+  console.log(req.params);
+  // const id = 1;
+  const { id } = req.params;
+  const newInfo = req.body;
+  const result = await Table.update(newInfo, { where: { id } });
+  if (result[0]) {
+    res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
+  } else {
+    res.status(404).send({ message: "There is no tavle with the id!" });
+  }
+});
+
 app.delete("/api/members/:id", async (req, res) => {
   const { id } = req.params;
   const deleteCount = await Member.destroy({ where: { userId } }); //조건대로 삭제
