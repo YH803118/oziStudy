@@ -33,13 +33,12 @@ function TopMenu({ onMyStudy, onLogout, onLogin }) {
 
   // handleLoad();
   useEffect(() => {
-    console.log(login);
     if (login) {
       sessionStorage.setItem("userId", login.userId);
       setLogin2(sessionStorage.getItem("userId"));
       console.log(login);
       sessionStorage.setItem("userInfo", login.id);
-      onLogin(true);
+      onLogin(sessionStorage.getItem("userId"));
     }
 
     return () => {
@@ -50,6 +49,8 @@ function TopMenu({ onMyStudy, onLogout, onLogin }) {
 
   return (
     <div className="TopMenu">
+      {" "}
+      <Link to="/">홈으로</Link>
       {login2 ? (
         <div className="TopMenuItem">
           <label className="menu" htmlFor="menu">

@@ -1,9 +1,12 @@
 const express = require("express");
-
 const app = express();
 
 const db = require("./models");
 const { Member } = db;
+const { Table } = db;
+
+const sequelize = require("sequelize");
+const Op = sequelize.Op;
 
 const path = require("path");
 app.use(express.static(path.join(__dirname, "Front/build")));
@@ -87,7 +90,7 @@ app.delete("/api/members/:id", async (req, res) => {
 });
 
 // Tables --------------------------------------------------------------------------------
-const { Table } = db;
+
 app.get("/api/tables", async (req, res) => {
   // 스터디목록
   const { tag } = req.query;
@@ -115,11 +118,27 @@ app.get("/api/tables/:userId", async (req, res) => {
 });
 
 app.post("/api/tables", upload.single("file"), async (req, res) => {
-  //회원추가
+  //스터디추가
   const newStudy = req.body;
   const study = Table.build(newStudy);
   await study.save();
   res.send(newStudy);
+});
+
+app.get("/api/tables/search/:searchText", async (req, res) => {
+  // 스터디 검색
+  const { searchText } = req.params;
+  const tableSearch = await Table.findAll({
+    where: {
+      [Op.or]: [
+        { title: { [Op.like]: `%${searchText}%` } },
+        { content: { [Op.like]: `%${searchText}%` } },
+        { tag: { [Op.like]: `%${searchText}%` } },
+      ],
+    },
+    order: [["updatedAt", "DESC"]],
+  });
+  res.send(tableSearch);
 });
 
 const port = 3001;
