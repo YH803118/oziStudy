@@ -1,6 +1,14 @@
 .StudyForm {
+  padding: 5px;
   width: 400px;
   height: 200px;
   margin: 20px auto;
-  background-color: rgb(132, 132, 132);
+  background-color: rgb(216, 216, 216);
+
+  text-decoration: none;
+  color: black;
+}
+
+.tagSpan {
+  margin: 2px;
 }

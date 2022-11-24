@@ -6,17 +6,16 @@ import JoinForm from "./JoinForm";
 import ModForm from "./ModForm";
 import StudyFormDetail from "./StudyFormDetail";
 // import MyStudy from "./MyStudy";
-import { getMyStudy, getStudyList, getUser, getUserInfo } from "../api";
+import { getMyStudy, getStudyList, getUserInfo } from "../api";
 import { useEffect, useState } from "react";
 
 import "./App.css";
 import StudyInputForm from "./StudyInputForm";
 
 function App() {
-  const [item, setItem] = useState([]);
-  const [login, setLogin] = useState(false);
-
   let sessionStorage = window.sessionStorage;
+  const [item, setItem] = useState([]);
+  const [login, setLogin] = useState(sessionStorage.getItem("userId"));
 
   const handleLoad = async () => {
     let result;
@@ -24,7 +23,7 @@ function App() {
     setItem(result);
   };
   const handleMyStudy = async () => {
-    const user = sessionStorage.getItem("userInfo");
+    // const user = sessionStorage.getItem("userInfo");
     // 내 스터디 검색해서 넣을 예정
     // 아이디를 통해 members에서 studyList를 가져와서
     // tables에서 다시 검색
@@ -40,29 +39,9 @@ function App() {
     console.log(result);
   };
 
-  // const handleSessionClear = () => {
-  //   console.log("handleSession");
-  //   sessionStorage.clear();
-  // };
-
-  // const handleSessionSet = (item) => {
-  //   console.log("handleSessionSet");
-  //   sessionStorage.setItem();
-  // };
-
   const handleLogout = () => {
     setLogin(false);
   };
-
-  const handleLink = (e) => {
-    console.log("handleLInk");
-    if (!sessionStorage.getItem("userId")) {
-      alert("로그인한 회원만 만들 수 있습니다.");
-      e.preventDefault();
-    }
-  };
-
-  const userId = sessionStorage.getItem("userId");
 
   useEffect(() => {
     // setItem([]);
@@ -85,12 +64,8 @@ function App() {
                   // onSessionClear={handleSessionClear}
                 />
                 <StudyList items={item} />
-                {login && (
-                  <Link
-                    onClick={handleLink}
-                    to="studyInputForm"
-                    id="studyInputBtn"
-                  >
+                {sessionStorage.getItem("userId") && (
+                  <Link to="studyInputForm" id="studyInputBtn">
                     스터디만들기
                   </Link>
                 )}
@@ -100,7 +75,7 @@ function App() {
           <Route path="joinForm" element={<JoinForm />} />
           <Route
             path="studyInputForm"
-            element={<StudyInputForm userId={userId} />}
+            element={<StudyInputForm userId={login} />}
           />
           <Route path="modForm" element={<ModForm />} />
           <Route

@@ -25,7 +25,6 @@ function StudyInputForm({ userId }) {
   };
 
   const handleChange = (name, value) => {
-    console.log(name + "  " + value);
     setRegiData((prev) => ({
       ...prev,
       [name]: value,
