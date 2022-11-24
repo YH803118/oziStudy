@@ -17,7 +17,7 @@ import SearchResult from "./SearchResult";
 function App() {
   let sessionStorage = window.sessionStorage;
   const [item, setItem] = useState([]);
-  const [searchItem, setSearchItem] = useState([]);
+
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
   const handleLoad = async () => {
     let result;
@@ -25,10 +25,6 @@ function App() {
     setItem(result);
   };
   const handleMyStudy = async () => {
-    // const user = sessionStorage.getItem("userInfo");
-    // 내 스터디 검색해서 넣을 예정
-    // 아이디를 통해 members에서 studyList를 가져와서
-    // tables에서 다시 검색
     let result = [];
     const { studyList } = await getUserInfo(sessionStorage.getItem("userId"));
     const studyArr = studyList.split(",");
@@ -43,23 +39,12 @@ function App() {
 
   const handleLogout = () => {
     setLogin(false);
-  };
-
-  const handleSearch = async (e) => {
-    const { value } = e.target.searchText;
-    console.log(value);
-    if (value.length < 2) {
-      alert("검색은 두 글자 이상부터 가능합니다.");
-      return;
-    }
-    let result = await search(value);
-    console.log(result);
-    setSearchItem(result);
+    sessionStorage.clear();
   };
 
   useEffect(() => {
     handleLoad();
-  }, [login, sessionStorage]);
+  }, [sessionStorage.getItem("userId")]);
 
   return (
     <>
@@ -75,7 +60,7 @@ function App() {
                   onLogin={setLogin}
                   // onSessionClear={handleSessionClear}
                 />
-                <SearchForm onSearch={handleSearch} />
+                <SearchForm />
                 <StudyList items={item} />
                 {sessionStorage.getItem("userId") && (
                   <Link to="studyInputForm" id="studyInputBtn">
@@ -99,7 +84,6 @@ function App() {
             path="search/:searchText"
             element={
               <SearchResult
-                items={searchItem}
                 onMyStudy={handleMyStudy}
                 onLogout={handleLogout}
                 onLogin={setLogin}

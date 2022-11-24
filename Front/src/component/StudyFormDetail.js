@@ -4,7 +4,7 @@ function StudyFormDetail({ item }) {
   const { id } = useParams();
   let studyDetail = [];
   for (const i of item) {
-    if (i.id == id) {
+    if (i.id === id) {
       studyDetail = i;
       break;
     }
@@ -19,6 +19,7 @@ function StudyFormDetail({ item }) {
         <div className="tags">{tag}</div>
         <div className="content">{content}</div>
         <div className="endDate">{endDate}</div>
+        <button>참가하기</button>
       </div>
     </>
   );
