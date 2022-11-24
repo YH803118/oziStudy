@@ -81,3 +81,12 @@ export async function regiStudy(formData) {
   const body = await response.json();
   return body;
 }
+
+export async function search(searchText) {
+  const res = await fetch(
+    `http://localhost:3000/api/tables/search/${searchText}`
+  );
+  if (!res) throw new Error("검색대작전 대실패!");
+  const body = await res.json();
+  return body;
+}

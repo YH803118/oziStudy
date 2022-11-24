@@ -6,17 +6,19 @@ import JoinForm from "./JoinForm";
 import ModForm from "./ModForm";
 import StudyFormDetail from "./StudyFormDetail";
 // import MyStudy from "./MyStudy";
-import { getMyStudy, getStudyList, getUserInfo } from "../api";
+import { getMyStudy, getStudyList, getUserInfo, search } from "../api";
 import { useEffect, useState } from "react";
 
 import "./App.css";
 import StudyInputForm from "./StudyInputForm";
+import SearchForm from "./SearchForm";
+import SearchResult from "./SearchResult";
 
 function App() {
   let sessionStorage = window.sessionStorage;
   const [item, setItem] = useState([]);
+  const [searchItem, setSearchItem] = useState([]);
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
-
   const handleLoad = async () => {
     let result;
     result = await getStudyList();
@@ -43,9 +45,19 @@ function App() {
     setLogin(false);
   };
 
+  const handleSearch = async (e) => {
+    const { value } = e.target.searchText;
+    console.log(value);
+    if (value.length < 2) {
+      alert("검색은 두 글자 이상부터 가능합니다.");
+      return;
+    }
+    let result = await search(value);
+    console.log(result);
+    setSearchItem(result);
+  };
+
   useEffect(() => {
-    // setItem([]);
-    console.log("useEffect");
     handleLoad();
   }, [login, sessionStorage]);
 
@@ -63,6 +75,7 @@ function App() {
                   onLogin={setLogin}
                   // onSessionClear={handleSessionClear}
                 />
+                <SearchForm onSearch={handleSearch} />
                 <StudyList items={item} />
                 {sessionStorage.getItem("userId") && (
                   <Link to="studyInputForm" id="studyInputBtn">
@@ -81,6 +94,17 @@ function App() {
           <Route
             path="studyFormDetail/:id"
             element={<StudyFormDetail item={item} />}
+          />
+          <Route
+            path="search/:searchText"
+            element={
+              <SearchResult
+                items={searchItem}
+                onMyStudy={handleMyStudy}
+                onLogout={handleLogout}
+                onLogin={setLogin}
+              />
+            }
           />
         </Routes>
       </BrowserRouter>
