@@ -39,7 +39,7 @@ function TopMenu({ onMyStudy, onLogout, onLogin }) {
       setLogin2(sessionStorage.getItem("userId"));
       console.log(login);
       sessionStorage.setItem("userInfo", login.id);
-      onLogin(true);
+      onLogin(sessionStorage.getItem("userId"));
     }
 
     return () => {

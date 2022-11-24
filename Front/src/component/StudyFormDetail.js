@@ -1,7 +1,16 @@
-function StudyFormDetail({ item }) {
-  const studyId = sessionStorage.getItem("studyId");
+import { useParams } from "react-router-dom";
 
-  const { title, tag, leader, content, endDate } = item[studyId - 1];
+function StudyFormDetail({ item }) {
+  const { id } = useParams();
+  let studyDetail = [];
+  for (const i of item) {
+    if (i.id == id) {
+      studyDetail = i;
+      break;
+    }
+  }
+  console.log(studyDetail);
+  const { title, tag, leader, content, endDate } = studyDetail;
   return (
     <>
       <div className="StudyFormDetail">
