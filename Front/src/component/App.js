@@ -17,10 +17,8 @@ import SearchResult from "./SearchResult";
 function App() {
   let sessionStorage = window.sessionStorage;
   const [item, setItem] = useState([]);
-
-  const [searchItem, setSearchItem] = useState([]);
-
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
+
   const handleLoad = async () => {
     let result;
     result = await getStudyList();
@@ -39,10 +37,10 @@ function App() {
     console.log(result);
   };
 
-  const handleLogout = () => {
-    setLogin(false);
-    sessionStorage.clear();
-  };
+  // const handleLogout = () => {
+  //   setLogin(false);
+  //   sessionStorage.clear();
+  // };
 
   useEffect(() => {
     handleLoad();
@@ -58,11 +56,11 @@ function App() {
               <>
                 <TopMenu
                   onMyStudy={handleMyStudy}
-                  onLogout={handleLogout}
+                  onLoad={handleLoad}
                   onLogin={setLogin}
                   // onSessionClear={handleSessionClear}
                 />
-                <SearchForm />
+                <SearchForm onLoad={handleLoad} />
                 <StudyList items={item} />
                 {sessionStorage.getItem("userId") && (
                   <Link to="studyInputForm" id="studyInputBtn">
@@ -83,13 +81,10 @@ function App() {
             element={<StudyFormDetail item={item} />}
           />
           <Route
-            path="search/:searchText"
+            exact
+            path="/search/:searchText"
             element={
-              <SearchResult
-                onMyStudy={handleMyStudy}
-                onLogout={handleLogout}
-                onLogin={setLogin}
-              />
+              <SearchResult onMyStudy={handleMyStudy} onLogin={setLogin} />
             }
           />
         </Routes>
