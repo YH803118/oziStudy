@@ -18,7 +18,7 @@ function StudyInputForm({ userId }) {
     formData.append("title", regiData.title);
     formData.append("content", regiData.content);
     formData.append("tag", regiData.tag);
-
+    formData.append("userList", userId);
     await regiStudy(formData);
 
     document.getElementById("submit").submit();

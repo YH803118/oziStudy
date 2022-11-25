@@ -1,10 +1,21 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { modTable } from "../api";
+import { modMember, modTable } from "../api";
+import axios from "axios";
+import { useAsync } from "react-async";
+
+export const getUserInfo = async ({ userId }) => {
+  const { id, studyList } = await axios.get(
+    `http://localhost:3000/api/members/${userId}`
+  );
+  return { id, userId, studyList };
+};
 
 function StudyFormDetail({ item }) {
+  console.log(item);
   const [join, setJoin] = useState(false);
   const { id } = useParams();
+  console.log(id);
   let sessionStorage = window.sessionStorage;
   let studyDetail = {};
   for (const i of item) {
@@ -13,17 +24,22 @@ function StudyFormDetail({ item }) {
       break;
     }
   }
+  console.log(studyDetail);
   const { title, tag, leader, content, endDate, userList } = studyDetail;
-  let studyJoiner = [];
-  studyJoiner = userList.split(",");
+
+  const { data: user } = useAsync({
+    promiseFn: getUserInfo,
+    id: sessionStorage.getItem("userId"),
+  });
 
   const handleJoin = async () => {
     var confirmer = window.confirm("스터디에 참가 하시겠습니까?");
     if (confirmer) {
-      studyJoiner.push(sessionStorage.getItem("userId"));
-      const joiner = { studyJoiner };
-      const check = await modTable(id, joiner);
-      if (check) setJoin(true);
+      const joiner = { userList: userList + "," + user.id };
+      const study = { studyList: user.studyList + "," + id };
+      const check1 = await modMember(user.userId, study);
+      const check2 = await modTable(id, joiner);
+      if (check1 && check2) setJoin(true);
     } else {
       return;
     }
