@@ -5,7 +5,7 @@ import SearchForm from "./SearchForm";
 import StudyList from "./StudyList";
 import "./StudyList.css";
 import TopMenu from "./TopMenu";
-function SearchResult({ onMyStudy, onLogout, onLogin }) {
+function SearchResult({ onMyStudy, onLoad, onLogin }) {
   const { searchText } = useParams();
   const [searchItem, setSearchItem] = useState([]);
 
@@ -24,7 +24,7 @@ function SearchResult({ onMyStudy, onLogout, onLogin }) {
     <>
       <TopMenu
         onMyStudy={onMyStudy}
-        onLogout={onLogout}
+        onLoad={onLoad}
         onLogin={onLogin}
         // onSessionClear={handleSessionClear}
       />
