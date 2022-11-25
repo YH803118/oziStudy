@@ -19,7 +19,7 @@ function StudyFormDetail({ item }) {
   let sessionStorage = window.sessionStorage;
   let studyDetail = {};
   for (const i of item) {
-    if (i.id === id) {
+    if (i.id == id) {
       studyDetail = i;
       break;
     }
@@ -52,7 +52,7 @@ function StudyFormDetail({ item }) {
         <div className="tags">{tag}</div>
         <div className="content">{content}</div>
         <div className="endDate">{endDate}</div>
-        {join || <button onClikc={handleJoin}>참가하기</button>}
+        {join || <button onClick={handleJoin}>참가하기</button>}
       </div>
     </>
   );
