@@ -5,10 +5,12 @@ import axios from "axios";
 import { useAsync } from "react-async";
 
 export const getUserInfo = async ({ userId }) => {
-  const userInfo = await axios.get(
-    `http://localhost:3000/api/members/${userId}`
-  );
-  return userInfo.data;
+  if (userId) {
+    const userInfo = await axios.get(
+      `http://localhost:3000/api/members/${userId}`
+    );
+    return userInfo.data;
+  }
 };
 
 function StudyFormDetail({ item }) {
@@ -16,6 +18,7 @@ function StudyFormDetail({ item }) {
   const { id } = useParams();
 
   // let sessionStorage = window.sessionStorage;
+
   const userId = sessionStorage.getItem("userId");
 
   const { data: user } = useAsync({
@@ -43,6 +46,10 @@ function StudyFormDetail({ item }) {
   }, []);
 
   const handleJoin = async () => {
+    if (userId == null) {
+      alert("로그인이 필요합니다!");
+      return;
+    }
     var confirmer = window.confirm("스터디에 참가 하시겠습니까?");
     if (confirmer) {
       const formData1 = new FormData();
