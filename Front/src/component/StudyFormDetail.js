@@ -15,7 +15,7 @@ function StudyFormDetail({ item }) {
   const [join, setJoin] = useState(false);
   const { id } = useParams();
 
-  let sessionStorage = window.sessionStorage;
+  // let sessionStorage = window.sessionStorage;
   const userId = sessionStorage.getItem("userId");
 
   const { data: user } = useAsync({
@@ -23,16 +23,20 @@ function StudyFormDetail({ item }) {
     userId,
     watch: userId,
   });
-  console.log(user);
 
-  let studyDetail = {};
-  for (const i of item) {
-    if (i.id == id) {
-      studyDetail = i;
-      break;
+  if (item[0]) {
+    let studyDetail = {};
+    for (const i of item) {
+      if (i.id == id) {
+        studyDetail = i;
+        break;
+      }
     }
+    localStorage.setItem("studyDetail", JSON.stringify(studyDetail));
   }
-  const { title, tag, leader, content, endDate, userList } = studyDetail;
+  const { title, tag, leader, content, endDate, userList } = JSON.parse(
+    localStorage.getItem("studyDetail")
+  );
 
   useEffect(() => {
     if (userList.includes(userId)) setJoin(true);

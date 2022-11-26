@@ -16,6 +16,7 @@ import SearchResult from "./SearchResult";
 
 function App() {
   let sessionStorage = window.sessionStorage;
+  let localStorage = window.localStorage;
   const [item, setItem] = useState([]);
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
 
@@ -77,7 +78,7 @@ function App() {
           />
           <Route path="modForm" element={<ModForm />} />
           <Route
-            path="studyFormDetail/:id"
+            path="/studyFormDetail/:id"
             element={<StudyFormDetail item={item} />}
           />
           <Route

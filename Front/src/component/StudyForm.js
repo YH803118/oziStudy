@@ -13,7 +13,7 @@ function StudyForm({ item }) {
   return (
     <>
       <Link
-        to={`studyFormDetail/${id}`}
+        to={`/studyFormDetail/${id}`}
         className="StudyForm"
         onClick={handleDetail}
       >
