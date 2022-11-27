@@ -70,8 +70,8 @@ export async function getStudyList() {
   return body;
 }
 
-export async function getMyStudy(userId) {
-  const res = await fetch(`http://localhost:3000/api/tables/${userId}`);
+export async function getMyStudy(id) {
+  const res = await fetch(`http://localhost:3000/api/tables/${id}`);
   if (!res) throw new Error("스터디조회실패!");
   const body = await res.json();
   console.log(body);

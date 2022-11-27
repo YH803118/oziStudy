@@ -17,7 +17,8 @@ const Tag = ({ onChange }) => {
   };
 
   const deleteTagItem = (e) => {
-    const deleteTagItem = e.target.innerText;
+    const deleteTagItem = e.target.previousSibling.innerText;
+    console.log(deleteTagItem);
     const filteredTagList = tagList.filter(
       (tagItem) => tagItem !== deleteTagItem
     );
@@ -42,7 +43,7 @@ const Tag = ({ onChange }) => {
         {tagList.map((tag) => {
           return (
             <>
-              <li onClick={deleteTagItem}>{tag}</li>
+              <lable onClick={deleteTagItem}>X</lable> <li>{tag}</li>
             </>
           );
         })}
