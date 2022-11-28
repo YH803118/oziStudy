@@ -13,6 +13,7 @@ import "./App.css";
 import StudyInputForm from "./StudyInputForm";
 import SearchForm from "./SearchForm";
 import SearchResult from "./SearchResult";
+import Locater from "./Locater";
 
 function App() {
   let sessionStorage = window.sessionStorage;
@@ -79,7 +80,14 @@ function App() {
           <Route path="modForm" element={<ModForm />} />
           <Route
             path="/studyFormDetail/:id"
-            element={<StudyFormDetail item={item} />}
+            element={
+              <Locater
+                location="studyFormDetail"
+                item={item}
+                onMyStudy={handleMyStudy}
+                onLogin={setLogin}
+              />
+            }
           />
           <Route
             exact
