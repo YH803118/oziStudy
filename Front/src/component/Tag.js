@@ -36,14 +36,15 @@ const Tag = ({ onChange }) => {
         onKeyPress={onKeyPress}
         onChange={(e) => setTagItem(e.target.value)}
         value={tagItem}
+        id="tagInput"
       />
-      <input type="text" id="hidden" />
+
       <ul className="tag">
         {tagList.map((tag) => {
           return (
             <>
               <li onClick={deleteTagItem} key={tag}>
-                <lable id={tag}>X</lable>
+                <lable id={tag}>#</lable>
                 {tag}
                 &nbsp;
               </li>

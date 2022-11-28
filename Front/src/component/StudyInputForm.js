@@ -36,31 +36,36 @@ function StudyInputForm({ userId }) {
     handleChange(name, value);
   };
   return (
-    <>
-      <form action="/" id="submit">
-        제목:
-        <input
-          type="text"
-          name="title"
-          placeholder="제목"
-          onChange={handleInputChange}
-        />
-        <br />
-        내용:
-        <br />
-        <textarea
-          name="content"
-          rows="5"
-          cols="50"
-          placeholder="내용을 입력해주세요.."
-          onChange={handleInputChange}
-        />
-        <br />
-        모집분야 태그: <Tag onChange={handleChange} />
-        <br />
-      </form>
-      <button onClick={handleRegiSubmit}>작성하기</button>
-    </>
+    <div id="backGround">
+      <div id="creater">
+        <form action="/" id="submit">
+          제목:
+          <input
+            type="text"
+            name="title"
+            placeholder="제목"
+            onChange={handleInputChange}
+            id="title"
+          />
+          <br />
+          <p id="content">내용:</p>
+          <br />
+          <textarea
+            name="content"
+            rows="20"
+            cols="70"
+            placeholder="내용을 입력해주세요.."
+            onChange={handleInputChange}
+          />
+          <br />
+          모집분야 태그: <Tag onChange={handleChange} />
+          <br />
+        </form>
+        <button onClick={handleRegiSubmit} id="submitButton">
+          작성하기
+        </button>
+      </div>
+    </div>
   );
 }
 
