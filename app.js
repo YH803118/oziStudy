@@ -125,7 +125,7 @@ app.get("/api/tables/:id", async (req, res) => {
   // 내 스터디
   const { id } = req.params;
   const tableSearch = await Table.findAll({
-    where: { id },
+    where: { userList: { [Op.like]: `%${id}%` } },
     order: [["updatedAt", "DESC"]],
   });
   res.send(tableSearch);

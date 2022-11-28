@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { modMember, modTable } from "../api";
 import axios from "axios";
 import { useAsync } from "react-async";
+import "./StudyFormDetail.css";
 
 export const getUserInfo = async ({ userId }) => {
   if (userId) {
@@ -16,8 +17,7 @@ export const getUserInfo = async ({ userId }) => {
 function StudyFormDetail({ item }) {
   const [join, setJoin] = useState(false);
   const { id } = useParams();
-
-  // let sessionStorage = window.sessionStorage;
+  let tagArr = [];
 
   const userId = sessionStorage.getItem("userId");
 
@@ -40,10 +40,13 @@ function StudyFormDetail({ item }) {
   const { title, tag, leader, content, endDate, userList } = JSON.parse(
     localStorage.getItem("studyDetail")
   );
+  for (const tags of tag.split(",")) {
+    tagArr.push(tags);
+  }
 
   useEffect(() => {
     if (userList.includes(userId)) setJoin(true);
-  }, []);
+  }, [sessionStorage.getItem("userId")]);
 
   const handleJoin = async () => {
     if (userId == null) {
@@ -67,11 +70,27 @@ function StudyFormDetail({ item }) {
     <>
       <div className="StudyFormDetail">
         <div className="title">{title}</div>
-        <div className="leader">{leader}</div>
-        <div className="tags">{tag}</div>
-        <div className="content">{content}</div>
+        <hr></hr>
+
+        <div className="tags">
+          {tagArr &&
+            tagArr.map((item) => {
+              return (
+                <span key={item} className="tagSpan">
+                  # {item}
+                </span>
+              );
+            })}
+        </div>
+        <div className="contentDetail">{content}</div>
         <div className="endDate">{endDate}</div>
-        {join || <button onClick={handleJoin}>참가하기</button>}
+        <span className="leader">작성자 : {leader}</span>
+        <br></br>
+        {join || (
+          <button className="joinBtn" onClick={handleJoin}>
+            참가하기
+          </button>
+        )}
       </div>
     </>
   );

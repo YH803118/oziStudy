@@ -13,6 +13,7 @@ import "./App.css";
 import StudyInputForm from "./StudyInputForm";
 import SearchForm from "./SearchForm";
 import SearchResult from "./SearchResult";
+import Locater from "./Locater";
 
 function App() {
   let sessionStorage = window.sessionStorage;
@@ -27,15 +28,15 @@ function App() {
   };
   const handleMyStudy = async () => {
     let result = [];
-    const { studyList } = await getUserInfo(sessionStorage.getItem("userId"));
-    const studyArr = studyList.split(",");
-    setItem([]);
-    for (const study of studyArr) {
-      const pushStudy = await getMyStudy(study);
-      result.push(pushStudy[0]);
-    }
-    setItem(result);
-    console.log(result);
+    // const { studyList } = await getUserInfo(sessionStorage.getItem("userId"));
+    // const studyArr = studyList.split(",");
+    // setItem([]);
+    // for (const study of studyArr) {
+
+    //   result.push(pushStudy[0]);
+    // }
+
+    setItem(await getMyStudy(login));
   };
 
   // const handleLogout = () => {
@@ -72,6 +73,7 @@ function App() {
             }
           />
           <Route path="joinForm" element={<JoinForm />} />
+          <Route path="/myStudy" element={<App />} />
           <Route
             path="studyInputForm"
             element={<StudyInputForm userId={login} />}
@@ -79,13 +81,25 @@ function App() {
           <Route path="modForm" element={<ModForm />} />
           <Route
             path="/studyFormDetail/:id"
-            element={<StudyFormDetail item={item} />}
+            element={
+              <Locater
+                location="studyFormDetail"
+                item={item}
+                onMyStudy={handleMyStudy}
+                onLoad={handleLoad}
+                onLogin={setLogin}
+              />
+            }
           />
           <Route
             exact
             path="/search/:searchText"
             element={
-              <SearchResult onMyStudy={handleMyStudy} onLogin={setLogin} />
+              <SearchResult
+                onMyStudy={handleMyStudy}
+                onLoad={handleLoad}
+                onLogin={setLogin}
+              />
             }
           />
         </Routes>

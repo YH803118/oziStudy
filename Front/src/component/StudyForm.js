@@ -17,20 +17,22 @@ function StudyForm({ item }) {
         className="StudyForm"
         onClick={handleDetail}
       >
-        <div className="title">{title}</div>
-        <div className="leader"> 리더 : {leader}</div>
+        <span className="title">{title}</span>
+        <hr></hr>
+
         <div className="tags">
           {tagArr &&
             tagArr.map((item) => {
               return (
                 <span key={item} className="tagSpan">
-                  {item}
+                  # {item}
                 </span>
               );
             })}
         </div>
         <div className="content">{content}</div>
-        <div className="endDate">{endDate}</div>
+        <span className="leader">{leader}</span>
+        <span className="endDate">{endDate}</span>
       </Link>
     </>
   );

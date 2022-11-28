@@ -58,7 +58,9 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
           <input id="menu" type="checkbox" />
           <ul className="myMenu">
             <li>
-              <label onClick={onMyStudy}>내 스터디</label>
+              <Link to="/myStudy" onClick={onMyStudy}>
+                내 스터디
+              </Link>
             </li>
             <li>
               <Link to="/modForm">정보 수정</Link>
