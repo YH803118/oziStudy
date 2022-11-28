@@ -5,7 +5,7 @@ import StudyFormDetail from "./StudyFormDetail";
 import "./StudyList.css";
 import TopMenu from "./TopMenu";
 function Locater({ location, item, onMyStudy, onLoad, onLogin }) {
-  useEffect(() => {}, []);
+  useEffect(() => {}, [sessionStorage.getItem("userId")]);
   return (
     <>
       <TopMenu

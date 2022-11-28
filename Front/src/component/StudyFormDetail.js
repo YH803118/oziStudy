@@ -46,7 +46,7 @@ function StudyFormDetail({ item }) {
 
   useEffect(() => {
     if (userList.includes(userId)) setJoin(true);
-  }, []);
+  }, [sessionStorage.getItem("userId")]);
 
   const handleJoin = async () => {
     if (userId == null) {
@@ -82,7 +82,7 @@ function StudyFormDetail({ item }) {
               );
             })}
         </div>
-        <div className="content">{content}</div>
+        <div className="contentDetail">{content}</div>
         <div className="endDate">{endDate}</div>
         <span className="leader">작성자 : {leader}</span>
         <br></br>

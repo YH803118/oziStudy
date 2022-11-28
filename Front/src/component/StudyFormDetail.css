@@ -22,20 +22,20 @@ hr {
   background-color: silver;
   /* width: 95%; */
 }
-.content {
+.contentDetail {
   height: 300px;
   color: rgb(77, 77, 77);
   font-size: 15px;
 }
 
-.leader {
+/* .leader {
   display: inline-block;
   font-size: 15px;
   margin-left: 10px;
   margin-right: 10px;
-}
+} */
 
-.tagSpan {
+/* .tagSpan {
   font-size: 15px;
   display: inline-block;
   margin: 3px;
@@ -43,7 +43,7 @@ hr {
   background-color: rgb(180, 180, 180);
   padding: 5px;
   border-radius: 2px;
-}
+} */
 
 .joinBtn {
   margin-top: 20px;
