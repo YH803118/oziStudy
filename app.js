@@ -142,16 +142,35 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
 app.get("/api/tables/search/:searchText", async (req, res) => {
   // 스터디 검색
   const { searchText } = req.params;
-  const tableSearch = await Table.findAll({
-    where: {
-      [Op.or]: [
-        { title: { [Op.like]: `%${searchText}%` } },
-        { content: { [Op.like]: `%${searchText}%` } },
-        { tag: { [Op.like]: `%${searchText}%` } },
-      ],
-    },
-    order: [["updatedAt", "DESC"]],
-  });
+  const tableSearch = [];
+  tableSearch.push(
+    await Table.findAll({
+      where: { title: { [Op.like]: `%${searchText}%` } },
+      order: [["updatedAt", "DESC"]],
+    })
+  );
+  tableSearch.push(
+    await Table.findAll({
+      where: { content: { [Op.like]: `%${searchText}%` } },
+      order: [["updatedAt", "DESC"]],
+    })
+  );
+  tableSearch.push(
+    await Table.findAll({
+      where: { tag: { [Op.like]: `%${searchText}%` } },
+      order: [["updatedAt", "DESC"]],
+    })
+  );
+  // const tableSearch = await Table.findAll({
+  //   where: {
+  //     [Op.or]: [
+  //       { title: { [Op.like]: `%${searchText}%` } },
+  //       { content: { [Op.like]: `%${searchText}%` } },
+  //       { tag: { [Op.like]: `%${searchText}%` } },
+  //     ],
+  //   },
+  //   order: [["updatedAt", "DESC"]],
+  // });
   res.send(tableSearch);
 });
 

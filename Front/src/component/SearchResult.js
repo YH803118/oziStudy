@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { search } from "../api";
 import SearchForm from "./SearchForm";
-import StudyList from "./StudyList";
+import SearchResultList from "./SearchResultList";
 import "./StudyList.css";
 import TopMenu from "./TopMenu";
 function SearchResult({ onMyStudy, onLoad, onLogin }) {
@@ -29,7 +29,13 @@ function SearchResult({ onMyStudy, onLoad, onLogin }) {
         // onSessionClear={handleSessionClear}
       />
       <SearchForm />
-      <StudyList items={searchItem} />
+      {searchItem[0] && (
+        <>
+          <SearchResultList items={searchItem[0]} search="제목 검색 결과" />
+          <SearchResultList items={searchItem[1]} search="내용 검색 결과" />
+          <SearchResultList items={searchItem[2]} search="태그 검색 결과" />
+        </>
+      )}
       {sessionStorage.getItem("userId") && (
         <Link to="studyInputForm" id="studyInputBtn">
           스터디만들기
