@@ -45,7 +45,8 @@ function StudyFormDetail({ item }) {
   }
 
   useEffect(() => {
-    if (userList.includes(userId)) setJoin(true);
+    const userListArray = userList.split(",");
+    if (userListArray.includes(userId)) setJoin(true);
   }, [sessionStorage.getItem("userId")]);
 
   const handleJoin = async () => {

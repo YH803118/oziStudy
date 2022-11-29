@@ -33,7 +33,9 @@ function ModForm({ userId, initialPreView, initailValues = INITIAL_VALUES }) {
     formData.append("name", modData.name);
     formData.append("email", modData.email);
     formData.append("tag", "Front");
-    formData.append("imageUrl", modData.imageUrl);
+    if (modData.imageUrl != "") {
+      formData.append("imageUrl", modData.imageUrl);
+    }
     await modMember(sessionStorage.getItem("userId"), formData);
   };
   return (
