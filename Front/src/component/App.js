@@ -1,12 +1,9 @@
-// import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import StudyList from "./StudyList";
 import TopMenu from "./TopMenu";
 import JoinForm from "./JoinForm";
 import ModForm from "./ModForm";
-import StudyFormDetail from "./StudyFormDetail";
-// import MyStudy from "./MyStudy";
-import { getMyStudy, getStudyList, getUserInfo, search } from "../api";
+import { getMyStudy, getStudyList } from "../api";
 import { useEffect, useState } from "react";
 
 import "./App.css";
@@ -27,23 +24,8 @@ function App() {
     setItem(result);
   };
   const handleMyStudy = async () => {
-    let result = [];
-    // const { studyList } = await getUserInfo(sessionStorage.getItem("userId"));
-    // const studyArr = studyList.split(",");
-    // setItem([]);
-    // for (const study of studyArr) {
-
-    //   result.push(pushStudy[0]);
-    // }
-
     setItem(await getMyStudy(login));
   };
-
-  // const handleLogout = () => {
-  //   setLogin(false);
-  //   sessionStorage.clear();
-  // };
-
   useEffect(() => {
     handleLoad();
   }, [sessionStorage.getItem("userId")]);
@@ -73,7 +55,18 @@ function App() {
             }
           />
           <Route path="joinForm" element={<JoinForm />} />
-          <Route path="/myStudy" element={<App />} />
+          <Route
+            path="/myStudy"
+            element={
+              <Locater
+                location="myStudy"
+                item={item}
+                onMyStudy={handleMyStudy}
+                onLoad={handleLoad}
+                onLogin={setLogin}
+              />
+            }
+          />
           <Route
             path="studyInputForm"
             element={<StudyInputForm userId={login} />}

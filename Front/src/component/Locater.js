@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import SearchForm from "./SearchForm";
+import { getMyStudy } from "../api";
 import StudyFormDetail from "./StudyFormDetail";
+import StudyList from "./StudyList";
 import "./StudyList.css";
 import TopMenu from "./TopMenu";
 function Locater({ location, item, onMyStudy, onLoad, onLogin }) {
   useEffect(() => {}, [sessionStorage.getItem("userId")]);
   return (
     <>
-      <TopMenu
-        onMyStudy={onMyStudy}
-        onLoad={onLoad}
-        onLogin={onLogin}
-        // onSessionClear={handleSessionClear}
-      />
-      {/* <SearchForm /> */}
+      <TopMenu onMyStudy={onMyStudy} onLoad={onLoad} onLogin={onLogin} />
       {location == "studyFormDetail" && <StudyFormDetail item={item} />}
-      {sessionStorage.getItem("userId") && (
+      {location == "myStudy" && <StudyList items={item} />}
+      {sessionStorage.getItem("userId") && location != "studyFormDetail" && (
         <Link to="studyInputForm" id="studyInputBtn">
           스터디만들기
         </Link>
