@@ -49,7 +49,9 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
   return (
     <div className="TopMenu">
       {" "}
-      <Link to="/">홈으로</Link>
+      <Link to="/" onClick={onLoad}>
+        홈으로
+      </Link>
       {login2 ? (
         <div className="TopMenuItem">
           <label className="menu" htmlFor="menu">
@@ -66,30 +68,33 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
               <Link to="/modForm">정보 수정</Link>
             </li>
             <li>
-              <button onClick={handleLogout}>로그아웃</button>
+              <Link to="" onClick={handleLogout}>
+                로그아웃
+              </Link>
             </li>
           </ul>
         </div>
       ) : (
         <form className="TopMenuItem" onSubmit={handleLogin}>
-          아이디{" "}
+          <span>아이디 </span>
           <input
             type="text"
             name="userId"
             className="loginInput"
             onChange={handleChange}
           />{" "}
-          | 비밀번호{" "}
+          | <span>비밀번호 </span>
           <input
             type="password"
             name="password"
             className="loginInput"
             onChange={handleChange}
           />{" "}
-          | <button type="submit">로그인</button>
+          | <button type="submit">로그인</button>|
           <Link to="/joinForm">
             <button>회원가입</button>
           </Link>
+          |
         </form>
       )}
     </div>
