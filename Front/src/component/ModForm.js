@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { modMember } from "../api";
 import FileInput from "./FileInput";
 import "./ModForm.css";
+import axios from "axios";
 import { useAsync } from "react-async";
-import { getUserInfo } from "./StudyFormDetail";
 
 const INITIAL_VALUES = {
   password: "",
@@ -12,18 +12,31 @@ const INITIAL_VALUES = {
   imageUrl: null,
 };
 
+// const getUserInfo = async ({ userId }) => {
+//   console.log(userId);
+//   if (userId) {
+//     const userInfo = await axios.get(
+//       `http://localhost:3000/api/members/${userId}`
+//     );
+//     console.log(userInfo.data);
+//     return userInfo.data;
+//   }
+// };
+
 function ModForm() {
   const [modData, setModData] = useState(INITIAL_VALUES);
-  const id = window.sessionStorage.getItem("userId");
-  console.log(id);
+  const [user, setUser] = useState("");
+  const userId = window.sessionStorage.getItem("userId");
 
-  const { data: user } = useAsync({
-    promiseFn: getUserInfo,
-    userId: id,
-    watch: id,
-  });
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/members/${userId}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, []);
 
-  console.log(user);
+  console.log(user.imageUrl);
 
   const handleChange = (name, value) => {
     setModData((prev) => ({
@@ -47,7 +60,7 @@ function ModForm() {
     if (modData.imageUrl != "") {
       formData.append("imageUrl", modData.imageUrl);
     }
-    await modMember(id, formData);
+    await modMember(userId, formData);
   };
   return (
     <div id="back">
@@ -60,7 +73,8 @@ function ModForm() {
           onChange={handleChange}
           initialPreview={user.imageUrl}
         />
-        아이디 : <input name="userId" value={id} onChange={handleInputChange} />
+        아이디 :{" "}
+        <input name="userId" value={userId} onChange={handleInputChange} />
         <br />
         비밀번호 :{" "}
         <input
