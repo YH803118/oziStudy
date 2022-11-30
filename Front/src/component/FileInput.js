@@ -26,9 +26,18 @@ function FileInput({ name, value, initialPreview, onChange }) {
     };
   }, [value, initialPreview]);
 
+  const checkPreview = () => {
+    console.log(value);
+  };
   return (
     <div>
-      <img src={preview} alt="이미지 미리보기" />
+      <img
+        src={preview}
+        alt="이미지 미리보기"
+        onClick={checkPreview}
+        width="150px"
+        height="200px"
+      />
       <input
         type="file"
         accept="image/png, image/jpeg"

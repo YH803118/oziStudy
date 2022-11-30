@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import StudyForm from "./StudyForm";
 import "./StudyList.css";
 

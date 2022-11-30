@@ -6,10 +6,12 @@ import { useAsync } from "react-async";
 import "./StudyFormDetail.css";
 
 export const getUserInfo = async ({ userId }) => {
+  console.log(userId);
   if (userId) {
     const userInfo = await axios.get(
       `http://localhost:3000/api/members/${userId}`
     );
+    console.log(userInfo.data);
     return userInfo.data;
   }
 };
