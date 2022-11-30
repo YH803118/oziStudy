@@ -19,9 +19,7 @@ function App() {
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
 
   const handleLoad = async () => {
-    let result;
-    result = await getStudyList();
-    setItem(result);
+    setItem(await getStudyList());
   };
   const handleMyStudy = async () => {
     setItem(await getMyStudy(login));
@@ -44,6 +42,7 @@ function App() {
                   onLogin={setLogin}
                   // onSessionClear={handleSessionClear}
                 />
+                <hr id="topHR"></hr>
                 <SearchForm onLoad={handleLoad} />
                 <StudyList items={item} />
                 {sessionStorage.getItem("userId") && (
@@ -95,6 +94,17 @@ function App() {
               />
             }
           />
+          {/* <Route
+            exact
+            path="/search?searchText="
+            element={
+              <SearchResult
+                onMyStudy={handleMyStudy}
+                onLoad={handleLoad}
+                onLogin={setLogin}
+              />
+            }
+          /> */}
         </Routes>
       </BrowserRouter>
     </>

@@ -139,9 +139,16 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
   res.send(newStudy);
 });
 
-app.get("/api/tables/search/:searchText", async (req, res) => {
+app.get("/api/tables/search", async (req, res) => {
+  // 스터디 검색 - 검색단어가 없다?
+  const tableSearch = [];
+  res.send(tableSearch);
+});
+
+app.get("api/tables/search/:searchText", async (req, res) => {
   // 스터디 검색
   const { searchText } = req.params;
+  console.log(searchText);
   const tableSearch = [];
   tableSearch.push(
     await Table.findAll({

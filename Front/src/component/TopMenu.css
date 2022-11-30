@@ -1,7 +1,7 @@
 .TopMenu {
   width: 100%;
   height: 40px;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   display: flex;
   align-items: center;
 }
@@ -9,13 +9,34 @@
 .TopMenuItem {
   margin-left: auto;
   margin-right: 30px;
+  font-weight: bold;
+  color: rgb(83, 83, 83);
+}
+
+.TopMenuItem input {
+  width: 150px;
 }
 
 .TopMenuItem button {
-  margin-right: 10px;
-  width: 80px;
+  margin: 0px 5px 0 5px;
+  /* width: 70px; */
   height: 25px;
+  border: 0px;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: white;
+  color: rgb(83, 83, 83);
+  position: relative;
+  top: 1px;
 }
+
+.TopMenuItem button:hover {
+  color: rgb(139, 240, 148);
+}
+
+/* .TopMenuItem input {
+  border: 2px;
+} */
 
 label.menu {
   border: 1px solid black;
@@ -39,7 +60,7 @@ input#menu {
 .myMenu li {
   list-style: none;
   margin-top: 10px;
-  width: 80px;
+  width: 100px;
   padding: 4px;
   border-radius: 3px;
   text-align: center;

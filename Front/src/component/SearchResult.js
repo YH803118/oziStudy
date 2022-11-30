@@ -8,12 +8,8 @@ import TopMenu from "./TopMenu";
 function SearchResult({ onMyStudy, onLoad, onLogin }) {
   const { searchText } = useParams();
   const [searchItem, setSearchItem] = useState([]);
-
+  console.log(searchText);
   const handleSearch = async () => {
-    if (searchText.length < 2) {
-      alert("검색은 두 글자 이상부터 가능합니다.");
-      return;
-    }
     let result = await search(searchText);
     setSearchItem(result);
   };
