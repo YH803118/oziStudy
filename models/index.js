@@ -18,10 +18,12 @@ const sequelize = new Sequelize(database, username, password, {
 });
 
 const Member = require("./member")(sequelize, Sequelize.DataTypes); //sequelize 객체를 사용해 초기화하고 데이터베이스에 존재하는 members테이블을 인식하게된다
-const Table = require("./table")(sequelize, Sequelize.DataTypes); //sequelize 객체를 사용해 초기화하고 데이터베이스에 존재하는 members테이블을 인식하게된다
+const Table = require("./table")(sequelize, Sequelize.DataTypes);
+const Comment = require("./comment")(sequelize, Sequelize.DataTypes);
 
 const db = {};
 db.Member = Member;
 db.Table = Table;
+db.Comment = Comment;
 
 module.exports = db;

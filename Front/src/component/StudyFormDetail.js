@@ -4,6 +4,7 @@ import { modMember, modTable } from "../api";
 import axios from "axios";
 import { useAsync } from "react-async";
 import "./StudyFormDetail.css";
+import CommentList from "./CommentList";
 
 export const getUserInfo = async ({ userId }) => {
   console.log(userId);
@@ -94,6 +95,7 @@ function StudyFormDetail({ item }) {
             참가하기
           </button>
         )}
+        <CommentList studyId={id} />
       </div>
     </>
   );
