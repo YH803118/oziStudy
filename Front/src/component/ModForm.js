@@ -25,8 +25,6 @@ function ModForm() {
       });
   }, []);
 
-  console.log(user.imageUrl);
-
   const handleChange = (name, value) => {
     setModData((prev) => ({
       ...prev,
@@ -53,17 +51,22 @@ function ModForm() {
   };
   return (
     <div id="back">
-      <div id="helper"></div>
       <form onSubmit={handleModify} action="/" id="modForm">
-        프로필 이미지 등록
         <FileInput
           name="imageUrl"
           value={modData.imageUrl}
           onChange={handleChange}
           initialPreview={user.imageUrl}
         />
+        프로필 이미지 등록
+        <br />
         아이디 :{" "}
-        <input name="userId" value={userId} onChange={handleInputChange} />
+        <input
+          name="userId"
+          value={userId}
+          onChange={handleInputChange}
+          id="idInput"
+        />
         <br />
         비밀번호 :{" "}
         <input
@@ -71,19 +74,28 @@ function ModForm() {
           type="password"
           onChange={handleInputChange}
           value={modData.password}
+          id="passInput"
         />
         <br />
         이름 :{" "}
-        <input name="name" onChange={handleInputChange} value={modData.name} />
+        <input
+          name="name"
+          onChange={handleInputChange}
+          value={modData.name}
+          id="nameInput"
+        />
         <br />
         이메일 :{" "}
         <input
           name="email"
           onChange={handleInputChange}
           value={modData.email}
+          id="emailInput"
         />
         <br />
-        <button type="submit">수정하기</button>
+        <button type="submit" id="modSubmit">
+          수정하기
+        </button>
       </form>
     </div>
   );

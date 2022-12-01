@@ -1,11 +1,30 @@
-/* #back {
-  width: 100%;
-  height: 500px;
-  text-align: center;
-} */
 #modForm {
   width: 100%;
   display: inline-block;
   vertical-align: middle;
+}
+
+#idInput {
+  margin-left: 14px;
+  margin-top: 10px;
+}
+
+#passInput {
+  margin-top: 10px;
+}
+
+#nameInput {
+  margin-top: 10px;
+  margin-left: 27px;
+}
+
+#emailInput {
+  margin-top: 10px;
+  margin-left: 13px;
+}
+
+#modSubmit {
   text-align: center;
+  margin-top: 10px;
+  margin-left: 80px;
 }

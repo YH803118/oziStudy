@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 
 function FileInput({ name, value, initialPreview, onChange }) {
-  const [preview, setPreview] = useState(initialPreview);
+  const [preview, setPreview] = useState("");
   const inputRef = useRef();
 
   console.log(initialPreview);
 
   const handleChange = (e) => {
-    const nextValue = URL.createObjectURL(e.target.files[0]);
+    const nextValue = e.target.files[0];
     onChange(name, nextValue);
   };
 
@@ -24,7 +24,8 @@ function FileInput({ name, value, initialPreview, onChange }) {
       setPreview(initialPreview);
       return;
     }
-    setPreview(value);
+    const nextPreview = URL.createObjectURL(value);
+    setPreview(nextPreview);
 
     return () => {
       setPreview(initialPreview);
@@ -43,7 +44,6 @@ function FileInput({ name, value, initialPreview, onChange }) {
         width="200px"
         height="200px"
       />
-      <br />
       <input
         type="file"
         accept="image/png , image/jpeg"
