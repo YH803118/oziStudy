@@ -12,17 +12,6 @@ const INITIAL_VALUES = {
   imageUrl: null,
 };
 
-// const getUserInfo = async ({ userId }) => {
-//   console.log(userId);
-//   if (userId) {
-//     const userInfo = await axios.get(
-//       `http://localhost:3000/api/members/${userId}`
-//     );
-//     console.log(userInfo.data);
-//     return userInfo.data;
-//   }
-// };
-
 function ModForm() {
   const [modData, setModData] = useState(INITIAL_VALUES);
   const [user, setUser] = useState("");
