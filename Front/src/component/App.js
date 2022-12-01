@@ -83,7 +83,7 @@ function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             exact
             path="/search/:searchText"
             element={
@@ -93,10 +93,10 @@ function App() {
                 onLogin={setLogin}
               />
             }
-          />
-          {/* <Route
+          /> */}
+          <Route
             exact
-            path="/search?searchText="
+            path="/search"
             element={
               <SearchResult
                 onMyStudy={handleMyStudy}
@@ -104,7 +104,7 @@ function App() {
                 onLogin={setLogin}
               />
             }
-          /> */}
+          />
         </Routes>
       </BrowserRouter>
     </>

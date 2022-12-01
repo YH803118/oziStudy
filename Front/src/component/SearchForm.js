@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./SearchForm.css";
 import { Link, useNavigate } from "react-router-dom";
 import { search } from "../api";
+import axios from "axios";
 
 function SearchForm() {
   const [searchText, setSearchText] = useState("");
@@ -18,27 +19,29 @@ function SearchForm() {
     }
   };
 
-  // const handleSubmit = (e) => {
-  //   // e.preventDefault();
-  //   // search(searchText);
-  //   // navigate(`/search?searchText=${searchText}`);
-  //   // navigate("studyInputForm");
-  //   console.log("sumbit");
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const params = new URLSearchParams();
+
+  //   params.append("searchText", searchText);
+
+  //   axios.get("/search", params);
   // };
 
   return (
     <>
-      <form
-        id="searchForm"
-        action="http://localhost:3000/search"
-        // onSubmit={handleSubmit}
-      >
-        <input type="text" name="searchText" onChange={handleChange} />
+      <form id="searchForm" action="search">
+        <input
+          type="text"
+          name="searchText"
+          onChange={handleChange}
+          placeholder="검색어 입력"
+        />
         <button type="submit">검색</button>
       </form>
-      <Link to={`/search/${searchText}`} onClick={textCheck}>
+      {/* <Link to={`/search/${searchText}`} onClick={textCheck}>
         링크
-      </Link>
+      </Link> */}
     </>
   );
 }

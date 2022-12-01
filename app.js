@@ -145,7 +145,7 @@ app.get("/api/tables/search", async (req, res) => {
   res.send(tableSearch);
 });
 
-app.get("api/tables/search/:searchText", async (req, res) => {
+app.get("/api/tables/search/:searchText", async (req, res) => {
   // 스터디 검색
   const { searchText } = req.params;
   console.log(searchText);

@@ -6,7 +6,9 @@ import SearchResultList from "./SearchResultList";
 import "./StudyList.css";
 import TopMenu from "./TopMenu";
 function SearchResult({ onMyStudy, onLoad, onLogin }) {
-  const { searchText } = useParams();
+  // const { searchText } = useParams();
+  // const searchText = decodeURI(window.location.search.split("=")[1]);
+  const searchText = window.location.search.split("=")[1];
   const [searchItem, setSearchItem] = useState([]);
   console.log(searchText);
   const handleSearch = async () => {
