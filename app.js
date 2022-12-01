@@ -4,6 +4,7 @@ const app = express();
 const db = require("./models");
 const { Member } = db;
 const { Table } = db;
+const { Comment } = db;
 
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
@@ -179,6 +180,18 @@ app.get("/api/tables/search/:searchText", async (req, res) => {
   //   order: [["updatedAt", "DESC"]],
   // });
   res.send(tableSearch);
+});
+
+// Comments --------------------------------------------------------------------------------
+
+app.get("/api/comments/:studyId", async (req, res) => {
+  // 댓글 불러오기
+  const { studyId } = req.params;
+  const comments = await Comment.findAll({
+    where: { studyId },
+    order: [["updatedAt", "DESC"]],
+  });
+  res.send(comments);
 });
 
 const port = 3001;

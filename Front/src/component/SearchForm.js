@@ -31,12 +31,14 @@ function SearchForm() {
   return (
     <>
       <form id="searchForm" action="search">
-        <input
-          type="text"
-          name="searchText"
-          onChange={handleChange}
-          placeholder="검색어 입력"
-        />
+        <div className="searchInput">
+          <input
+            type="text"
+            name="searchText"
+            onChange={handleChange}
+            placeholder="검색어 입력"
+          />
+        </div>
         <button type="submit">검색</button>
       </form>
       {/* <Link to={`/search/${searchText}`} onClick={textCheck}>

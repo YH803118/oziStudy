@@ -79,8 +79,6 @@ export async function getMyStudy(id) {
 }
 
 export async function regiStudy(formData) {
-  console.log(formData);
-  console.log(JSON.stringify(formData));
   const response = await fetch(`http://localhost:3000/api/tables/`, {
     method: "POST",
     body: formData,
@@ -98,5 +96,24 @@ export async function search(searchText) {
   );
   if (!res) throw new Error("검색대작전 대실패!");
   const body = await res.json();
+  return body;
+}
+
+export async function getComment(studyId) {
+  const res = await fetch(`http://localhost:3000/api/comments/${studyId}`);
+  if (!res) throw new Error("댓글검색대작전 대실패!");
+  const body = await res.json();
+  return body;
+}
+
+export async function writeComment(formData) {
+  const response = await fetch(`http://localhost:3000/api/comments/`, {
+    method: "POST",
+    body: formData,
+  });
+  if (!response.ok) {
+    throw new Error("댓글 등록 실패");
+  }
+  const body = await response.json();
   return body;
 }
