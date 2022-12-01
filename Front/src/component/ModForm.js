@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { modMember } from "../api";
 import FileInput from "./FileInput";
 import "./ModForm.css";
+import axios from "axios";
 import { useAsync } from "react-async";
-import { getUserInfo } from "./StudyFormDetail";
 
 const INITIAL_VALUES = {
   password: "",
@@ -14,16 +14,16 @@ const INITIAL_VALUES = {
 
 function ModForm() {
   const [modData, setModData] = useState(INITIAL_VALUES);
-  const id = window.sessionStorage.getItem("userId");
-  console.log(id);
+  const [user, setUser] = useState("");
+  const userId = window.sessionStorage.getItem("userId");
 
-  const { data: user } = useAsync({
-    promiseFn: getUserInfo,
-    userId: id,
-    watch: id,
-  });
-
-  console.log(user);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/api/members/${userId}`)
+      .then((response) => {
+        setUser(response.data);
+      });
+  }, []);
 
   const handleChange = (name, value) => {
     setModData((prev) => ({
@@ -47,20 +47,26 @@ function ModForm() {
     if (modData.imageUrl != "") {
       formData.append("imageUrl", modData.imageUrl);
     }
-    await modMember(id, formData);
+    await modMember(userId, formData);
   };
   return (
     <div id="back">
-      <div id="helper"></div>
       <form onSubmit={handleModify} action="/" id="modForm">
-        프로필 이미지 등록
         <FileInput
           name="imageUrl"
           value={modData.imageUrl}
           onChange={handleChange}
           initialPreview={user.imageUrl}
         />
-        아이디 : <input name="userId" value={id} onChange={handleInputChange} />
+        프로필 이미지 등록
+        <br />
+        아이디 :{" "}
+        <input
+          name="userId"
+          value={userId}
+          onChange={handleInputChange}
+          id="idInput"
+        />
         <br />
         비밀번호 :{" "}
         <input
@@ -68,19 +74,28 @@ function ModForm() {
           type="password"
           onChange={handleInputChange}
           value={modData.password}
+          id="passInput"
         />
         <br />
         이름 :{" "}
-        <input name="name" onChange={handleInputChange} value={modData.name} />
+        <input
+          name="name"
+          onChange={handleInputChange}
+          value={modData.name}
+          id="nameInput"
+        />
         <br />
         이메일 :{" "}
         <input
           name="email"
           onChange={handleInputChange}
           value={modData.email}
+          id="emailInput"
         />
         <br />
-        <button type="submit">수정하기</button>
+        <button type="submit" id="modSubmit">
+          수정하기
+        </button>
       </form>
     </div>
   );
