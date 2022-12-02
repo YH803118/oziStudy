@@ -45,7 +45,7 @@ function ModForm() {
     formData.append("email", modData.email);
     formData.append("tag", "Front");
     if (modData.imageUrl != "") {
-      formData.append("imageUrl", modData.imageUrl);
+      formData.append("imageUrl", modData.imageUrl.split("blob:")[1] + ".jpg");
     }
     await modMember(userId, formData);
   };

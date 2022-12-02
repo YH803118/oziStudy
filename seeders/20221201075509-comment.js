@@ -7,7 +7,7 @@ module.exports = {
       {
         studyId: "1",
         userId: "marrtil",
-        passowrd: "1234",
+        password: "1234",
         content: "여기 참 맛집이네요",
       },
     ]);

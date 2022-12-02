@@ -27,7 +27,6 @@ function App() {
   useEffect(() => {
     handleLoad();
   }, [sessionStorage.getItem("userId")]);
-
   return (
     <>
       <BrowserRouter>

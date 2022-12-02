@@ -117,3 +117,12 @@ export async function writeComment(formData) {
   const body = await response.json();
   return body;
 }
+
+export async function delComment(userId) {
+  const res = await fetch(`http://localhost:3000/api/members/${userId}`, {
+    method: "DELETE",
+  });
+  if (!res) throw new Error("회원 삭제에 실패하였습니다");
+  const body = await res.json();
+  return body;
+}
