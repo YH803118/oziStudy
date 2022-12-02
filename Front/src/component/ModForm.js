@@ -80,68 +80,84 @@ function ModForm() {
       labelFont.innerText = "비밀번호가 일치하지 않습니다!!";
       setPassConfirm(false);
       labelFont.style.color = "red";
+      console.log(modData.imageUrl);
+      const formData = new FormData();
+      formData.append("password", modData.password);
+      formData.append("name", modData.name);
+      formData.append("email", modData.email);
+      formData.append("tag", "Front");
+      if (modData.imageUrl != "") {
+        formData.append(
+          "imageUrl",
+          modData.imageUrl.split("blob:")[1] + ".jpg"
+        );
+      }
     }
+    return (
+      <div id="back">
+        <form onSubmit={handleModify} action="/" id="modForm">
+          <FileInput
+            name="imageUrl"
+            value={modData.imageUrl}
+            onChange={handleChange}
+            initialPreview={user.imageUrl}
+          />
+          프로필 이미지 등록
+          <br />
+          아이디 :{" "}
+          <input
+            name="userId"
+            value={userId}
+            onChange={handleInputChange}
+            id="idInput"
+            className="modInput"
+            disabled="readonly"
+          />
+          <br />
+          비밀번호 :{" "}
+          <input
+            name="password"
+            type="password"
+            onChange={handleInputChange}
+            value={modData.password}
+            id="passInput"
+            className="modInput"
+          />
+          <br />
+          비밀번호 확인:{" "}
+          <input
+            name="passwordCheck"
+            onChange={passCheck}
+            className="modInput"
+          />
+          <br />
+          <label id="passConfirm"></label>
+          <br />
+          이름 :{" "}
+          <input
+            name="name"
+            onChange={handleInputChange}
+            value={modData.name}
+            id="nameInput"
+            className="modInput"
+          />
+          <br />
+          이메일 :{" "}
+          <input
+            name="email"
+            onChange={handleInputChange}
+            value={modData.email}
+            id="emailInput"
+            className="modInput"
+          />
+          <br />
+          <button type="submit" id="modSubmit">
+            수정하기
+          </button>
+        </form>
+      </div>
+    );
   };
-  return (
-    <div id="back">
-      <form onSubmit={handleModify} action="/" id="modForm">
-        <FileInput
-          name="imageUrl"
-          value={modData.imageUrl}
-          onChange={handleChange}
-          initialPreview={user.imageUrl}
-        />
-        프로필 이미지 등록
-        <br />
-        아이디 :{" "}
-        <input
-          name="userId"
-          value={userId}
-          onChange={handleInputChange}
-          id="idInput"
-          className="modInput"
-          disabled="readonly"
-        />
-        <br />
-        비밀번호 :{" "}
-        <input
-          name="password"
-          type="password"
-          onChange={handleInputChange}
-          value={modData.password}
-          id="passInput"
-          className="modInput"
-        />
-        <br />
-        비밀번호 확인:{" "}
-        <input name="passwordCheck" onChange={passCheck} className="modInput" />
-        <br />
-        <label id="passConfirm"></label>
-        <br />
-        이름 :{" "}
-        <input
-          name="name"
-          onChange={handleInputChange}
-          value={modData.name}
-          id="nameInput"
-          className="modInput"
-        />
-        <br />
-        이메일 :{" "}
-        <input
-          name="email"
-          onChange={handleInputChange}
-          value={modData.email}
-          id="emailInput"
-          className="modInput"
-        />
-        <br />
-        <button type="submit" id="modSubmit">
-          수정하기
-        </button>
-      </form>
-    </div>
-  );
 }
 
 export default ModForm;

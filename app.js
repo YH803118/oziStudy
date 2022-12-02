@@ -194,6 +194,24 @@ app.get("/api/comments/:studyId", async (req, res) => {
   res.send(comments);
 });
 
+app.post("/api/comments", upload.single("file"), async (req, res) => {
+  // 댓글쓰기
+  const newTable = req.body;
+  const table = Comment.build(newTable);
+  await table.save();
+  res.send(newTable);
+});
+
+app.delete("/api/comments/:id", async (req, res) => {
+  const { id } = req.params;
+  const deleteCount = await Comment.destroy({ where: { id } }); //조건대로 삭제
+  if (deleteCount) {
+    res.send({ message: `${deleteCount} row(s) deleted` });
+  } else {
+    res.status(404).send({ message: "failed delete." });
+  }
+});
+
 const port = 3001;
 app.listen(port, () => {
   console.log(`${port} 접속 성공`);

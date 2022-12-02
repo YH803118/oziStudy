@@ -11,6 +11,7 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
   const [loginInfo, setLoginInfo] = useState(LOGIN_INFO);
   let sessionStorage = window.sessionStorage;
   const [login2, setLogin2] = useState(sessionStorage.getItem("userId"));
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setLogin(
