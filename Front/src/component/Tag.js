@@ -27,6 +27,7 @@ const Tag = ({ onChange }) => {
   useEffect(() => {
     const tagData = tagList.join(",");
     onChange("tag", tagData);
+    console.log(tagData);
   }, [tagList]);
 
   return (

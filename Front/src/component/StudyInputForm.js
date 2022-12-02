@@ -9,19 +9,35 @@ const INITIAL_VALUES = {
   tag: "",
 };
 
+const inputName = {
+  title: "제목",
+  content: "내용",
+};
+
 function StudyInputForm({ userId }) {
   const [regiData, setRegiData] = useState(INITIAL_VALUES);
 
   const handleRegiSubmit = async () => {
-    const formData = new FormData();
-    formData.append("leader", userId);
-    formData.append("title", regiData.title);
-    formData.append("content", regiData.content);
-    formData.append("tag", regiData.tag);
-    formData.append("userList", userId);
-    await regiStudy(formData);
+    var inputs = document.querySelectorAll(".studyInput");
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].value == "") {
+        alert(`${inputName[inputs[i].name]}을 입력해주세요`);
+        return;
+      }
+    }
+    if (regiData.tag == "") {
+      alert("태그를 달아주세요!");
+    } else {
+      const formData = new FormData();
+      formData.append("leader", userId);
+      formData.append("title", regiData.title);
+      formData.append("content", regiData.content);
+      formData.append("tag", regiData.tag);
+      formData.append("userList", userId);
+      await regiStudy(formData);
 
-    document.getElementById("submit").submit();
+      document.getElementById("submit").submit();
+    }
   };
 
   const handleChange = (name, value) => {
@@ -46,6 +62,7 @@ function StudyInputForm({ userId }) {
             placeholder="제목"
             onChange={handleInputChange}
             id="title"
+            className="studyInput"
           />
           <br />
           <p id="content">내용:</p>
@@ -56,6 +73,7 @@ function StudyInputForm({ userId }) {
             cols="70"
             placeholder="내용을 입력해주세요.."
             onChange={handleInputChange}
+            className="studyInput"
           />
           <br />
           모집분야 태그: <Tag onChange={handleChange} />

@@ -3,7 +3,6 @@ import { modMember } from "../api";
 import FileInput from "./FileInput";
 import "./ModForm.css";
 import axios from "axios";
-import { useAsync } from "react-async";
 
 const INITIAL_VALUES = {
   password: "",
@@ -12,9 +11,17 @@ const INITIAL_VALUES = {
   imageUrl: null,
 };
 
+const inputName = {
+  name: "이름",
+  userId: "아이디",
+  password: "비밀번호",
+  passwordCheck: "비밀번호 확인",
+};
+
 function ModForm() {
   const [modData, setModData] = useState(INITIAL_VALUES);
   const [user, setUser] = useState("");
+  const [passConfirm, setPassConfirm] = useState(false);
   const userId = window.sessionStorage.getItem("userId");
 
   useEffect(() => {
@@ -38,16 +45,42 @@ function ModForm() {
   };
 
   const handleModify = async (e) => {
-    console.log(modData.imageUrl);
-    const formData = new FormData();
-    formData.append("password", modData.password);
-    formData.append("name", modData.name);
-    formData.append("email", modData.email);
-    formData.append("tag", "Front");
-    if (modData.imageUrl != "") {
-      formData.append("imageUrl", modData.imageUrl);
+    var inputs = document.querySelectorAll(".modInput");
+    for (let i = 0; i < inputs.length; i++) {
+      if (inputs[i].value == "") {
+        alert(`${inputName[inputs[i].name]}을 입력해주세요`);
+        e.preventDefault();
+        return;
+      }
     }
-    await modMember(userId, formData);
+    if (!passConfirm) {
+      alert("비밀번호를 확인해 주세요!!");
+      e.preventDefault();
+    } else {
+      const formData = new FormData();
+      formData.append("password", modData.password);
+      formData.append("name", modData.name);
+      formData.append("email", modData.email);
+      formData.append("tag", "Front");
+      if (modData.imageUrl != "") {
+        formData.append("imageUrl", modData.imageUrl);
+      }
+      await modMember(userId, formData);
+    }
+  };
+
+  const passCheck = (e) => {
+    var labelFont = document.getElementById("passConfirm");
+    if (e.target.value == modData.password) {
+      labelFont.innerText = "비밀번호가 일치합니다.";
+      setPassConfirm(true);
+      labelFont.style.color = "lightGreen";
+    } else if (e.target.value == "") labelFont.innerText = "";
+    else {
+      labelFont.innerText = "비밀번호가 일치하지 않습니다!!";
+      setPassConfirm(false);
+      labelFont.style.color = "red";
+    }
   };
   return (
     <div id="back">
@@ -66,6 +99,8 @@ function ModForm() {
           value={userId}
           onChange={handleInputChange}
           id="idInput"
+          className="modInput"
+          disabled="readonly"
         />
         <br />
         비밀번호 :{" "}
@@ -75,7 +110,13 @@ function ModForm() {
           onChange={handleInputChange}
           value={modData.password}
           id="passInput"
+          className="modInput"
         />
+        <br />
+        비밀번호 확인:{" "}
+        <input name="passwordCheck" onChange={passCheck} className="modInput" />
+        <br />
+        <label id="passConfirm"></label>
         <br />
         이름 :{" "}
         <input
@@ -83,6 +124,7 @@ function ModForm() {
           onChange={handleInputChange}
           value={modData.name}
           id="nameInput"
+          className="modInput"
         />
         <br />
         이메일 :{" "}
@@ -91,6 +133,7 @@ function ModForm() {
           onChange={handleInputChange}
           value={modData.email}
           id="emailInput"
+          className="modInput"
         />
         <br />
         <button type="submit" id="modSubmit">
