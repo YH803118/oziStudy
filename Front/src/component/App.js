@@ -45,14 +45,14 @@ function App() {
                 <SearchForm onLoad={handleLoad} />
                 <StudyList items={item} />
                 {sessionStorage.getItem("userId") && (
-                  <Link to="studyInputForm" id="studyInputBtn">
+                  <Link to="/studyInputForm" id="studyInputBtn">
                     스터디만들기
                   </Link>
                 )}
               </>
             }
           />
-          <Route path="joinForm" element={<JoinForm />} />
+          <Route path="/joinForm" element={<JoinForm />} />
           <Route
             path="/myStudy"
             element={

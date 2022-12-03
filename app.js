@@ -131,7 +131,7 @@ app.get("/api/tables/:id", async (req, res) => {
   res.send(tableSearch);
 });
 
-app.get("/api/tables/myStudy:id", async (req, res) => {
+app.get("/api/tables/myStudy/:id", async (req, res) => {
   // 내 스터디
   const { id } = req.params;
   const tableSearch = await Table.findAll({
