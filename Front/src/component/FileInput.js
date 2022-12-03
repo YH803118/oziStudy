@@ -40,6 +40,7 @@ function FileInput({ name, value, initialPreview, onChange }) {
         onClick={checkPreview}
         width="200px"
         height="200px"
+        id="previewImage"
       />
       <input
         type="file"

@@ -93,7 +93,7 @@ function ModForm() {
         />
         프로필 이미지 등록
         <br />
-        아이디 :{" "}
+        &nbsp; 아이디{" "}
         <input
           name="userId"
           value={userId}
@@ -103,22 +103,28 @@ function ModForm() {
           disabled="readonly"
         />
         <br />
-        비밀번호 :{" "}
+        &nbsp; 비밀번호{" "}
         <input
           name="password"
           type="password"
           onChange={handleInputChange}
           value={modData.password}
           id="passInput"
+          placeholder="새 비밀번호"
           className="modInput"
         />
         <br />
-        비밀번호 확인:{" "}
-        <input name="passwordCheck" onChange={passCheck} className="modInput" />
+        <input
+          name="passwordCheck"
+          onChange={passCheck}
+          className="modInput"
+          placeholder="새 비밀번호 확인"
+          id="passCheck"
+        />
         <br />
         <label id="passConfirm"></label>
         <br />
-        이름 :{" "}
+        &nbsp; 이름{" "}
         <input
           name="name"
           onChange={handleInputChange}
@@ -127,7 +133,7 @@ function ModForm() {
           className="modInput"
         />
         <br />
-        이메일 :{" "}
+        &nbsp; 이메일{" "}
         <input
           name="email"
           onChange={handleInputChange}

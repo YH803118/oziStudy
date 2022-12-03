@@ -16,7 +16,6 @@ const inputName = {
 };
 function JoinForm() {
   const [joinData, setJoinData] = useState(INITIAL_VALUES);
-  const [passConfirmText, setPassConfirmText] = useState("");
   const [idConfrim, setIdConfirm] = useState(false);
   const [passConfirm, setPassConfirm] = useState(false);
 
@@ -76,12 +75,12 @@ function JoinForm() {
   const passCheck = (e) => {
     var labelFont = document.getElementById("passConfirm");
     if (e.target.value == joinData.password) {
-      setPassConfirmText("비밀번호가 일치합니다.");
+      labelFont.innerText = "비밀번호가 일치합니다.";
       setPassConfirm(true);
       labelFont.style.color = "lightGreen";
     } else if (e.target.value == "") setPassConfirm("");
     else {
-      setPassConfirmText("비밀번호가 일치하지 않습니다!!");
+      labelFont.innerText = "비밀번호가 일치하지 않습니다!!";
       setPassConfirm(false);
       labelFont.style.color = "red";
     }
@@ -104,7 +103,7 @@ function JoinForm() {
           className="joinInput"
         />
         <br />
-        <label id="passConfirm">{passConfirmText}</label>
+        <label id="passConfirm"></label>
         <br />
         이름 :{" "}
         <input name="name" onChange={handleChange} className="joinInput" />

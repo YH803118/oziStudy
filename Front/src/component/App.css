@@ -7,6 +7,9 @@
   text-align: center;
   line-height: 120px;
   background-color: rgb(25, 200, 90);
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 #topHR {
