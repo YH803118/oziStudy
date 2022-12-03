@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { modMember, modTable } from "../api";
+import { delStudy, modMember, modTable } from "../api";
 import axios from "axios";
 import { useAsync } from "react-async";
 import "./StudyFormDetail.css";
 import CommentList from "./CommentList";
-
+import { Link } from "react-router-dom";
 export const getUserInfo = async ({ userId }) => {
   console.log(userId);
   if (userId) {
@@ -19,6 +19,7 @@ export const getUserInfo = async ({ userId }) => {
 
 function StudyFormDetail({ item }) {
   const [join, setJoin] = useState(false);
+  const [leaderCheck, setLeaderCheck] = useState(false);
   const { id } = useParams();
   let tagArr = [];
 
@@ -48,6 +49,7 @@ function StudyFormDetail({ item }) {
   }
 
   useEffect(() => {
+    setLeaderCheck(leader == userId);
     const userListArray = userList.split(",");
     if (userListArray.includes(userId)) setJoin(true);
   }, [sessionStorage.getItem("userId")]);
@@ -70,6 +72,18 @@ function StudyFormDetail({ item }) {
       return;
     }
   };
+
+  const handleEndStudy = () => {
+    let confirmer = window.confirm("스터디를 끝내시겠습니까? 대충 경고문");
+    // 기록을 남길까말까 - 남기기 위해선 끝났는지 안끝났는지에 대한 속성 추가 필요
+    // 일단 남기지 않는 코드
+    if (confirmer) {
+      delStudy(id);
+    }
+  };
+
+  const handleModStudy = () => {};
+
   return (
     <>
       <div className="StudyFormDetail">
@@ -90,6 +104,16 @@ function StudyFormDetail({ item }) {
         <div className="endDate">{endDate}</div>
         <span className="leader">작성자 : {leader}</span>
         <br></br>
+        {leaderCheck && (
+          <>
+            <button onClick={handleModStudy}>
+              <Link to={`/studyInputForm/modify/${id}`}>수정</Link>
+            </button>
+            <button onClick={handleEndStudy}>
+              <Link to="/">끝내기</Link>
+            </button>
+          </>
+        )}
         {join || (
           <button className="joinBtn" onClick={handleJoin}>
             참가하기

@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./Tag.css";
 
-const Tag = ({ onChange }) => {
+const Tag = ({ onChange, tags = "" }) => {
   const [tagItem, setTagItem] = useState("");
   const [tagList, setTagList] = useState([]);
+  const [load, setLoad] = useState("");
+
+  const handleLoad = () => {
+    if (tags) {
+      tags.split(",").map((tag) => {
+        setTagList((prev) => [...prev, tag]);
+      });
+    }
+  };
 
   const onKeyPress = (e) => {
     if (e.target.value.length !== 0 && e.key === "Enter") {
@@ -25,10 +34,10 @@ const Tag = ({ onChange }) => {
   };
 
   useEffect(() => {
+    if (tagList.length == 0) handleLoad();
     const tagData = tagList.join(",");
     onChange("tag", tagData);
-    console.log(tagData);
-  }, [tagList]);
+  }, [tags, tagList]);
 
   return (
     <>

@@ -70,8 +70,15 @@ export async function getStudyList() {
   return body;
 }
 
-export async function getMyStudy(id) {
+export async function getStudy(id) {
   const res = await fetch(`http://localhost:3000/api/tables/${id}`);
+  if (!res) throw new Error("스터디조회실패!");
+  const body = await res.json();
+  return body;
+}
+
+export async function getMyStudy(id) {
+  const res = await fetch(`http://localhost:3000/api/tables/myStudy/${id}`);
   if (!res) throw new Error("스터디조회실패!");
   const body = await res.json();
   console.log(body);
@@ -95,6 +102,15 @@ export async function search(searchText) {
     `http://localhost:3000/api/tables/search/${searchText}`
   );
   if (!res) throw new Error("검색대작전 대실패!");
+  const body = await res.json();
+  return body;
+}
+
+export async function delStudy(id) {
+  const res = await fetch(`http://localhost:3000/api/tables/${id}`, {
+    method: "DELETE",
+  });
+  if (!res) throw new Error("스터디 삭제에 실패하였습니다");
   const body = await res.json();
   return body;
 }

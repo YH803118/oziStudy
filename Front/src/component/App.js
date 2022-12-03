@@ -66,7 +66,11 @@ function App() {
             }
           />
           <Route
-            path="studyInputForm"
+            path="/studyInputForm"
+            element={<StudyInputForm userId={login} />}
+          />
+          <Route
+            path="/studyInputForm/modify/:studyId"
             element={<StudyInputForm userId={login} />}
           />
           <Route path="modForm" element={<ModForm />} />

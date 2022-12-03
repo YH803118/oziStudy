@@ -51,3 +51,8 @@ hr {
   width: 60%;
   height: 50px;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
