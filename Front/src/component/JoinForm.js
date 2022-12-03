@@ -89,34 +89,52 @@ function JoinForm() {
   return (
     <div>
       <form onSubmit={handleJoinSubmit} className="joinForm" action="/">
-        아이디 :{" "}
-        <input name="userId" onChange={handleChange} className="joinInput" />{" "}
+        아이디 <br />
+        <input
+          name="userId"
+          onChange={handleChange}
+          id="idInput"
+          className="joinInput"
+        />{" "}
         <button onClick={handleOverlapCheck}>중복확인</button>
         <br />
-        비밀번호 :{" "}
-        <input name="password" onChange={handleChange} className="joinInput" />
+        비밀번호 <br />
+        <input
+          name="password"
+          onChange={handleChange}
+          id="passInput"
+          className="joinInput"
+        />
         <br />
-        비밀번호 확인:{" "}
         <input
           name="passwordCheck"
           onChange={passCheck}
           className="joinInput"
+          id="passCheck"
         />
         <br />
         <label id="passConfirm"></label>
         <br />
-        이름 :{" "}
-        <input name="name" onChange={handleChange} className="joinInput" />
+        이름 <br />
+        <input
+          name="name"
+          onChange={handleChange}
+          id="nameInput"
+          className="joinInput"
+        />
         <br />
-        이메일 :{" "}
+        이메일 <br />
         <input
           type="email"
           name="email"
           onChange={handleChange}
           className="joinInput"
+          id="emailInput"
         />
         <br />
-        <button type="submit">가입하기</button>
+        <button type="submit" id="joinSubmit">
+          가입하기
+        </button>
       </form>
     </div>
   );

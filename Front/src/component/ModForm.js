@@ -71,12 +71,13 @@ function ModForm() {
 
   const passCheck = (e) => {
     var labelFont = document.getElementById("passConfirm");
-    if (e.target.value == modData.password) {
+
+    if (e.target.value == "") labelFont.innerText = "";
+    else if (e.target.value == modData.password) {
       labelFont.innerText = "비밀번호가 일치합니다.";
       setPassConfirm(true);
       labelFont.style.color = "lightGreen";
-    } else if (e.target.value == "") labelFont.innerText = "";
-    else {
+    } else {
       labelFont.innerText = "비밀번호가 일치하지 않습니다!!";
       setPassConfirm(false);
       labelFont.style.color = "red";
