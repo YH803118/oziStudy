@@ -1,3 +1,19 @@
-.joinForm {
-  width: 500px;
+#idInput {
+  margin-top: 10px;
+}
+
+#passInput {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#nameInput {
+  margin-top: 10px;
+}
+
+#emailInput {
+  margin-top: 10px;
+}
+
+#passCheck {
 }

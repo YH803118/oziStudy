@@ -3,6 +3,7 @@
   display: inline-block;
   vertical-align: middle;
   text-align: center;
+  font-weight: 300;
 }
 
 #idInput {
