@@ -1,12 +1,12 @@
 import { useState } from "react";
 const INITIAL_VALUES = {
-  userId: sessionStorage.getItem("userId"),
-  password: "",
+  // password: "",
   content: "",
   parentCommentId: "",
 };
 function CommentForm({ handleClick }) {
   const [commentData, setCommentData] = useState(INITIAL_VALUES);
+
   const handleChange = (name, value) => {
     setCommentData((prev) => ({
       ...prev,
@@ -20,11 +20,17 @@ function CommentForm({ handleClick }) {
   };
   const onClick = () => {
     handleClick(commentData);
+    setCommentData(INITIAL_VALUES);
+    document.querySelector(".commentInput").value = "";
   };
   return (
     <div className="commentForm">
-      <textarea onChange={handleInputChange} name="content" />
-      <input type="text" name="password" onChange={handleInputChange} />
+      <textarea
+        onChange={handleInputChange}
+        name="content"
+        className="commentInput"
+        placeholder="댓글 작성"
+      />
       <button onClick={onClick}>댓글쓰기</button>
     </div>
   );

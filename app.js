@@ -211,7 +211,16 @@ app.delete("/api/comments/:id", async (req, res) => {
     res.status(404).send({ message: "failed delete." });
   }
 });
-
+app.put("/api/comments/:id", upload.single("imageUrl"), async (req, res) => {
+  const { id } = req.params;
+  const newInfo = req.body;
+  const result = await Comment.update(newInfo, { where: { id } });
+  if (result[0]) {
+    res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
+  } else {
+    res.status(404).send({ message: "There is no member with the id!" });
+  }
+});
 const port = 3001;
 app.listen(port, () => {
   console.log(`${port} 접속 성공`);
