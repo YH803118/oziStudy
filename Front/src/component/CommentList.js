@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react";
-import { getComment, writeComment } from "../api";
+import { delComment, getComment, modComment, writeComment } from "../api";
 import CommentForm from "./CommentForm";
+import "./Comment.css";
 
-function CommentListItem({ comment }) {
-  const { userId, content } = comment;
-
-  const handleCommentDelete = () => {};
-
+function CommentListItem({ comment, onDelete, onModify }) {
+  const { id, userId, content } = comment;
+  const [commentState, setCommentState] = useState("comment");
+  const handleDelete = () => {
+    onDelete(id);
+  };
+  const setModify = () => {
+    setCommentState("modify");
+  };
+  const handleModify = async (commentData) => {
+    setCommentState("comment");
+    onModify(id, commentData);
+  };
   return (
     <div className="commentForm">
-      {comment && (
+      {commentState == "comment" ? (
         <>
           <span className="writerId">{userId}</span>
           <span className="commentText">{content}</span>
-          <button onClick={handleCommentDelete}>삭제</button>
-          <button>수정</button>
+          <button onClick={handleDelete}>삭제</button>
+          <button onClick={setModify}>수정</button>
+          <hr></hr>
         </>
+      ) : (
+        <CommentForm handleClick={handleModify} />
       )}
     </div>
   );
@@ -23,35 +35,56 @@ function CommentListItem({ comment }) {
 
 function CommentList({ studyId }) {
   const [comments, setComments] = useState();
-  console.log(studyId);
+
   const commentLoad = async () => {
     setComments(await getComment(studyId));
   };
-  const handleWrite = async (commentData) => {
+  const handleCommentDelete = (id) => {
+    delComment(id);
+    commentLoad();
+  };
+
+  const checkAndForm = (commentData) => {
     if (sessionStorage.getItem("userId") == null) {
       alert("로그인 상태에서만 작성 가능합니다.");
       return;
     }
-    console.log(commentData);
     const formData = new FormData();
     formData.append("studyId", studyId);
-    formData.append("userId", commentData.userId);
-    formData.append("password", commentData.password);
+    formData.append("userId", sessionStorage.getItem("userId"));
+    // formData.append("password", commentData.password);
     formData.append("content", commentData.content);
     formData.append("parentCommentId", commentData.parentCommentId);
+    return formData;
+  };
 
-    await writeComment(formData);
+  const handleWrite = async (commentData) => {
+    await writeComment(checkAndForm(commentData));
     commentLoad();
   };
+
+  const handleModify = async (id, commentData) => {
+    modComment(id, checkAndForm(commentData));
+    commentLoad();
+  };
+
   useEffect(() => {
     commentLoad();
   }, []);
   return (
     <div className="CommentList">
+      <hr></hr>
       {/* {studyId} */}
       {comments &&
         comments.map((comment) => {
-          return <CommentListItem key={comment.id} comment={comment} />;
+          return (
+            <CommentListItem
+              key={comment.id}
+              comment={comment}
+              onDelete={handleCommentDelete}
+              onModify={handleModify}
+            />
+          );
         })}
       <CommentForm handleClick={handleWrite} />
     </div>

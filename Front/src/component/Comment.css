@@ -1,0 +1,39 @@
+.CommentList {
+  font-size: 14px;
+  margin-top: 10px;
+  padding: 5px;
+  background-color: aliceblue;
+}
+
+.writerId {
+  display: inline-block;
+  text-align: center;
+  width: 90px;
+}
+
+.commentInput {
+  margin-left: 90px;
+  width: 280px;
+  margin-right: 20px;
+}
+
+.commentText {
+  display: inline-block;
+  width: 280px;
+  margin-right: 20px;
+}
+
+.commentForm {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* .passwordSpan {
+  margin-left: 200px;
+}
+
+.passwordInput {
+  width: 120px;
+  margin-right: 20px;
+} */

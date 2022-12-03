@@ -118,11 +118,21 @@ export async function writeComment(formData) {
   return body;
 }
 
-export async function delComment(userId) {
-  const res = await fetch(`http://localhost:3000/api/members/${userId}`, {
+export async function delComment(id) {
+  const res = await fetch(`http://localhost:3000/api/comments/${id}`, {
     method: "DELETE",
   });
-  if (!res) throw new Error("회원 삭제에 실패하였습니다");
+  if (!res) throw new Error("댓글 삭제에 실패하였습니다");
+  const body = await res.json();
+  return body;
+}
+
+export async function modComment(id, comment) {
+  const res = await fetch(`http://localhost:3000/api/comments/${id}`, {
+    method: "PUT",
+    body: comment,
+  });
+  if (!res) throw new Error("댓글 수정에 실패하였습니다");
   const body = await res.json();
   return body;
 }
