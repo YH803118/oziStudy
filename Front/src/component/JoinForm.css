@@ -1,19 +1,43 @@
-#idInput {
-  margin-top: 10px;
+.joinForm {
+  text-align: center;
+  font-weight: bold;
+  background-color: rgb(245, 246, 247);
+  font-size: 14px;
+}
+#idLabel {
+  margin-right: 174px;
+}
+#passLabel {
+  margin-right: 162px;
+}
+#nameLabel {
+  margin-right: 187px;
+}
+#emailLabel {
+  margin-right: 172px;
+}
+#idInputJ {
+  margin-left: 65px;
 }
 
-#passInput {
-  margin-top: 10px;
+.joinInput {
+  width: 200px;
+  height: 25px;
   margin-bottom: 10px;
+  border-style: inset;
 }
 
-#nameInput {
-  margin-top: 10px;
+#joinSubmit {
+  width: 100px;
+  height: 50px;
+  border-radius: 5px;
+  border-width: 0.5px;
+  background-color: lightgreen;
+  font-weight: 200;
 }
 
-#emailInput {
-  margin-top: 10px;
-}
-
-#passCheck {
+#idCheck {
+  background-color: white;
+  height: 30px;
+  border-radius: 5px;
 }
