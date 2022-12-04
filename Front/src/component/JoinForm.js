@@ -89,20 +89,22 @@ function JoinForm() {
   return (
     <div>
       <form onSubmit={handleJoinSubmit} className="joinForm" action="/">
-        아이디 <br />
+        <label id="idLabel">아이디</label> <br />
         <input
           name="userId"
           onChange={handleChange}
-          id="idInput"
+          id="idInputJ"
           className="joinInput"
         />{" "}
-        <button onClick={handleOverlapCheck}>중복확인</button>
+        <button onClick={handleOverlapCheck} id="idCheck">
+          중복확인
+        </button>
         <br />
-        비밀번호 <br />
+        <label id="passLabel">비밀번호</label> <br />
         <input
           name="password"
           onChange={handleChange}
-          id="passInput"
+          id="passInputJ"
           className="joinInput"
         />
         <br />
@@ -110,26 +112,26 @@ function JoinForm() {
           name="passwordCheck"
           onChange={passCheck}
           className="joinInput"
-          id="passCheck"
+          id="passCheckJ"
         />
         <br />
         <label id="passConfirm"></label>
         <br />
-        이름 <br />
+        <label id="nameLabel">이름</label> <br />
         <input
           name="name"
           onChange={handleChange}
-          id="nameInput"
+          id="nameInputJ"
           className="joinInput"
         />
         <br />
-        이메일 <br />
+        <label id="emailLabel">이메일</label> <br />
         <input
           type="email"
           name="email"
           onChange={handleChange}
           className="joinInput"
-          id="emailInput"
+          id="emailInputJ"
         />
         <br />
         <button type="submit" id="joinSubmit">
