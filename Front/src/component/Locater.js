@@ -13,7 +13,7 @@ function Locater({ location, item, onMyStudy, onLoad, onLogin }) {
       {location == "studyFormDetail" && <StudyFormDetail item={item} />}
       {location == "myStudy" && <StudyList items={item} />}
       {sessionStorage.getItem("userId") && location != "studyFormDetail" && (
-        <Link to="studyInputForm" id="studyInputBtn">
+        <Link to="/studyInputForm" id="studyInputBtn">
           스터디만들기
         </Link>
       )}
