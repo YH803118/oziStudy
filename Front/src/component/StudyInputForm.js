@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { regiStudy } from "../api";
+import { useEffect, useState } from "react";
+import { getStudy, modTable, regiStudy } from "../api";
 import Tag from "./Tag";
 import "./StudyInputForm.css";
+import { useParams } from "react-router-dom";
 const INITIAL_VALUES = {
   leader: "",
   title: "",
@@ -15,7 +16,25 @@ const inputName = {
 };
 
 function StudyInputForm({ userId }) {
+  const { studyId } = useParams();
+
   const [regiData, setRegiData] = useState(INITIAL_VALUES);
+
+  const handleLoad = async () => {
+    let study;
+    if (studyId) {
+      study = await getStudy(studyId);
+      document.querySelector("#title").value = study.title;
+      document.querySelector("textarea").value = study.content;
+      setRegiData({
+        ...regiData,
+        leader: study.leader,
+        title: study.title,
+        content: study.content,
+        tag: study.tag,
+      });
+    }
+  };
 
   const handleRegiSubmit = async () => {
     var inputs = document.querySelectorAll(".studyInput");
@@ -34,8 +53,9 @@ function StudyInputForm({ userId }) {
       formData.append("content", regiData.content);
       formData.append("tag", regiData.tag);
       formData.append("userList", userId);
-      await regiStudy(formData);
-
+      if (studyId) await modTable(studyId, formData);
+      else await regiStudy(formData);
+      console.log(regiData);
       document.getElementById("submit").submit();
     }
   };
@@ -51,6 +71,11 @@ function StudyInputForm({ userId }) {
     const { name, value } = e.target;
     handleChange(name, value);
   };
+
+  useEffect(() => {
+    handleLoad();
+  }, []);
+
   return (
     <div id="backGround">
       <div id="creater">
@@ -76,7 +101,12 @@ function StudyInputForm({ userId }) {
             className="studyInput"
           />
           <br />
-          모집분야 태그: <Tag onChange={handleChange} />
+          모집분야 태그:
+          {regiData.tag ? (
+            <Tag onChange={handleChange} tags={regiData.tag} />
+          ) : (
+            <Tag onChange={handleChange} />
+          )}
           <br />
         </form>
         <button onClick={handleRegiSubmit} id="submitButton">

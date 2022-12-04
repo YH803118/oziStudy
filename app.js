@@ -123,6 +123,15 @@ app.get("/api/tables", async (req, res) => {
 });
 
 app.get("/api/tables/:id", async (req, res) => {
+  // 특정 스터디
+  const { id } = req.params;
+  const tableSearch = await Table.findOne({
+    where: { id },
+  });
+  res.send(tableSearch);
+});
+
+app.get("/api/tables/myStudy/:id", async (req, res) => {
   // 내 스터디
   const { id } = req.params;
   const tableSearch = await Table.findAll({
@@ -180,6 +189,27 @@ app.get("/api/tables/search/:searchText", async (req, res) => {
   //   order: [["updatedAt", "DESC"]],
   // });
   res.send(tableSearch);
+});
+
+app.delete("/api/tables/:id", async (req, res) => {
+  const { id } = req.params;
+  const deleteCount = await Table.destroy({ where: { id } }); //조건대로 삭제
+  if (deleteCount) {
+    res.send({ message: `${deleteCount} row(s) deleted` });
+  } else {
+    res.status(404).send({ message: "failed delete." });
+  }
+});
+
+app.put("/api/tables/:id", upload.single("imageUrl"), async (req, res) => {
+  const { id } = req.params;
+  const newInfo = req.body;
+  const result = await Table.update(newInfo, { where: { id } });
+  if (result[0]) {
+    res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
+  } else {
+    res.status(404).send({ message: "There is no member with the id!" });
+  }
 });
 
 // Comments --------------------------------------------------------------------------------
