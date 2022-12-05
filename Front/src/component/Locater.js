@@ -10,6 +10,7 @@ function Locater({ location, item, onMyStudy, onLoad, onLogin }) {
   return (
     <>
       <TopMenu onMyStudy={onMyStudy} onLoad={onLoad} onLogin={onLogin} />
+      <hr id="topHR"></hr>
       {location == "studyFormDetail" && <StudyFormDetail item={item} />}
       {location == "myStudy" && <StudyList items={item} />}
       {sessionStorage.getItem("userId") && location != "studyFormDetail" && (

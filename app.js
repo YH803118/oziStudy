@@ -25,6 +25,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "Front/build/index.html"));
 });
 
+// app.post("/api/input", upload.single("file"), (req, res) => {
+//   res.sendFile(path.join(__dirname, "Front/build/index.html"));
+// });
+
 app.get("/api/members", async (req, res) => {
   const { tag } = req.query;
   if (tag) {

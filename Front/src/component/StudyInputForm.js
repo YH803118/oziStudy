@@ -79,6 +79,7 @@ function StudyInputForm({ userId }) {
   return (
     <div id="backGround">
       <div id="creater">
+        {/* <form action="/api/input" id="submit" method="post"> */}
         <form action="/" id="submit">
           제목:
           <input

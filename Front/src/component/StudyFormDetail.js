@@ -73,16 +73,14 @@ function StudyFormDetail({ item }) {
     }
   };
 
-  const handleEndStudy = () => {
+  const handleEndStudy = (e) => {
     let confirmer = window.confirm("스터디를 끝내시겠습니까? 대충 경고문");
     // 기록을 남길까말까 - 남기기 위해선 끝났는지 안끝났는지에 대한 속성 추가 필요
     // 일단 남기지 않는 코드
     if (confirmer) {
       delStudy(id);
-    }
+    } else e.preventDefault();
   };
-
-  const handleModStudy = () => {};
 
   return (
     <>
@@ -103,22 +101,25 @@ function StudyFormDetail({ item }) {
         <div className="contentDetail">{content}</div>
         <div className="endDate">{endDate}</div>
         <span className="leader">작성자 : {leader}</span>
-        <br></br>
-        {leaderCheck && (
-          <>
-            <button onClick={handleModStudy}>
-              <Link to={`/studyInputForm/modify/${id}`}>수정</Link>
+        <div className="btnDiv">
+          {leaderCheck && (
+            <>
+              <Link className="detailBtn" to={`/studyInputForm/modify/${id}`}>
+                수정
+              </Link>
+              <Link className="detailBtn" to="/" onClick={handleEndStudy}>
+                끝내기
+              </Link>
+            </>
+          )}
+          {join && sessionStorage.getItem("userId") ? (
+            <></>
+          ) : (
+            <button className="joinBtn" onClick={handleJoin}>
+              참가하기
             </button>
-            <button onClick={handleEndStudy}>
-              <Link to="/">끝내기</Link>
-            </button>
-          </>
-        )}
-        {join || (
-          <button className="joinBtn" onClick={handleJoin}>
-            참가하기
-          </button>
-        )}
+          )}
+        </div>
         <CommentList studyId={id} />
       </div>
     </>
