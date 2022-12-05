@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 function FileInput({ name, value, initialPreview, onChange }) {
   const [preview, setPreview] = useState(initialPreview);
   const inputRef = useRef();
-  console.log(preview);
+  console.log(value);
   const handleChange = (e) => {
     const nextValue = URL.createObjectURL(e.target.files[0]);
     onChange(name, nextValue);
@@ -44,10 +44,11 @@ function FileInput({ name, value, initialPreview, onChange }) {
       />
       <input
         type="file"
-        accept="image/png , image/jpeg"
+        accept="image/*"
         onChange={handleChange}
         ref={inputRef}
         id="fileInput"
+        name="imageUrl"
       />
       {value && <button onClick={handleClearClick}>X</button>}
     </div>

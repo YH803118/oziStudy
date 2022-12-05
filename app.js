@@ -18,16 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // npm install --save multer
 const multer = require("multer");
+const { fstat } = require("fs");
 const upload = multer({ dest: "upload" });
 // app.post 파라미터에 upload.single("file") 추가
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "Front/build/index.html"));
-});
-
-// app.post("/api/input", upload.single("file"), (req, res) => {
-//   res.sendFile(path.join(__dirname, "Front/build/index.html"));
-// });
+app.get("/", upload.single("imageUrl"), (req, res) => {});
 
 app.get("/api/members", async (req, res) => {
   const { tag } = req.query;
@@ -70,23 +65,9 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
   res.send(newTable);
 });
 
-app.put("/api/members/:id", upload.single("imageUrl"), async (req, res) => {
-  //회원정보 수정
-  console.log(req.params);
-  // const id = 1;
-  const { id } = req.params;
-  const newInfo = req.body; //수정할 회원정보       db연동일땐 수정할정보만 보내도됨
-  const result = await Member.update(newInfo, { where: { userId: id } });
-  if (result[0]) {
-    res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
-  } else {
-    res.status(404).send({ message: "There is no member with the id!" });
-  }
-});
-
 app.put("/api/tables/:id", upload.single("imageUrl"), async (req, res) => {
   //회원정보 수정
-  console.log(req.params);
+  console.log(req.file);
   // const id = 1;
   const { id } = req.params;
   const newInfo = req.body;

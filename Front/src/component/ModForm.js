@@ -23,6 +23,7 @@ function ModForm() {
   const [user, setUser] = useState("");
   const [passConfirm, setPassConfirm] = useState(false);
   const userId = window.sessionStorage.getItem("userId");
+  const userURL = `/api/members/${userId}`;
 
   useEffect(() => {
     axios
