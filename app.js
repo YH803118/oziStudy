@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 // npm install --save multer
 const multer = require("multer");
 const { fstat } = require("fs");
-const upload = multer({ dest: "upload" });
+const upload = multer({ dest: "./upload" });
 // app.post 파라미터에 upload.single("file") 추가
 
 app.get("/", upload.single("imageUrl"), (req, res) => {});
@@ -65,19 +65,24 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
   res.send(newTable);
 });
 
-app.put("/api/tables/:id", upload.single("imageUrl"), async (req, res) => {
-  //회원정보 수정
-  console.log(req.file);
-  // const id = 1;
-  const { id } = req.params;
-  const newInfo = req.body;
-  const result = await Table.update(newInfo, { where: { id } });
-  if (result[0]) {
-    res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
-  } else {
-    res.status(404).send({ message: "There is no tavle with the id!" });
+app.put(
+  "/api/members/modify/:userId",
+  upload.single("imageUrl"),
+  async (req, res) => {
+    //회원정보 수정
+    // console.log(req.file);
+    console.log("app put");
+    // const id = 1;
+    const { userId } = req.params;
+    const newInfo = req.body;
+    const result = await Member.update(newInfo, { where: { userId } });
+    if (result[0]) {
+      res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
+    } else {
+      res.status(404).send({ message: "There is no tavle with the id!" });
+    }
   }
-});
+);
 
 app.delete("/api/members/:id", async (req, res) => {
   const { id } = req.params;

@@ -145,6 +145,7 @@ function ModForm() {
         />
         <br />
         <button type="submit" id="modSubmit">
+          {/* <button onClick={handleModify} id="modSubmit"> */}
           수정하기
         </button>
       </form>
