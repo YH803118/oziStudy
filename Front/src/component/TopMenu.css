@@ -14,7 +14,7 @@
 }
 
 .TopMenuItem input {
-  width: 150px;
+  width: 120px;
 }
 
 .TopMenuItem button {
@@ -74,4 +74,10 @@ input#menu {
 
 input#menu:checked + .myMenu {
   display: block;
+}
+
+#homeBtn {
+  text-decoration: none;
+  color: rgb(127, 255, 165);
+  font-size: 30px;
 }

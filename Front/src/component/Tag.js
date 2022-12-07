@@ -41,27 +41,31 @@ const Tag = ({ onChange, tags = "" }) => {
 
   return (
     <>
-      <input
-        type="text"
-        onKeyPress={onKeyPress}
-        onChange={(e) => setTagItem(e.target.value)}
-        value={tagItem}
-        id="tagInput"
-      />
-
-      <ul className="tag">
-        {tagList.map((tag) => {
-          return (
-            <>
-              <li onClick={deleteTagItem} key={tag}>
-                <lable id={tag}>#</lable>
-                {tag}
-                &nbsp;
-              </li>
-            </>
-          );
-        })}
-      </ul>
+      <div className="tagInputDiv">
+        태그 입력 :{" "}
+        <input
+          type="text"
+          onKeyPress={onKeyPress}
+          onChange={(e) => setTagItem(e.target.value)}
+          value={tagItem}
+          id="tagInput"
+        />
+      </div>
+      <div>
+        <ul className="tag">
+          {tagList.map((tag) => {
+            return (
+              <>
+                <li onClick={deleteTagItem} key={tag}>
+                  <lable id={tag}>#</lable>
+                  {tag}
+                  &nbsp;
+                </li>
+              </>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 };

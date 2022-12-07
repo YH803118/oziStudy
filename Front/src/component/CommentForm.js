@@ -4,9 +4,8 @@ const INITIAL_VALUES = {
   content: "",
   parentCommentId: "",
 };
-function CommentForm({ handleClick }) {
+function CommentForm({ handleClick, modContent }) {
   const [commentData, setCommentData] = useState(INITIAL_VALUES);
-
   const handleChange = (name, value) => {
     setCommentData((prev) => ({
       ...prev,
@@ -25,13 +24,23 @@ function CommentForm({ handleClick }) {
   };
   return (
     <div className="commentForm">
+      <div className="commentFormTitle">
+        <span id="comSpan">댓글 작성</span>
+        <span id="comId">{sessionStorage.getItem("userId")}</span>
+      </div>
       <textarea
         onChange={handleInputChange}
         name="content"
         className="commentInput"
         placeholder="댓글 작성"
-      />
-      <button onClick={onClick}>댓글쓰기</button>
+      >
+        {modContent}
+      </textarea>
+      <div className="commentFormBtnDiv">
+        <button className="commentFormBtn" onClick={onClick}>
+          댓글쓰기
+        </button>
+      </div>
     </div>
   );
 }

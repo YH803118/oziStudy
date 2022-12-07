@@ -81,34 +81,29 @@ function StudyInputForm({ userId }) {
       <div id="creater">
         {/* <form action="/api/input" id="submit" method="post"> */}
         <form action="/" id="submit">
-          제목:
           <input
             type="text"
             name="title"
             placeholder="제목"
             onChange={handleInputChange}
             id="title"
-            className="studyInput"
           />
-          <br />
-          <p id="content">내용:</p>
-          <br />
+          <div className="tags">
+            {regiData.tag ? (
+              <Tag onChange={handleChange} tags={regiData.tag} />
+            ) : (
+              <Tag onChange={handleChange} />
+            )}
+          </div>
+          <hr></hr>
           <textarea
             name="content"
             rows="20"
             cols="70"
             placeholder="내용을 입력해주세요.."
             onChange={handleInputChange}
-            className="studyInput"
+            id="content"
           />
-          <br />
-          모집분야 태그:
-          {regiData.tag ? (
-            <Tag onChange={handleChange} tags={regiData.tag} />
-          ) : (
-            <Tag onChange={handleChange} />
-          )}
-          <br />
         </form>
         <button onClick={handleRegiSubmit} id="submitButton">
           작성하기
