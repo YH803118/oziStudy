@@ -29,3 +29,51 @@
 #helper {
   height: 100%;
 }
+
+.ballon {
+  display: none;
+  position: absolute;
+  width: 205px;
+  height: 16px;
+  left: 368px;
+  bottom: -372px;
+  background: #484848;
+  color: white;
+  border-radius: 5px;
+  padding: 12px 12.8px;
+}
+
+.ballon:after {
+  border-top: 10px solid #484848;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 0px solid transparent;
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 160px;
+}
+
+.ballon2 {
+  display: none;
+  position: absolute;
+  width: 205px;
+  height: 16px;
+  left: 409px;
+  bottom: -368px;
+  background: #484848;
+  color: white;
+  border-radius: 5px;
+  padding: 12px 12.8px;
+}
+
+.ballon2:after {
+  border-top: 10px solid #484848;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 0px solid transparent;
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 160px;
+}
