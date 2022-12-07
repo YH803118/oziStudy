@@ -3,6 +3,7 @@ import StudyList from "./StudyList";
 import TopMenu from "./TopMenu";
 import JoinForm from "./JoinForm";
 import ModForm from "./ModForm";
+import Bottom from "./Bottom";
 import { getMyStudy, getStudyList } from "../api";
 import { useEffect, useState } from "react";
 
@@ -44,6 +45,7 @@ function App() {
                 <hr id="topHR"></hr>
                 <SearchForm onLoad={handleLoad} />
                 <StudyList items={item} />
+                <Bottom />
                 {sessionStorage.getItem("userId") && (
                   <Link to="/studyInputForm" id="studyInputBtn">
                     스터디만들기
