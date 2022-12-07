@@ -9,6 +9,7 @@ const INITIAL_VALUES = {
   name: "",
   email: "",
   imageUrl: null,
+  imageFile: null,
 };
 
 const inputName = {
@@ -58,15 +59,33 @@ function ModForm() {
       alert("비밀번호를 확인해 주세요!!");
       e.preventDefault();
     } else {
-      const formData = new FormData();
-      formData.append("password", modData.password);
-      formData.append("name", modData.name);
-      formData.append("email", modData.email);
-      formData.append("tag", "Front");
+      const formData1 = new FormData();
+      formData1.append("imageFile", modData.imageFile);
+      axios({
+        baseURL: "localhost:3000",
+        url: "api/members/:userId",
+        method: "POST",
+        data: formData1,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+      const formData2 = new FormData();
+      formData2.append("password", modData.password);
+      formData2.append("name", modData.name);
+      formData2.append("email", modData.email);
+      formData2.append("tag", "Front");
       if (modData.imageUrl != "") {
-        formData.append("imageUrl", modData.imageUrl);
+        formData2.append("imageUrl", modData.imageUrl);
       }
-      await modMember(userId, formData);
+      await modMember(userId, formData2);
     }
   };
 

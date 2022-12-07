@@ -7,7 +7,12 @@ function FileInput({ name, value, initialPreview, onChange }) {
   console.log(preview);
   const handleChange = (e) => {
     const nextValue = URL.createObjectURL(e.target.files[0]);
+<<<<<<< HEAD
     onChange(name, e.target.files[0]);
+=======
+    onChange("imageFile", e.target.files[0]);
+    onChange(name, nextValue);
+>>>>>>> 9dd8b612947bb376b6543c0dbd10c862d13b9320
   };
 
   const handleClearClick = () => {
