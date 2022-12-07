@@ -86,7 +86,6 @@ function StudyFormDetail({ item }) {
     <>
       <div className="StudyFormDetail">
         <div className="title">{title}</div>
-        <hr></hr>
 
         <div className="tags">
           {tagArr &&
@@ -97,10 +96,12 @@ function StudyFormDetail({ item }) {
                 </span>
               );
             })}
+          <span className="leader">작성자 : {leader}</span>
         </div>
+        <hr></hr>
         <div className="contentDetail">{content}</div>
         <div className="endDate">{endDate}</div>
-        <span className="leader">작성자 : {leader}</span>
+
         <div className="btnDiv">
           {leaderCheck && (
             <>

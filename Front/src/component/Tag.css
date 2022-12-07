@@ -1,16 +1,14 @@
-.tag {
-  margin-left: 320px;
-}
-
 .tag li {
   list-style: none;
   float: left;
   cursor: pointer;
   background-color: rgb(235, 235, 235);
-  border-radius: 10px;
+  border-radius: 5px;
+  padding: 3px 3px 3px 6px;
+  margin-left: 5px;
 }
 
 #tagInput {
-  margin-top: 10px;
-  margin-right: 120px;
+  /* margin-top: 10px; */
+  /* margin-right: 120px; */
 }

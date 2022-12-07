@@ -1,26 +1,40 @@
 #creater {
-  text-align: center;
-  vertical-align: middle;
-  font-weight: 200;
+  margin: 30px auto;
+  width: 800px;
+  /* height: 700px; */
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 5px;
+  padding: 10px;
+  color: rgb(77, 77, 77);
 }
+
 #title {
-  display: inline;
-  margin-right: 245px;
-  width: 300px;
+  font-size: 21px;
+  font-weight: bold;
+  padding: 5px 0 10px 5px;
+  margin-left: 0px;
+  width: 95%;
+  border: 0px;
 }
 
 #content {
-  margin-right: 555px;
-  display: inline;
+  border: 0px;
+  width: 800px;
+  resize: none;
 }
 
+#content:focus {
+  outline: none;
+}
 #submitButton {
-  width: 70px;
-  height: 45px;
-  font-weight: 200;
-  margin-top: 10px;
-  margin-right: 60px;
-  border: 0;
+  width: 120px;
+  height: 40px;
+  background-color: white;
+  border: 1.5px rgb(168, 168, 168) solid;
   border-radius: 5px;
-  background-color: greenyellow;
+  padding: 8px;
+  margin: 5px 15px 15px;
+}
+#submitButton:hover {
+  background-color: rgb(168, 168, 168);
 }

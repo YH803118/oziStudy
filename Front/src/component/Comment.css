@@ -28,6 +28,17 @@
   margin-bottom: 10px;
 }
 
+.comment button {
+  border: 0px;
+  background-color: rgb(220, 220, 220);
+  margin-left: 10px;
+  border-left: 1.5px solid rgb(168, 168, 168);
+  border-right: 1.5px solid rgb(168, 168, 168);
+}
+.comment button:hover {
+  cursor: pointer;
+}
+
 .commentForm {
   border: 1px rgb(168, 168, 168) solid;
   border-radius: 3px;
@@ -55,4 +66,16 @@
 }
 .commentFormBtnDiv {
   text-align: right;
+}
+
+.commentFormBtn {
+  background-color: white;
+  border: 1.5px rgb(168, 168, 168) dotted;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 5px 15px 15px;
+}
+
+.commentFormBtn:hover {
+  background-color: rgb(238, 238, 238);
 }

@@ -17,9 +17,9 @@ function CommentListItem({ comment, onDelete, onModify }) {
     onModify(id, commentData);
   };
   return (
-    <div className="comment">
+    <>
       {commentState == "comment" ? (
-        <>
+        <div className="comment">
           <div className="writerId">
             {userId}
             <div>
@@ -29,11 +29,11 @@ function CommentListItem({ comment, onDelete, onModify }) {
           </div>
 
           <div className="commentText">{content}</div>
-        </>
+        </div>
       ) : (
-        <CommentForm handleClick={handleModify} />
+        <CommentForm handleClick={handleModify} modContent={content} />
       )}
-    </div>
+    </>
   );
 }
 
