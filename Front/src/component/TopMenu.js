@@ -50,8 +50,8 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
   return (
     <div className="TopMenu">
       {" "}
-      <Link to="/" onClick={onLoad}>
-        홈으로
+      <Link id="homeBtn" to="/" onClick={onLoad}>
+        <img src={require("../img/logo.png")} alt="logo" width="60px" />
       </Link>
       {login2 ? (
         <div className="TopMenuItem">
