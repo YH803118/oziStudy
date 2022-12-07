@@ -8,7 +8,7 @@ function FileInput({ name, value, initialPreview, onChange }) {
   const handleChange = (e) => {
     const nextValue = URL.createObjectURL(e.target.files[0]);
 
-    onChange(name, nextValue);
+    onChange(name, e.target.files[0]);
   };
 
   const handleClearClick = () => {

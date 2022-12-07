@@ -17,14 +17,18 @@ function CommentListItem({ comment, onDelete, onModify }) {
     onModify(id, commentData);
   };
   return (
-    <div className="commentForm">
+    <div className="comment">
       {commentState == "comment" ? (
         <>
-          <span className="writerId">{userId}</span>
-          <span className="commentText">{content}</span>
-          <button onClick={handleDelete}>삭제</button>
-          <button onClick={setModify}>수정</button>
-          <hr></hr>
+          <div className="writerId">
+            {userId}
+            <div>
+              <button onClick={handleDelete}>삭제</button>
+              <button onClick={setModify}>수정</button>
+            </div>
+          </div>
+
+          <div className="commentText">{content}</div>
         </>
       ) : (
         <CommentForm handleClick={handleModify} />

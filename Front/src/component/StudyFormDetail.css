@@ -1,7 +1,7 @@
 .StudyFormDetail {
   margin: 30px auto;
   width: 500px;
-  height: 700px;
+  /* height: 700px; */
   background-color: rgb(235, 235, 235);
   padding: 10px;
 }
@@ -27,23 +27,6 @@ hr {
   color: rgb(77, 77, 77);
   font-size: 15px;
 }
-
-/* .leader {
-  display: inline-block;
-  font-size: 15px;
-  margin-left: 10px;
-  margin-right: 10px;
-} */
-
-/* .tagSpan {
-  font-size: 15px;
-  display: inline-block;
-  margin: 3px;
-  color: white;
-  background-color: rgb(180, 180, 180);
-  padding: 5px;
-  border-radius: 2px;
-} */
 
 .btnDiv {
   margin: 10px 0 10px 0;

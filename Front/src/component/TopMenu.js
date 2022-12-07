@@ -91,7 +91,7 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
             className="loginInput"
             onChange={handleChange}
           />{" "}
-          | <button type="submit">로그인</button>|
+          |<button type="submit">로그인</button>|
           <Link to="/joinForm">
             <button>회원가입</button>
           </Link>
