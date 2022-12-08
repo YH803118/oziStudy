@@ -40,9 +40,9 @@ export async function modMember(userId, member) {
     method: "PUT",
     // headers: { "Content-type": "multipart/form-data" },
     body: member,
-    transformRequest: (data, headers) => {
-      return data;
-    },
+    // transformRequest: (data, headers) => {
+    //   return data;
+    // },
   });
   if (!res) throw new Error("회원정보 수정에 실패하였습니다");
   const body = await res.json();

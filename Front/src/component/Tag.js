@@ -32,12 +32,14 @@ const Tag = ({ onChange, tags = "" }) => {
     );
     setTagList(filteredTagList);
   };
-
-  useEffect(() => {
-    if (tagList.length == 0) handleLoad();
+  const handleChange = (e) => {
+    setTagItem(e.target.value);
     const tagData = tagList.join(",");
     onChange("tag", tagData);
-  }, [tags, tagList]);
+  };
+  useEffect(() => {
+    if (tagList.length == 0) handleLoad();
+  }, []);
 
   return (
     <>
@@ -46,7 +48,7 @@ const Tag = ({ onChange, tags = "" }) => {
         <input
           type="text"
           onKeyPress={onKeyPress}
-          onChange={(e) => setTagItem(e.target.value)}
+          onChange={handleChange}
           value={tagItem}
           id="tagInput"
         />

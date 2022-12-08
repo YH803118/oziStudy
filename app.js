@@ -65,24 +65,23 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
   res.send(newTable);
 });
 
-app.put(
-  "/api/members/:userId",
-  upload.single("imageFile"),
-  async (req, res) => {
-    //회원정보 수정
-    // console.log(req.file);
-    console.log("app put");
-    // const id = 1;
-    const { userId } = req.params;
-    const newInfo = req.body;
-    const result = await Member.update(newInfo, { where: { userId } });
-    if (result[0]) {
-      res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
-    } else {
-      res.status(404).send({ message: "There is no tavle with the id!" });
-    }
+app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
+  //회원정보 수정
+  // console.log(req.file);
+  console.log("app put");
+  // const id = 1;
+  console.log(req.file);
+  const { userId } = req.params;
+  const newInfo = req.body;
+  console.log(newInfo);
+  const result = await Member.update(newInfo, { where: { userId } });
+  // await Member.update({ imageUrl: req.file }, { where: { userId } });
+  if (result[0]) {
+    res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
+  } else {
+    res.status(404).send({ message: "There is no tavle with the id!" });
   }
-);
+});
 
 app.delete("/api/members/:id", async (req, res) => {
   const { id } = req.params;

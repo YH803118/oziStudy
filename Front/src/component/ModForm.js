@@ -59,23 +59,23 @@ function ModForm() {
       alert("비밀번호를 확인해 주세요!!");
       e.preventDefault();
     } else {
-      const formData1 = new FormData();
-      formData1.append("imageFile", modData.imageFile);
-      axios({
-        baseURL: "localhost:3000",
-        url: "api/members/:userId",
-        method: "POST",
-        data: formData1,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-        .then((response) => {
-          console.log(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      // const formData1 = new FormData();
+      // formData1.append("imageFile", modData.imageFile);
+      // axios({
+      //   baseURL: "localhost:3000",
+      //   url: "api/members/:userId",
+      //   method: "POST",
+      //   data: formData1,
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      // })
+      //   .then((response) => {
+      //     console.log(response.data);
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //   });
 
       const formData2 = new FormData();
       formData2.append("password", modData.password);
@@ -105,7 +105,12 @@ function ModForm() {
   };
   return (
     <div id="back">
-      <form onSubmit={handleModify} action="/" id="modForm">
+      <form
+        onSubmit={handleModify}
+        action="/"
+        id="modForm"
+        encType="multipart/form-data"
+      >
         <FileInput
           name="imageUrl"
           value={modData.imageUrl}
