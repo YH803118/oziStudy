@@ -19,8 +19,15 @@ app.use(express.urlencoded({ extended: true }));
 // npm install --save multer
 const multer = require("multer");
 const { fstat } = require("fs");
-const upload = multer({ dest: "./upload" });
-// app.post 파라미터에 upload.single("file") 추가
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "upload/"); // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname); // cb 콜백함수를 통해 전송된 파일 이름 설정
+  },
+});
+var upload = multer({ storage: storage });
 
 app.get("/", upload.single("imageUrl"), (req, res) => {});
 
@@ -57,6 +64,14 @@ app.post("/api/members", upload.single("file"), async (req, res) => {
   res.send(newMember);
 });
 
+app.post("/api/members", upload.single("imageFile"), async (req, res) => {
+  //회원추가
+  const newMember = req.body;
+  const member = Member.build(newMember);
+  await member.save();
+  res.send(newMember);
+});
+
 app.post("/api/tables", upload.single("file"), async (req, res) => {
   //스터디 추가
   const newTable = req.body;
@@ -72,7 +87,9 @@ app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   // const id = 1;
   console.log(req.file);
   const { userId } = req.params;
+  const filePath = "../" + req.file.path;
   const newInfo = req.body;
+  newInfo["imageUrl"] = filePath;
   console.log(newInfo);
   const result = await Member.update(newInfo, { where: { userId } });
   // await Member.update({ imageUrl: req.file }, { where: { userId } });

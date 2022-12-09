@@ -3,12 +3,11 @@ import { useEffect, useRef, useState } from "react";
 function FileInput({ name, value, initialPreview, onChange }) {
   const [preview, setPreview] = useState(initialPreview);
   const inputRef = useRef();
-  console.log(initialPreview);
-  console.log(preview);
+  // console.log(initialPreview);
+  // console.log(preview);
   const handleChange = (e) => {
-    const nextValue = URL.createObjectURL(e.target.files[0]);
-
-    onChange(name, e.target.files[0]);
+    const nextValue = e.target.files[0];
+    onChange(name, nextValue);
   };
 
   const handleClearClick = () => {
