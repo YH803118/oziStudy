@@ -263,7 +263,7 @@ app.listen(port, () => {
 });
 
 app.get("./:imgs", function (req, res) {
-  const fileName = req.params;
+  const { imgs } = req.params;
   FileSystem.readFile(fileName, function (error, data) {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.end(data);
