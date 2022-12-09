@@ -23,7 +23,8 @@ function FileInput({ name, value, initialPreview, onChange }) {
       setPreview(initialPreview);
       return;
     }
-    setPreview(value);
+    const nextPreview = URL.createObjectURL(value);
+    setPreview(nextPreview);
 
     return () => {
       setPreview(initialPreview);

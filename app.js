@@ -87,7 +87,7 @@ app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   // const id = 1;
   console.log(req.file);
   const { userId } = req.params;
-  const filePath = "../" + req.file.path;
+  const filePath = req.file.originalname;
   const newInfo = req.body;
   newInfo["imageUrl"] = filePath;
   console.log(newInfo);
@@ -260,4 +260,12 @@ app.put("/api/comments/:id", upload.single("imageUrl"), async (req, res) => {
 const port = 3001;
 app.listen(port, () => {
   console.log(`${port} 접속 성공`);
+});
+
+app.get("./:imgs", function (req, res) {
+  const fileName = req.params;
+  FileSystem.readFile(fileName, function (error, data) {
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end(data);
+  });
 });
