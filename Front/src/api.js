@@ -157,3 +157,10 @@ export async function modComment(id, comment) {
   const body = await res.json();
   return body;
 }
+
+export async function getImage(image) {
+  console.log("getImage");
+  const res = await fetch(`http://localhost:3000/api/image/${image}`);
+  const body = await res.json();
+  return body;
+}

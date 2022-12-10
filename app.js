@@ -9,8 +9,8 @@ const { Comment } = db;
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
 
-const path = require("path");
-app.use(express.static(path.join(__dirname, "Front/build")));
+// const path = require("path");
+// app.use(express.static(path.join(__dirname, "Front/build")));
 
 app.use(express.urlencoded({ extended: true }));
 // form 태그로 요청된 body를 읽을 수 있도록
@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 // npm install --save multer
 const multer = require("multer");
 const { fstat } = require("fs");
+const fs = require("fs");
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "upload/"); // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
@@ -28,6 +29,7 @@ var storage = multer.diskStorage({
   },
 });
 var upload = multer({ storage: storage });
+app.use("/image", express.static("upload"));
 
 app.get("/", upload.single("imageUrl"), (req, res) => {});
 
@@ -257,15 +259,8 @@ app.put("/api/comments/:id", upload.single("imageUrl"), async (req, res) => {
     res.status(404).send({ message: "There is no member with the id!" });
   }
 });
+
 const port = 3001;
 app.listen(port, () => {
   console.log(`${port} 접속 성공`);
-});
-
-app.get("./:imgs", function (req, res) {
-  const { imgs } = req.params;
-  FileSystem.readFile(fileName, function (error, data) {
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end(data);
-  });
 });
