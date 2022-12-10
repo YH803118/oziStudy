@@ -63,6 +63,9 @@ function ModForm() {
     if (!passConfirm) {
       alert("비밀번호를 확인해 주세요!!");
       e.preventDefault();
+    } else if (modData.password == user.password) {
+      alert("비밀번호가 현재와 똑같습니다");
+      e.preventDefault();
     } else {
       const formData = new FormData();
       formData.append("password", modData.password);
