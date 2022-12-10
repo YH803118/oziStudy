@@ -25,14 +25,12 @@ function ModForm() {
   const [passConfirm, setPassConfirm] = useState(false);
   const userId = window.sessionStorage.getItem("userId");
   const userURL = `/api/members/${userId}`;
-  const [img, setImg] = useState();
   useEffect(() => {
-    // axios
-    //   .get(`http://localhost:3000/api/members/${userId}`)
-    //   .then((response) => {
-    //     setModData(response.data);
-    //   });
-    // loadImage();
+    axios
+      .get(`http://localhost:3000/api/members/${userId}`)
+      .then((response) => {
+        setUser(response.data);
+      });
   }, []);
 
   const loadImage = async () => {
@@ -100,19 +98,12 @@ function ModForm() {
         id="modForm"
         encType="multipart/form-data"
       >
-        <img
-          src="http://localhost:3001/image/IMG_3852.jpg"
-          alt={modData.imageUrl}
-          width="200px"
-          height="200px"
-          id="previewImage"
-        />
-        {/* <FileInput
+        <FileInput
           name="imageUrl"
           value={modData.imageUrl}
           onChange={handleChange}
           initialPreview={user.imageUrl}
-        /> */}
+        />
         프로필 이미지 등록
         <br />
         &nbsp; 아이디{" "}

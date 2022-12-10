@@ -89,7 +89,7 @@ app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   // const id = 1;
   console.log(req.file);
   const { userId } = req.params;
-  const filePath = req.file.originalname;
+  const filePath = "http://localhost:3001/image/" + req.file.originalname;
   const newInfo = req.body;
   newInfo["imageUrl"] = filePath;
   console.log(newInfo);
