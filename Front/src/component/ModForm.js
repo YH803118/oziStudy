@@ -33,12 +33,6 @@ function ModForm() {
       });
   }, []);
 
-  const loadImage = async () => {
-    console.log("loadImage Init");
-    // let imgUrl = await getImage("IMG_3852.jpg");
-    // setImg(imgUrl);
-  };
-
   const handleChange = (name, value) => {
     setModData((prev) => ({
       ...prev,
