@@ -8,12 +8,13 @@ const { Comment } = db;
 
 const sequelize = require("sequelize");
 const Op = sequelize.Op;
-
-const path = require("path");
-app.use(express.static(path.join(__dirname, "Front/build")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/Front/build", "index.html"));
-});
+if (process.env.NODE_ENV === "production") {
+  const path = require("path");
+  app.use(express.static(path.join(__dirname, "Front/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "/Front/build", "index.html"));
+  });
+}
 app.use(express.urlencoded({ extended: true }));
 // form 태그로 요청된 body를 읽을 수 있도록
 // false인 경우 string, array형태만 파싱, true이면 모든 형태를 파싱
