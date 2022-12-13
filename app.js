@@ -33,7 +33,7 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 app.use("/image", express.static("upload"));
 
-// app.get("/", upload.single("imageUrl"), (req, res) => {});
+app.get("/", upload.single("imageUrl"), (req, res) => {});
 
 app.get("/api/members", async (req, res) => {
   const { tag } = req.query;
