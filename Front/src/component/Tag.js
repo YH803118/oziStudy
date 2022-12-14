@@ -59,8 +59,7 @@ const Tag = ({ onChange, tags = "" }) => {
             return (
               <>
                 <li onClick={deleteTagItem} key={tag}>
-                  <lable id={tag}>#</lable>
-                  {tag}
+                  <lable id={tag}>#{tag}</lable>
                   &nbsp;
                 </li>
               </>
