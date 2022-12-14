@@ -264,7 +264,7 @@ app.put("/api/comments/:id", upload.single("imageUrl"), async (req, res) => {
   }
 });
 
-const port = process.env.PORT || "3001";
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`${port} 접속 성공`);
 });
