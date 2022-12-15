@@ -71,12 +71,7 @@ export async function delMember(userId) {
 
 export async function getStudyList() {
   console.log("getStudyList - before fetch");
-  const res = await fetch(`${URL}/api/tables`, {
-    headers: {
-      Accept: "application / json",
-    },
-    method: "GET",
-  });
+  const res = await fetch(`${URL}/api/tables`);
   console.log("getStudyList - after fetch");
   if (!res) throw new Error("스터디조회실패!");
   const body = await res.json();
