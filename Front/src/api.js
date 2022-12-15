@@ -1,4 +1,4 @@
-const URL = "https://ozistudy.herokuapp.com/";
+const URL = "https://ozistudy.herokuapp.com";
 export async function getUser({ userId, password }) {
   const res = await fetch(`${URL}/api/members/${userId}`);
   if (!res) throw new Error("회원 조회에 실패했습니다");
