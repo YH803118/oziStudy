@@ -119,6 +119,7 @@ app.delete("/api/members/:id", async (req, res) => {
 app.get("/api/tables", async (req, res) => {
   // 스터디목록
   const { tag } = req.query;
+  console.log(`api/tables - ${tag}`);
   if (tag) {
     const tableSearch = await Table.findAll({
       where: { tag },
