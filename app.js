@@ -85,16 +85,13 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
 
 app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   //회원정보 수정
-  // console.log(req.file);
-  console.log("app put");
-  // const id = 1;
-  console.log(req.file);
   const { userId } = req.params;
-  const filePath =
-    "https://ozistudy.herokuapp.com/image/" + req.file.originalname;
-  const newInfo = req.body;
-  newInfo["imageUrl"] = filePath;
-  console.log(newInfo);
+  if (req.file.originalname) {
+    const filePath =
+      "https://ozistudy.herokuapp.com/image/" + req.file.originalname;
+    const newInfo = req.body;
+    newInfo["imageUrl"] = filePath;
+  }
   const result = await Member.update(newInfo, { where: { userId } });
   // await Member.update({ imageUrl: req.file }, { where: { userId } });
   if (result[0]) {
