@@ -86,10 +86,11 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
 app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   //회원정보 수정
   const { userId } = req.params;
+  const newInfo = req.body;
   if (req.file.originalname) {
     const filePath =
       "https://ozistudy.herokuapp.com/image/" + req.file.originalname;
-    const newInfo = req.body;
+
     newInfo["imageUrl"] = filePath;
   }
   const result = await Member.update(newInfo, { where: { userId } });
