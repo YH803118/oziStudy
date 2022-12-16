@@ -34,12 +34,14 @@ const Tag = ({ onChange, tags = "" }) => {
   };
   const handleChange = (e) => {
     setTagItem(e.target.value);
-    const tagData = tagList.join(",");
-    onChange("tag", tagData);
   };
   useEffect(() => {
-    if (tagList.length == 0) handleLoad();
-  }, []);
+    console.log(tagList);
+    const tagData = tagList.join(",");
+    onChange("tag", tagData);
+  }, [tagList]);
+
+  if (tagList.length == 0) handleLoad();
 
   return (
     <>
