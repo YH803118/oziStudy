@@ -5,6 +5,8 @@
   display: flex;
   justify-content: center;
   flex-direction: row;
+  position: absolute;
+  bottom: -400px;
 }
 
 .container2 {
@@ -35,8 +37,8 @@
   position: absolute;
   width: 205px;
   height: 16px;
-  left: 368px;
-  bottom: -372px;
+  left: 550px;
+  bottom: 100px;
   background: #484848;
   color: white;
   border-radius: 5px;
@@ -59,8 +61,8 @@
   position: absolute;
   width: 205px;
   height: 16px;
-  left: 409px;
-  bottom: -368px;
+  left: 600px;
+  bottom: 100px;
   background: #484848;
   color: white;
   border-radius: 5px;
