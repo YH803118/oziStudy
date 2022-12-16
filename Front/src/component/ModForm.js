@@ -27,7 +27,7 @@ function ModForm() {
   const userURL = `/api/members/${userId}`;
   useEffect(() => {
     axios
-      .get(`https://ozitest.herokuapp.com//api/members/${userId}`)
+      .get(`https://ozitest.herokuapp.com/api/members/${userId}`)
       .then((response) => {
         setUser(response.data);
       });
