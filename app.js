@@ -87,9 +87,9 @@ app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   //회원정보 수정
   const { userId } = req.params;
   const newInfo = req.body;
-  if (req.file.originalname) {
+  if (req.file) {
     const filePath =
-      "https://ozistudy.herokuapp.com/image/" + req.file.originalname;
+      "https://ozitest.herokuapp.com/image/" + req.file.originalname;
 
     newInfo["imageUrl"] = filePath;
   }
