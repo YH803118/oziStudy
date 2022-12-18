@@ -75,7 +75,7 @@ function App() {
             path="/studyInputForm/modify/:studyId"
             element={<StudyInputForm userId={login} />}
           />
-          <Route path="modForm" element={<ModForm />} />
+          <Route path="/modForm" element={<ModForm />} />
           <Route
             path="/studyFormDetail/:id"
             element={
@@ -88,17 +88,6 @@ function App() {
               />
             }
           />
-          {/* <Route
-            exact
-            path="/search/:searchText"
-            element={
-              <SearchResult
-                onMyStudy={handleMyStudy}
-                onLoad={handleLoad}
-                onLogin={setLogin}
-              />
-            }
-          /> */}
           <Route
             exact
             path="/search"

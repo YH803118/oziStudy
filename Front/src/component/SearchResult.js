@@ -6,8 +6,6 @@ import SearchResultList from "./SearchResultList";
 import "./StudyList.css";
 import TopMenu from "./TopMenu";
 function SearchResult({ onMyStudy, onLoad, onLogin }) {
-  // const { searchText } = useParams();
-  // const searchText = decodeURI(window.location.search.split("=")[1]);
   const searchText = window.location.search.split("=")[1];
   const [searchItem, setSearchItem] = useState([]);
   console.log(searchText);
@@ -20,12 +18,7 @@ function SearchResult({ onMyStudy, onLoad, onLogin }) {
   }, []);
   return (
     <>
-      <TopMenu
-        onMyStudy={onMyStudy}
-        onLoad={onLoad}
-        onLogin={onLogin}
-        // onSessionClear={handleSessionClear}
-      />
+      <TopMenu onMyStudy={onMyStudy} onLoad={onLoad} onLogin={onLogin} />
       <SearchForm />
       {searchItem[0] && (
         <>
@@ -42,5 +35,4 @@ function SearchResult({ onMyStudy, onLoad, onLogin }) {
     </>
   );
 }
-// 검색 후 새로고침하면 첫화면으로 돌아가는 문제가 있음.
 export default SearchResult;

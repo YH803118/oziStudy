@@ -19,15 +19,6 @@ function SearchForm() {
     }
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   const params = new URLSearchParams();
-
-  //   params.append("searchText", searchText);
-
-  //   axios.get("/search", params);
-  // };
-
   return (
     <>
       <form id="searchForm" action="search">
@@ -41,9 +32,6 @@ function SearchForm() {
         </div>
         <button type="submit">검색</button>
       </form>
-      {/* <Link to={`/search/${searchText}`} onClick={textCheck}>
-        링크
-      </Link> */}
     </>
   );
 }
