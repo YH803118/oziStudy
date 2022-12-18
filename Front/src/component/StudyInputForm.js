@@ -107,7 +107,8 @@ function StudyInputForm({ userId }) {
         </form>
         <button onClick={handleRegiSubmit} id="submitButton">
           작성하기
-        </button>
+        </button>{" "}
+        {/*폼 안에 버튼이 있으면 태그입력을 위해 엔터를 눌렀을때 submit이 되어버리기때문에 바깥에버튼을 두고 서브밋 역할을하는 함수를 설정*/}
       </div>
     </div>
   );

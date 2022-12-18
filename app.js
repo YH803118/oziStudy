@@ -89,9 +89,9 @@ app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   const newInfo = req.body;
   if (req.file) {
     const filePath =
-      "https://ozitest.herokuapp.com/image/" + req.file.originalname;
+      "https://ozitest.herokuapp.com/image/" + req.file.originalname; //파일이미지를 불러오기위한 경로+이미지파일 이름
 
-    newInfo["imageUrl"] = filePath;
+    newInfo["imageUrl"] = filePath; //경로를 request의 json파일에 넣어 수정 해준다
   }
   const result = await Member.update(newInfo, { where: { userId } });
   // await Member.update({ imageUrl: req.file }, { where: { userId } });
@@ -104,7 +104,7 @@ app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
 
 app.delete("/api/members/:id", async (req, res) => {
   const { id } = req.params;
-  const deleteCount = await Member.destroy({ where: { userId } }); //조건대로 삭제
+  const deleteCount = await Member.destroy({ where: { userId: id } }); //조건대로 삭제
   if (deleteCount) {
     res.send({ message: `${deleteCount} row(s) deleted` });
   } else {

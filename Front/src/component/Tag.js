@@ -61,6 +61,8 @@ const Tag = ({ onChange, tags = "" }) => {
             return (
               <>
                 <li onClick={deleteTagItem} key={tag}>
+                  {" "}
+                  {/*li의 내용이 #요소이므로 id를 해당내용으로 하여 삭제에 사용할수있게한다  */}
                   <lable id={tag}>#{tag}</lable>
                   &nbsp;
                 </li>

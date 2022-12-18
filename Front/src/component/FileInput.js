@@ -21,17 +21,14 @@ function FileInput({ name, value, initialPreview, onChange }) {
       setPreview(initialPreview);
       return;
     }
-    const nextPreview = URL.createObjectURL(value);
-    setPreview(nextPreview);
+    const nextPreview = URL.createObjectURL(value); //업로드한 파일을 url화해서
+    setPreview(nextPreview); //미리보기 이미지로 설정
 
     return () => {
       setPreview(initialPreview);
     };
   }, [value, initialPreview]);
 
-  const checkPreview = (e) => {
-    console.log(e.target.src);
-  };
   return (
     <div>
       <img
