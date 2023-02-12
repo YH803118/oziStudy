@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 // form 태그로 요청된 body를 읽을 수 있도록
 // false인 경우 string, array형태만 파싱, true이면 모든 형태를 파싱
 
-// npm install --save multer
+// npm install --save multer .
 const multer = require("multer");
 const { fstat } = require("fs");
 const fs = require("fs");
@@ -88,8 +88,7 @@ app.put("/api/members/:userId", upload.single("imageUrl"), async (req, res) => {
   const { userId } = req.params;
   const newInfo = req.body;
   if (req.file) {
-    const filePath =
-      "https://ozitest.herokuapp.com/image/" + req.file.originalname; //파일이미지를 불러오기위한 경로+이미지파일 이름
+    const filePath = "https://ozitest.herokuapp.com/image/" + req.file.originalname; //파일이미지를 불러오기위한 경로+이미지파일 이름
 
     newInfo["imageUrl"] = filePath; //경로를 request의 json파일에 넣어 수정 해준다
   }
