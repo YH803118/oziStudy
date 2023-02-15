@@ -11,9 +11,6 @@ const Op = sequelize.Op;
 
 const path = require("path");
 app.use(express.static(path.join(__dirname, "Front/build")));
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/Front/build", "index.html"));
-});
 
 app.use(express.urlencoded({ extended: true }));
 // form 태그로 요청된 body를 읽을 수 있도록
@@ -258,6 +255,10 @@ app.put("/api/comments/:id", upload.single("imageUrl"), async (req, res) => {
   } else {
     res.status(404).send({ message: "There is no member with the id!" });
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/Front/build", "index.html"));
 });
 
 const port = process.env.PORT || 3001;
