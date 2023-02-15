@@ -34,7 +34,6 @@ function FileInput({ name, value, initialPreview, onChange }) {
       <img
         src={preview}
         alt="이미지 미리보기"
-        onClick={checkPreview}
         width="200px"
         height="200px"
         id="previewImage"

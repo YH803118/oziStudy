@@ -8,6 +8,7 @@ const INITIAL_VALUES = {
   password: "",
   name: "",
   email: "",
+
   imageUrl: null,
   imageFile: null,
 };
