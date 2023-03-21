@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 app.use(cors({ credentials: true }));
-// 개발용 url 제거 테스트
 
 const db = require("./models");
 const { Member } = db;
