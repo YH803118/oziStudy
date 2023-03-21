@@ -30,6 +30,7 @@ var storage = multer.diskStorage({
   },
 });
 app.use(cors({ origin: "https://ozitest.herokuapp.com", credentials: true }));
+// cors 설정 테스트
 
 var upload = multer({ storage });
 app.use("/image", express.static("upload"));
