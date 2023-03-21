@@ -1,20 +1,20 @@
-.joinForm {
-  text-align: center;
+#former {
   font-weight: bold;
-  background-color: rgb(245, 246, 247);
   font-size: 14px;
+  text-align: center;
 }
+
 #idLabel {
-  margin-right: 174px;
+  margin-right: 167px;
 }
 #passLabel {
-  margin-right: 162px;
+  margin-right: 155px;
 }
 #nameLabel {
-  margin-right: 187px;
+  margin-right: 177px;
 }
 #emailLabel {
-  margin-right: 172px;
+  margin-right: 167px;
 }
 #idInputJ {
   margin-left: 65px;

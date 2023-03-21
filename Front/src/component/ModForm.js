@@ -3,26 +3,27 @@ import { modMember } from "../api";
 import FileInput from "./FileInput";
 import "./ModForm.css";
 import axios from "axios";
+import PassConfirm from "./PassConfirm";
 
 const INITIAL_VALUES = {
   password: "",
   name: "",
   email: "",
-
   imageUrl: null,
   imageFile: null,
 };
 
 const inputName = {
-  name: "이름",
-  userId: "아이디",
   password: "비밀번호",
   passwordCheck: "비밀번호 확인",
+  name: "이름",
+  email: "이메일",
 };
 
 function ModForm() {
   const [modData, setModData] = useState(INITIAL_VALUES);
   const [user, setUser] = useState("");
+  const [checkPass, setCheckPass] = useState("");
   const [passConfirm, setPassConfirm] = useState(false);
   const userId = window.sessionStorage.getItem("userId");
   const userURL = `/api/members/${userId}`;
@@ -47,10 +48,10 @@ function ModForm() {
   };
 
   const handleModify = async (e) => {
-    var inputs = document.querySelectorAll(".modInput");
-    for (let i = 0; i < inputs.length; i++) {
-      if (inputs[i].value == "") {
-        alert(`${inputName[inputs[i].name]}을 입력해주세요`);
+    var inputs = Object.keys(modData);
+    for (let i of inputs) {
+      if (modData[i] === "") {
+        alert(`${inputName[i]}을 입력해주세요`);
         e.preventDefault();
         return;
       }
@@ -75,17 +76,11 @@ function ModForm() {
   };
 
   const passCheck = (e) => {
-    var labelFont = document.getElementById("passConfirm");
-
-    if (e.target.value == "") labelFont.innerText = "";
-    else if (e.target.value == modData.password) {
-      labelFont.innerText = "비밀번호가 일치합니다.";
+    setCheckPass(e.target.value);
+    if (e.target.value === modData.password) {
       setPassConfirm(true);
-      labelFont.style.color = "lightGreen";
     } else {
-      labelFont.innerText = "비밀번호가 일치하지 않습니다!!";
       setPassConfirm(false);
-      labelFont.style.color = "red";
     }
   };
   return (
@@ -133,7 +128,11 @@ function ModForm() {
           id="passCheck"
         />
         <br />
-        <label id="passConfirm"></label>
+        {checkPass && modData.password ? (
+          <PassConfirm confirm={passConfirm} />
+        ) : (
+          <></>
+        )}
         <br />
         &nbsp; 이름{" "}
         <input
