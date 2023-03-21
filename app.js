@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-import * as cors from "cors";
 
 const db = require("./models");
 const { Member } = db;
@@ -29,7 +28,6 @@ var storage = multer.diskStorage({
     cb(null, file.originalname); // cb 콜백함수를 통해 전송된 파일 이름 설정
   },
 });
-app.use(cors({ origin: "https://ozitest.herokuapp.com", credentials: true }));
 
 var upload = multer({ storage });
 app.use("/image", express.static("upload"));
