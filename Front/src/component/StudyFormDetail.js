@@ -9,9 +9,7 @@ import { Link } from "react-router-dom";
 export const getUserInfo = async ({ userId }) => {
   console.log(userId);
   if (userId) {
-    const userInfo = await axios.get(
-      `http://localhost:3000/api/members/${userId}`
-    );
+    const userInfo = await axios.get(`http://localhost:3000/api/members/${userId}`);
     console.log(userInfo.data);
     return userInfo.data;
   }
@@ -41,9 +39,7 @@ function StudyFormDetail({ item }) {
     }
     localStorage.setItem("studyDetail", JSON.stringify(studyDetail));
   }
-  const { title, tag, leader, content, endDate, userList } = JSON.parse(
-    localStorage.getItem("studyDetail")
-  );
+  const { title, tag, leader, content, endDate, userList } = JSON.parse(localStorage.getItem("studyDetail"));
   for (const tags of tag.split(",")) {
     tagArr.push(tags);
   }
@@ -84,7 +80,7 @@ function StudyFormDetail({ item }) {
 
   return (
     <>
-      <div className="StudyFormDetail">
+      <div className="StudyFormDetail card shadow-sm">
         <div className="title">{title}</div>
 
         <div className="tags">

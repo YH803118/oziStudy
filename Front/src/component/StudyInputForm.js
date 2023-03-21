@@ -81,19 +81,9 @@ function StudyInputForm({ userId }) {
       <div id="creater">
         {/* <form action="/api/input" id="submit" method="post"> */}
         <form action="/" id="submit">
-          <input
-            type="text"
-            name="title"
-            placeholder="제목"
-            onChange={handleInputChange}
-            id="title"
-          />
+          <input type="text" name="title" placeholder="제목" onChange={handleInputChange} id="title" />
           <div className="tags">
-            {regiData.tag ? (
-              <Tag onChange={handleChange} tags={regiData.tag} />
-            ) : (
-              <Tag onChange={handleChange} />
-            )}
+            {regiData.tag ? <Tag onChange={handleChange} tags={regiData.tag} /> : <Tag onChange={handleChange} />}
           </div>
           <hr></hr>
           <textarea
