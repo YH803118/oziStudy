@@ -1,4 +1,4 @@
-.StudyForm {
+/* .StudyForm {
   padding: 10px;
   width: 400px;
   height: 200px;
@@ -7,21 +7,28 @@
   text-decoration: none;
   color: rgb(54, 54, 54);
   border-radius: 5px;
+} */
+
+.card {
+  padding: 10px;
+  text-decoration: none;
 }
 
-.StudyForm:hover {
+.card:hover {
   background-color: rgb(238, 238, 238);
 }
 
 .title {
   font-size: 21px;
+  color: #212529;
   font-weight: bold;
-  margin: 0 0 3px 5px;
+  /* margin: 0 0 3px 5px; */
 }
 
 hr {
   border: 0px;
   height: 1px;
+  margin: 3px 0 7px 0px;
   background-color: silver;
 }
 .content {

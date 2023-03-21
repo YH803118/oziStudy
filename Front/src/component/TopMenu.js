@@ -14,9 +14,7 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLogin(
-      await getUser({ userId: loginInfo.userId, password: loginInfo.password })
-    );
+    setLogin(await getUser({ userId: loginInfo.userId, password: loginInfo.password }));
   };
 
   const handleChange = (e) => {
@@ -48,56 +46,69 @@ function TopMenu({ onMyStudy, onLoad, onLogin }) {
   }, [login, sessionStorage]);
 
   return (
-    <div className="TopMenu">
-      {" "}
-      <Link id="homeBtn" to="/" onClick={onLoad}>
-        <img src={require("../img/logo.png")} alt="logo" width="60px" />
-      </Link>
-      {login2 ? (
-        <div className="TopMenuItem">
-          <label className="menu" htmlFor="menu">
-            {sessionStorage.getItem("userId")}
-          </label>
-          <input id="menu" type="checkbox" />
-          <ul className="myMenu">
-            <li>
-              <Link to="/myStudy" onClick={onMyStudy}>
-                내 스터디
-              </Link>
-            </li>
-            <li>
-              <Link to="/modForm">정보 수정</Link>
-            </li>
-            <li>
-              <Link to="" onClick={handleLogout}>
-                로그아웃
-              </Link>
-            </li>
-          </ul>
-        </div>
-      ) : (
-        <form className="TopMenuItem" onSubmit={handleLogin}>
-          <span>아이디 </span>
-          <input
-            type="text"
-            name="userId"
-            className="loginInput"
-            onChange={handleChange}
-          />{" "}
-          | <span>비밀번호 </span>
-          <input
-            type="password"
-            name="password"
-            className="loginInput"
-            onChange={handleChange}
-          />{" "}
-          |<button type="submit">로그인</button>|
-          <Link to="/joinForm">
-            <button>회원가입</button>
+    <div className="p-3 bg-dark text-white">
+      <div className="containDiv">
+        <div className="d-flex flex-wrap align-items-center justify-content-space-between">
+          {" "}
+          <Link id="homeBtn" to="/" onClick={onLoad}>
+            <img src={require("../img/logo.png")} alt="logo" width="60px" />
           </Link>
-          |
-        </form>
-      )}
+          {login2 ? (
+            <div className="TopMenuItem">
+              <label className="btn btn-outline-light me-2" htmlFor="menu">
+                {sessionStorage.getItem("userId")}
+              </label>
+              <input id="menu" type="checkbox" />
+              <ul className="myMenu">
+                <li>
+                  <Link to="/myStudy" onClick={onMyStudy}>
+                    <button type="button" className="btn me-2 btn-outline-dark">
+                      MyStudy
+                    </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/modForm">
+                    {" "}
+                    <button type="button" className="btn me-2 btn-outline-dark">
+                      MyInfo
+                    </button>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" onClick={handleLogout}>
+                    <button type="button" className="btn me-2 btn-outline-dark">
+                      LogOut
+                    </button>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <form
+              className="TopMenuItem d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+              onSubmit={handleLogin}
+            >
+              <div className="loginDiv">
+                <span className="px-2 text-white">ID</span>
+                <input type="text" name="userId" className="loginInput" onChange={handleChange} />
+                <span className="px-2 text-white"> Password</span>
+                <input type="password" name="password" className="loginInput" onChange={handleChange} />
+              </div>
+              <div className="text-end">
+                <button type="submit" className="btn btn-outline-light me-2">
+                  Login
+                </button>
+                <Link to="/joinForm">
+                  <button type="button" className="btn btn-warning">
+                    Sign-up
+                  </button>
+                </Link>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

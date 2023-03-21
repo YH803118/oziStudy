@@ -21,17 +21,23 @@ function SearchForm() {
 
   return (
     <>
-      <form id="searchForm" action="search">
-        <div className="searchInput">
+      {/* <form id="searchForm" action="search"> */}
+      {/* <div className="searchInput"> */}
+      <div id="searchForm" class="searchInput d-flex align-items-center">
+        <form class="w-100 me-3" action="search">
           <input
-            type="text"
+            type="search"
             name="searchText"
             onChange={handleChange}
-            placeholder="검색어 입력"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
           />
-        </div>
-        <button type="submit">검색</button>
-      </form>
+        </form>
+      </div>
+      {/* </div> */}
+      {/* <button type="submit" className="">검색</button> */}
+      {/* </form> */}
     </>
   );
 }
