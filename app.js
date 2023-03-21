@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-app.use(cors({ origin: "https://ozitest.herokuapp.com", credentials: true }));
+app.use(cors({ credentials: true }));
 
 const db = require("./models");
 const { Member } = db;
