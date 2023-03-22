@@ -43,7 +43,7 @@ function App() {
                   // onSessionClear={handleSessionClear}
                 />
                 {/* <hr id="topHR"></hr> */}
-                <div className="album py-5 bg-light">
+                <div className="album  bg-light">
                   <SearchForm onLoad={handleLoad} />
                   <StudyList items={item} />
                   <Bottom />
