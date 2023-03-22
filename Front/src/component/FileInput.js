@@ -3,6 +3,10 @@ import { useEffect, useRef, useState } from "react";
 function FileInput({ name, value, initialPreview, onChange }) {
   const [preview, setPreview] = useState(initialPreview);
   const inputRef = useRef();
+
+  console.log(initialPreview);
+  console.log(preview);
+
   const handleChange = (e) => {
     const nextValue = e.target.files[0];
     onChange(name, nextValue);
@@ -17,13 +21,15 @@ function FileInput({ name, value, initialPreview, onChange }) {
   };
 
   useEffect(() => {
-    if (!value) {
-      setPreview(initialPreview);
-      return;
-    }
-    const nextPreview = URL.createObjectURL(value); //업로드한 파일을 url화해서
-    setPreview(nextPreview); //미리보기 이미지로 설정
+    setPreview(initialPreview);
+  }, [initialPreview]);
 
+  useEffect(() => {
+    if (value !== null) {
+      console.log(value);
+      const nextPreview = URL.createObjectURL(value); //업로드한 파일을 url화해서
+      setPreview(nextPreview); //미리보기 이미지로 설정
+    }
     return () => {
       setPreview(initialPreview);
     };
