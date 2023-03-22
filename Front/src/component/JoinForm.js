@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getUserInfo, joinMember } from "../api";
 import "./JoinForm.css";
+import PassConfirm from "./PassConfirm";
 const INITIAL_VALUES = {
   userId: "",
   password: "",
@@ -16,6 +17,7 @@ const inputName = {
 };
 function JoinForm() {
   const [joinData, setJoinData] = useState(INITIAL_VALUES);
+  const [checkPass, setCheckPass] = useState("");
   const [idConfrim, setIdConfirm] = useState(false);
   const [passConfirm, setPassConfirm] = useState(false);
 
@@ -27,10 +29,10 @@ function JoinForm() {
   };
 
   const handleJoinSubmit = async (e) => {
-    var inputs = document.querySelectorAll(".joinInput");
-    for (let i = 0; i < inputs.length; i++) {
-      if (inputs[i].value == "") {
-        alert(`${inputName[inputs[i].name]}을 입력해주세요`);
+    const inputs = Object.keys(joinData);
+    for (let i of inputs) {
+      if (joinData[i] === "") {
+        alert(`${inputName[i]}을(를) 입력해주세요`);
         e.preventDefault();
         return;
       }
@@ -73,22 +75,17 @@ function JoinForm() {
   };
 
   const passCheck = (e) => {
-    var labelFont = document.getElementById("passConfirm");
-    if (e.target.value == joinData.password) {
-      labelFont.innerText = "비밀번호가 일치합니다.";
+    setCheckPass(e.target.value);
+    if (e.target.value === joinData.password) {
       setPassConfirm(true);
-      labelFont.style.color = "lightGreen";
-    } else if (e.target.value == "") setPassConfirm("");
-    else {
-      labelFont.innerText = "비밀번호가 일치하지 않습니다!!";
+    } else {
       setPassConfirm(false);
-      labelFont.style.color = "red";
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleJoinSubmit} className="joinForm" action="/">
+    <div className="joinForm">
+      <form onSubmit={handleJoinSubmit} id="former" action="/">
         <label id="idLabel">아이디</label> <br />
         <input
           name="userId"
@@ -115,7 +112,11 @@ function JoinForm() {
           id="passCheckJ"
         />
         <br />
-        <label id="passConfirm"></label>
+        {checkPass && joinData.password ? (
+          <PassConfirm confirm={passConfirm} />
+        ) : (
+          <></>
+        )}
         <br />
         <label id="nameLabel">이름</label> <br />
         <input
