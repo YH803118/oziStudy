@@ -115,20 +115,20 @@ app.delete("/api/members/:id", async (req, res) => {
 app.get("/api/tables", async (req, res) => {
   // 스터디목록
   const { tag, offset, limit } = req.query;
-  console.log(`api/tables - ${tag}`);
+  console.log(`api/tables - ${tag} / ${offset} / ${limit}`);
   if (tag) {
     const tableSearch = await Table.findAll({
       where: { tag },
-      offset: Number({ offset }),
-      limit: Number({ limit }),
+      offset: offset,
+      limit: limit,
       order: [["updatedAt", "ASC"]],
     });
     console.log("로드결과 : " + tableSearch);
     res.send(tableSearch);
   } else if (offset && limit) {
     const tables = await Table.findAll({
-      offset: Number({ offset }),
-      limit: Number({ limit }),
+      offset: offset,
+      limit: limit,
       order: [["updatedAt", "ASC"]],
     });
     res.send(tables);
