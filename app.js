@@ -119,7 +119,7 @@ app.get("/api/tables", async (req, res) => {
   if (tag) {
     const tableSearch = await Table.findAll({
       where: { tag },
-      offset: offset,
+      offset: Number(offset),
       limit: 6,
       order: [["updatedAt", "ASC"]],
     });
@@ -127,7 +127,7 @@ app.get("/api/tables", async (req, res) => {
     res.send(tableSearch);
   } else if (offset && limit) {
     const tables = await Table.findAll({
-      offset: offset,
+      offset: Number(offset),
       limit: 6,
       order: [["updatedAt", "ASC"]],
     });
