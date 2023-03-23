@@ -32,7 +32,6 @@ function ModForm() {
         setModData({ ...response.data, password: null, imageFile: null });
       });
   }, [userId]);
-  console.log(modData);
 
   const handleChange = (name, value) => {
     setModData((prev) => ({
@@ -45,6 +44,7 @@ function ModForm() {
     const { name, value } = e.target;
     handleChange(name, value);
   };
+  console.log(modData);
 
   const handleModify = async (e) => {
     var inputs = Object.keys(modData);
