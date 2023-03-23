@@ -1,15 +1,25 @@
 import { useEffect, useRef, useState } from "react";
+import imageCompression from "browser-image-compression";
 
 function FileInput({ name, value, initialPreview, onChange }) {
   const [preview, setPreview] = useState(initialPreview);
   const inputRef = useRef();
 
-  console.log(initialPreview);
-  console.log(preview);
-
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const nextValue = e.target.files[0];
-    onChange(name, nextValue);
+
+    const options = {
+      maxSizeMB: 0.05,
+      maxWidthOrHeight: 500,
+      useWebWorker: true,
+    };
+    try {
+      // 압축 결과
+      const compressedFile = await imageCompression(nextValue, options);
+      onChange(name, compressedFile);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleClearClick = () => {
