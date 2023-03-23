@@ -80,7 +80,7 @@ function StudyFormDetail({ item }) {
 
   return (
     <>
-      <div className="StudyFormDetail card shadow-sm">
+      <div className="StudyFormDetail bg-white shadow-sm">
         <div className="title">{title}</div>
 
         <div className="tags">

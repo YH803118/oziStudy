@@ -82,28 +82,23 @@ app.post("/api/tables", upload.single("file"), async (req, res) => {
   res.send(newTable);
 });
 
-app.put(
-  "/api/members/:userId",
-  upload.single("imageFile"),
-  async (req, res) => {
-    //회원정보 수정
-    const { userId } = req.params;
-    const newInfo = req.body;
-    if (req.file) {
-      const filePath =
-        "https://ozitest.herokuapp.com/image/" + req.file.originalname; //파일이미지를 불러오기위한 경로+이미지파일 이름
+app.put("/api/members/:userId", upload.single("imageFile"), async (req, res) => {
+  //회원정보 수정
+  const { userId } = req.params;
+  const newInfo = req.body;
+  if (req.file) {
+    const filePath = "https://ozitest.herokuapp.com/image/" + req.file.originalname; //파일이미지를 불러오기위한 경로+이미지파일 이름
 
-      newInfo["imageUrl"] = filePath; //경로를 request의 json파일에 넣어 수정 해준다
-    }
-    const result = await Member.update(newInfo, { where: { userId } });
-    // await Member.update({ imageUrl: req.file }, { where: { userId } });
-    if (result[0]) {
-      res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
-    } else {
-      res.status(404).send({ message: "There is no tavle with the id!" });
-    }
+    newInfo["imageUrl"] = filePath; //경로를 request의 json파일에 넣어 수정 해준다
   }
-);
+  const result = await Member.update(newInfo, { where: { userId } });
+  // await Member.update({ imageUrl: req.file }, { where: { userId } });
+  if (result[0]) {
+    res.send({ message: `${result[0]} row(s) affected` }); //로우를 출력
+  } else {
+    res.status(404).send({ message: "There is no tavle with the id!" });
+  }
+});
 
 app.delete("/api/members/:id", async (req, res) => {
   const { id } = req.params;
@@ -119,17 +114,23 @@ app.delete("/api/members/:id", async (req, res) => {
 
 app.get("/api/tables", async (req, res) => {
   // 스터디목록
-  const { tag } = req.query;
+  const { tag, offset, limit } = req.query;
   console.log(`api/tables - ${tag}`);
   if (tag) {
     const tableSearch = await Table.findAll({
       where: { tag },
-      order: [["updatedAt", "DESC"]],
+      offset: { offset },
+      limit: { limit },
+      order: [["updatedAt", "ASC"]],
     });
     console.log("로드결과 : " + tableSearch);
     res.send(tableSearch);
   } else {
-    const tables = await Table.findAll();
+    const tables = await Table.findAll({
+      offset: { offset },
+      limit: { limit },
+      order: [["updatedAt", "ASC"]],
+    });
     res.send(tables);
   }
 });

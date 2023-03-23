@@ -12,15 +12,18 @@ import StudyInputForm from "./StudyInputForm";
 import SearchForm from "./SearchForm";
 import SearchResult from "./SearchResult";
 import Locater from "./Locater";
-
+const LIMIT = 6;
 function App() {
   let sessionStorage = window.sessionStorage;
   let localStorage = window.localStorage;
   const [item, setItem] = useState([]);
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
+  const [offset, setOffset] = useState(0);
 
   const handleLoad = async () => {
-    setItem(await getStudyList());
+    let studyList = await getStudyList({ offset, LIMIT });
+    setItem(studyList);
+    setOffset(offset + studyList.length);
   };
   const handleMyStudy = async () => {
     setItem(await getMyStudy(login));
@@ -75,7 +78,7 @@ function App() {
           <Route
             path="/studyFormDetail/:id"
             element={
-              <div className="album py-5 bg-light">
+              <div className="album bg-light">
                 <Locater
                   location="studyFormDetail"
                   item={item}

@@ -64,8 +64,9 @@ export async function delMember(userId) {
   return body;
 }
 
-export async function getStudyList() {
-  const res = await fetch(`${URL}/api/tables`);
+export async function getStudyList({ offset = 0, limit = 6 }) {
+  const query = `offset=${offset}&limit=${limit}`;
+  const res = await fetch(`${URL}/api/tables?${query}`);
   if (!res) throw new Error("스터디조회실패!");
   const body = await res.json();
   return body;
