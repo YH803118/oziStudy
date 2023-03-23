@@ -3,18 +3,26 @@ import "./StudyForm.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 function StudyForm({ item }) {
-  let { id, title, tag, leader, content, endDate } = item;
+  let { id, title, tag, leader, content, createdAt } = item;
   const [maxTitle, setMaxTitle] = useState(title);
   let tagArr = tag.split(",");
 
   const handleResize = () => {
-    console.log("resize");
-    if (window.innerWidth / 63 <= title.length) {
-      setMaxTitle(title.slice(0, 15) + "...");
-    } else setMaxTitle(title);
+    const width = window.innerWidth;
+    if (width > 574) {
+      if (width / 63 <= title.length) {
+        setMaxTitle(title.slice(0, Math.floor(width / 60)) + "...");
+      } else setMaxTitle(title);
+    } else {
+      if ((width - 50) / 21 <= title.length) {
+        setMaxTitle(title.slice(0, Math.floor(width / 25)) + "...");
+      } else setMaxTitle(title);
+    }
+    console.log(window.innerWidth);
   };
 
   useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -41,8 +49,10 @@ function StudyForm({ item }) {
             })}
         </div>
         <div className="content">{content}</div>
-        <span className="leader">{leader}</span>
-        <span className="endDate">{endDate}</span>
+        <div className="d-flex">
+          <span className="createdAt">{createdAt.split("T")[0]}</span>
+          <span className="leader">{leader}</span>
+        </div>
       </Link>
     </div>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getMyStudy } from "../api";
+import Bottom from "./Bottom";
 import StudyFormDetail from "./StudyFormDetail";
 import StudyList from "./StudyList";
 import "./StudyList.css";
@@ -10,7 +11,6 @@ function Locater({ location, item, onMyStudy, onLoad, onLogin }) {
   return (
     <>
       <TopMenu onMyStudy={onMyStudy} onLoad={onLoad} onLogin={onLogin} />
-      <hr id="topHR"></hr>
       {location == "studyFormDetail" && <StudyFormDetail item={item} />}
       {location == "myStudy" && <StudyList items={item} />}
       {sessionStorage.getItem("userId") && location != "studyFormDetail" && (
@@ -18,6 +18,7 @@ function Locater({ location, item, onMyStudy, onLoad, onLogin }) {
           스터디만들기
         </Link>
       )}
+      <Bottom />
     </>
   );
 }
