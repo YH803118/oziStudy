@@ -125,10 +125,17 @@ app.get("/api/tables", async (req, res) => {
     });
     console.log("로드결과 : " + tableSearch);
     res.send(tableSearch);
+  } else if (offset && limit) {
+    const tables = await Table.findAll({
+      offset: Number({ offset }),
+      limit: { limit },
+      order: [["updatedAt", "ASC"]],
+    });
+    res.send(tables);
   } else {
     const tables = await Table.findAll({
-      offset: { offset },
-      limit: { limit },
+      offset: 0,
+      limit: 6,
       order: [["updatedAt", "ASC"]],
     });
     res.send(tables);
