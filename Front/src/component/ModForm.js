@@ -22,18 +22,17 @@ const inputName = {
 
 function ModForm() {
   const [modData, setModData] = useState(INITIAL_VALUES);
-  const [user, setUser] = useState("");
   const [checkPass, setCheckPass] = useState("");
   const [passConfirm, setPassConfirm] = useState(false);
   const userId = window.sessionStorage.getItem("userId");
-  const userURL = `/api/members/${userId}`;
   useEffect(() => {
     axios
       .get(`https://ozitest.herokuapp.com/api/members/${userId}`) //로그인 아이디를 통해 해당 아이디 유저를 불러옴
       .then((response) => {
-        setUser(response.data);
+        setModData({ ...response.data, password: null, imageFile: null });
       });
-  }, []);
+  }, [userId]);
+  console.log(modData);
 
   const handleChange = (name, value) => {
     setModData((prev) => ({
@@ -59,17 +58,14 @@ function ModForm() {
     if (!passConfirm) {
       alert("비밀번호를 확인해 주세요!!");
       e.preventDefault();
-    } else if (modData.password == user.password) {
-      alert("비밀번호가 현재와 똑같습니다");
-      e.preventDefault();
     } else {
       const formData = new FormData();
       formData.append("password", modData.password);
       formData.append("name", modData.name);
       formData.append("email", modData.email);
       formData.append("tag", "Front");
-      if (modData.imageUrl != "") {
-        formData.append("imageUrl", modData.imageUrl);
+      if (modData.imageUrl !== "") {
+        formData.append("imageFile", modData.imageFile);
       }
       await modMember(userId, formData);
     }
@@ -92,14 +88,14 @@ function ModForm() {
         encType="multipart/form-data"
       >
         <FileInput
-          name="imageUrl"
-          value={modData.imageUrl}
+          name="imageFile"
+          value={modData.imageFile}
           onChange={handleChange}
-          initialPreview={user.imageUrl}
+          initialPreview={modData.imageUrl}
         />
-        프로필 이미지 등록
+        <div>프로필 이미지 등록</div>
         <br />
-        &nbsp; 아이디{" "}
+        <div className="inputName">아이디</div>
         <input
           name="userId"
           value={userId}
@@ -109,7 +105,7 @@ function ModForm() {
           disabled="readonly"
         />
         <br />
-        &nbsp; 비밀번호{" "}
+        <div className="inputName">비밀번호</div>
         <input
           name="password"
           type="password"
@@ -120,6 +116,7 @@ function ModForm() {
           className="modInput"
         />
         <br />
+        <div className="inputName"></div>
         <input
           name="passwordCheck"
           onChange={passCheck}
@@ -128,13 +125,14 @@ function ModForm() {
           id="passCheck"
         />
         <br />
+        <div id="confirmer"> </div>
         {checkPass && modData.password ? (
           <PassConfirm confirm={passConfirm} />
         ) : (
           <></>
         )}
         <br />
-        &nbsp; 이름{" "}
+        <div className="inputName">이름</div>
         <input
           name="name"
           onChange={handleInputChange}
@@ -143,11 +141,11 @@ function ModForm() {
           className="modInput"
         />
         <br />
-        &nbsp; 이메일{" "}
+        <div className="inputName">이메일</div>
         <input
           name="email"
-          onChange={handleInputChange}
           value={modData.email}
+          onChange={handleInputChange}
           id="emailInput"
           className="modInput"
         />
