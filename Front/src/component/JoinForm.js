@@ -57,14 +57,12 @@ function JoinForm() {
       } catch (error) {
         console.log(error);
       }
-      // console.log(result);
     }
   };
 
   const handleOverlapCheck = async (e) => {
     e.preventDefault();
     const check = await getUserInfo(joinData.userId);
-    console.log(check.userId);
     if (check.userId) {
       setIdConfirm(false);
       alert("이미 존재하는 아이디 입니다!!");
@@ -86,31 +84,49 @@ function JoinForm() {
   return (
     <div className="joinForm">
       <form onSubmit={handleJoinSubmit} id="former" action="/">
-        <label id="idLabel">아이디</label> <br />
-        <input
-          name="userId"
-          onChange={handleChange}
-          id="idInputJ"
-          className="joinInput"
-        />{" "}
-        <button onClick={handleOverlapCheck} id="idCheck">
+        <div className="form-floating joinInput idInput">
+          <input
+            type="text"
+            name="id"
+            onChange={handleChange}
+            className="form-control"
+            id="floatingPassword"
+            placeholder="아이디"
+          />
+          <label htmlFor="floatingPassword">아이디</label>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleOverlapCheck}
+          class="btn btn-secondary"
+        >
           중복확인
         </button>
         <br />
-        <label id="passLabel">비밀번호</label> <br />
-        <input
-          name="password"
-          onChange={handleChange}
-          id="passInputJ"
-          className="joinInput"
-        />
+        <div className="form-floating joinInput">
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            className="form-control"
+            id="floatingPassword"
+            placeholder="비밀번호"
+          />
+          <label htmlFor="floatingPassword">비밀번호</label>
+        </div>
         <br />
-        <input
-          name="passwordCheck"
-          onChange={passCheck}
-          className="joinInput"
-          id="passCheckJ"
-        />
+        <div className="form-floating joinInput">
+          <input
+            type="password"
+            className="form-control"
+            id="floatingPassword"
+            placeholder="PasswordCheck"
+            name="passwordCheck"
+            onChange={passCheck}
+          />
+          <label htmlFor="floatingPassword">비밀번호 확인</label>
+        </div>
         <br />
         {checkPass && joinData.password ? (
           <PassConfirm confirm={passConfirm} />
@@ -118,24 +134,32 @@ function JoinForm() {
           <></>
         )}
         <br />
-        <label id="nameLabel">이름</label> <br />
-        <input
-          name="name"
-          onChange={handleChange}
-          id="nameInputJ"
-          className="joinInput"
-        />
+        <div className="form-floating joinInput">
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            className="form-control"
+            placeholder="이름"
+          />
+          <label htmlFor="floatingPassword">이름</label>
+        </div>
         <br />
-        <label id="emailLabel">이메일</label> <br />
-        <input
-          type="email"
-          name="email"
-          onChange={handleChange}
-          className="joinInput"
-          id="emailInputJ"
-        />
+        <div className="form-floating joinInput">
+          <input
+            type="email"
+            name="email"
+            onChange={handleChange}
+            className="form-control joinInput"
+            id="floatingInput"
+            placeholder="이메일"
+          />
+          <label htmlFor="floatingInput" className="inputLabel">
+            이메일
+          </label>
+        </div>
         <br />
-        <button type="submit" id="joinSubmit">
+        <button type="submit" className="btn btn-outline-success">
           가입하기
         </button>
       </form>

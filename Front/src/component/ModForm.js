@@ -44,7 +44,6 @@ function ModForm() {
     const { name, value } = e.target;
     handleChange(name, value);
   };
-  console.log(modData);
 
   const handleModify = async (e) => {
     var inputs = Object.keys(modData);
@@ -93,6 +92,7 @@ function ModForm() {
           onChange={handleChange}
           initialPreview={modData.imageUrl}
         />
+        <br />
         <div>프로필 이미지 등록</div>
         <br />
         <div className="inputName">아이디</div>
@@ -111,7 +111,6 @@ function ModForm() {
           type="password"
           onChange={handleInputChange}
           value={modData.password}
-          id="passInput"
           placeholder="새 비밀번호"
           className="modInput"
         />
@@ -122,7 +121,6 @@ function ModForm() {
           onChange={passCheck}
           className="modInput"
           placeholder="새 비밀번호 확인"
-          id="passCheck"
         />
         <br />
         <div id="confirmer"> </div>
@@ -137,7 +135,6 @@ function ModForm() {
           name="name"
           onChange={handleInputChange}
           value={modData.name}
-          id="nameInput"
           className="modInput"
         />
         <br />
@@ -146,11 +143,10 @@ function ModForm() {
           name="email"
           value={modData.email}
           onChange={handleInputChange}
-          id="emailInput"
           className="modInput"
         />
         <br />
-        <button type="submit" id="modSubmit">
+        <button type="submit" class="btn btn-success">
           수정하기
         </button>
       </form>

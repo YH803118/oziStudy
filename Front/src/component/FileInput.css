@@ -1,0 +1,30 @@
+#thumbFile {
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+#thumbFile img {
+  border-radius: 5px;
+  border: 2px solid;
+}
+
+#fileInput {
+  margin-left: 10px;
+  margin-top: 0px;
+  vertical-align: bottom;
+  font-size: 14px;
+  width: 20%;
+}
+
+#fileInput::file-selector-button {
+  border-radius: 5px;
+  background-color: #199654;
+  color: white;
+  border: none;
+  height: 40px;
+}
+
+#fileInput::file-selector-button:hover {
+  background-color: #198054;
+  cursor: pointer;
+}
