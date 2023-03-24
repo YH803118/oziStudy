@@ -1,30 +1,30 @@
+.joinForm {
+  background-color: rgb(240, 240, 240);
+  padding-top: 5%;
+  height: 1000px;
+}
+
 #former {
   font-weight: bold;
   font-size: 14px;
   text-align: center;
+  margin-right: 10%;
 }
 
-#idLabel {
-  margin-right: 167px;
-}
-#passLabel {
-  margin-right: 155px;
-}
-#nameLabel {
-  margin-right: 177px;
-}
-#emailLabel {
-  margin-right: 167px;
-}
-#idInputJ {
-  margin-left: 65px;
-}
-
-.joinInput {
+.joinInput input {
   width: 200px;
   height: 25px;
   margin-bottom: 10px;
   border-style: inset;
+}
+
+.joinInput {
+  display: inline-block;
+}
+
+.idInput {
+  margin-left: 92px;
+  margin-right: 10px;
 }
 
 #joinSubmit {

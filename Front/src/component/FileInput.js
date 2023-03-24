@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import imageCompression from "browser-image-compression";
+import "./FileInput.css";
 
 function FileInput({ name, value, initialPreview, onChange }) {
   const [preview, setPreview] = useState(initialPreview);
@@ -7,7 +8,6 @@ function FileInput({ name, value, initialPreview, onChange }) {
 
   const handleChange = async (e) => {
     const nextValue = e.target.files[0];
-
     const options = {
       maxSizeMB: 0.05,
       maxWidthOrHeight: 500,
@@ -36,7 +36,6 @@ function FileInput({ name, value, initialPreview, onChange }) {
 
   useEffect(() => {
     if (value !== null) {
-      console.log(value);
       const nextPreview = URL.createObjectURL(value); //업로드한 파일을 url화해서
       setPreview(nextPreview); //미리보기 이미지로 설정
     }
@@ -46,7 +45,7 @@ function FileInput({ name, value, initialPreview, onChange }) {
   }, [value, initialPreview]);
 
   return (
-    <div>
+    <div id="thumbFile">
       <img
         src={preview}
         alt="이미지 미리보기"
