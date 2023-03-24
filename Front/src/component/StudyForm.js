@@ -3,6 +3,7 @@ import "./StudyForm.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 function StudyForm({ item }) {
+  console.log(item);
   let { id, title, tag, leader, content, createdAt } = item;
   const [maxTitle, setMaxTitle] = useState(title);
   let tagArr = tag.split(",");

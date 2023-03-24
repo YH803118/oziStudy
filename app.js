@@ -129,7 +129,7 @@ app.get("/api/tables", async (req, res) => {
     const tables = await Table.findAll({
       offset: Number(offset),
       limit: 6,
-      order: [["updatedAt", "ASC"]],
+      order: [["updatedAt", "DESC"]],
     });
     res.send(tables);
   } else {

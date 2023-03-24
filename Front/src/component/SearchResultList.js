@@ -3,7 +3,7 @@ import "./StudyList.css";
 
 function SearchResultList({ items, search }) {
   return (
-    <div className="StudyList">
+    <div className="container">
       <h3>{search}</h3>
       <br></br>
       {items[0] ? (

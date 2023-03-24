@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { search } from "../api";
+import Bottom from "./Bottom";
 import SearchForm from "./SearchForm";
 import SearchResultList from "./SearchResultList";
 import "./StudyList.css";
@@ -17,22 +18,29 @@ function SearchResult({ onMyStudy, onLoad, onLogin }) {
     handleSearch();
   }, []);
   return (
-    <>
+    <div className="album  bg-light">
       <TopMenu onMyStudy={onMyStudy} onLoad={onLoad} onLogin={onLogin} />
       <SearchForm />
-      {searchItem[0] && (
-        <>
-          <SearchResultList items={searchItem[0]} search="제목 검색 결과" />
-          <SearchResultList items={searchItem[1]} search="내용 검색 결과" />
-          <SearchResultList items={searchItem[2]} search="태그 검색 결과" />
-        </>
-      )}
+      <div className="container">
+        <div className="g-2">
+          {searchItem[0] && (
+            <>
+              <SearchResultList items={searchItem[0]} search="제목 검색 결과" />
+              <hr />
+              <SearchResultList items={searchItem[1]} search="내용 검색 결과" />
+              <hr />
+              <SearchResultList items={searchItem[2]} search="태그 검색 결과" />
+            </>
+          )}
+        </div>
+      </div>
       {sessionStorage.getItem("userId") && (
         <Link to="studyInputForm" id="studyInputBtn">
           스터디만들기
         </Link>
       )}
-    </>
+      <Bottom />
+    </div>
   );
 }
 export default SearchResult;

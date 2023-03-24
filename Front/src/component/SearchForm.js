@@ -23,7 +23,7 @@ function SearchForm() {
     <>
       {/* <form id="searchForm" action="search"> */}
       {/* <div className="searchInput"> */}
-      <div id="searchForm" class="searchInput d-flex align-items-center bg-light">
+      <div id="searchForm" class="d-flex align-items-center bg-light">
         <form class="w-100 me-3" action="search">
           <input
             type="search"
