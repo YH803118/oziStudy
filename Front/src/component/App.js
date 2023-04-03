@@ -15,20 +15,26 @@ import Locater from "./Locater";
 const LIMIT = 6;
 function App() {
   let sessionStorage = window.sessionStorage;
-  let localStorage = window.localStorage;
   const [item, setItem] = useState([]);
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
-  const [offset, setOffset] = useState(0);
+  const [pageHeight, setPageHeight] = useState(850);
+  var offset = 0;
 
   const handleLoad = async () => {
     let studyList = await getStudyList({ offset, LIMIT });
-    setItem(studyList);
-    setOffset(offset + studyList.length);
+    setItem(item.push(...studyList));
   };
   const handleMyStudy = async () => {
     setItem(await getMyStudy(login));
   };
   useEffect(() => {
+    window.addEventListener("scroll", () => {
+      const scroll = window.scrollY;
+      if (pageHeight + (offset / 6) * 733 <= scroll) {
+        offset += 6;
+        handleLoad();
+      }
+    });
     handleLoad();
   }, [sessionStorage.getItem("userId")]);
   return (
