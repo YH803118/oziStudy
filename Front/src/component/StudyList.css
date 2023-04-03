@@ -12,3 +12,11 @@
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
+.downBtn {
+  padding-top: 30px;
+  text-align: center;
+}
+.downBtn img:hover {
+  cursor: pointer;
+}
