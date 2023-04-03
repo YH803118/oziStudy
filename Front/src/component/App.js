@@ -17,26 +17,22 @@ function App() {
   let sessionStorage = window.sessionStorage;
   const [item, setItem] = useState([]);
   const [login, setLogin] = useState(sessionStorage.getItem("userId"));
-  const [pageHeight, setPageHeight] = useState(850);
-  var offset = 0;
+  const [offset, setOffset] = useState(0);
 
   const handleLoad = async () => {
     let studyList = await getStudyList({ offset, LIMIT });
-    setItem(item.push(...studyList));
+    if (studyList.length === 0) alert("더 이상 존재하는 스터디가 없습니다.");
+    else setItem((prev) => [...prev, ...studyList]);
+  };
+  const additionLoad = async () => {
+    setOffset(offset + 6);
   };
   const handleMyStudy = async () => {
     setItem(await getMyStudy(login));
   };
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      const scroll = window.scrollY;
-      if (pageHeight + (offset / 6) * 733 <= scroll) {
-        offset += 6;
-        handleLoad();
-      }
-    });
     handleLoad();
-  }, [sessionStorage.getItem("userId")]);
+  }, [login, offset]);
   return (
     <>
       <BrowserRouter>
@@ -54,7 +50,7 @@ function App() {
                 {/* <hr id="topHR"></hr> */}
                 <div className="album  bg-light">
                   <SearchForm onLoad={handleLoad} />
-                  <StudyList items={item} />
+                  <StudyList items={item} handleClick={additionLoad} />
                   <Bottom />
                   {sessionStorage.getItem("userId") && (
                     <Link to="/studyInputForm" id="studyInputBtn">
