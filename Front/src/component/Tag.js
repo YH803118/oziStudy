@@ -4,7 +4,6 @@ import "./Tag.css";
 const Tag = ({ onChange, tags = "" }) => {
   const [tagItem, setTagItem] = useState("");
   const [tagList, setTagList] = useState([]);
-  const [load, setLoad] = useState("");
 
   const handleLoad = () => {
     if (tags) {
@@ -27,6 +26,7 @@ const Tag = ({ onChange, tags = "" }) => {
 
   const deleteTagItem = (e) => {
     const deleteTagItem = e.target.getAttribute("id"); //li의 id를 태그의 이름으로 설정하였고 그 값을 받아온다
+    console.log(deleteTagItem);
     const filteredTagList = tagList.filter(
       // filter함수를 통해 해당id가 아닌것들만 걸러내어 tagList로 변경한다
       (tagItem) => tagItem !== deleteTagItem
@@ -63,7 +63,7 @@ const Tag = ({ onChange, tags = "" }) => {
                 <li onClick={deleteTagItem} key={tag}>
                   {" "}
                   {/*li의 내용이 #요소이므로 id를 해당내용으로 하여 삭제에 사용할수있게한다  */}
-                  <lable id={tag}>#{tag}</lable>
+                  <label id={tag}>#{tag}</label>
                   &nbsp;
                 </li>
               </>
