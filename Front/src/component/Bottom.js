@@ -56,19 +56,23 @@ function Bottom() {
   return (
     <>
       <div className="footer">
-        <div class="container" onMouseUp={disBallon}>
-          <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-            <div class="col-md-4 d-flex align-items-center" />
+        <div className="container" onMouseUp={disBallon}>
+          <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div className="col-md-4 d-flex align-items-center" />
 
-            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-              <li class="ms-3">
-                <a href="https://github.com/YH803118/oziStudy" target="_black" class="text-muted">
-                  <svg class="bi" width="30" height="30">
+            <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
+              <li className="ms-3">
+                <a
+                  href="https://github.com/YH803118/oziStudy"
+                  target="_black"
+                  className="text-muted"
+                >
+                  <svg className="bi" width="30" height="30">
                     <FontAwesomeIcon icon={faGithub} color="black" />
                   </svg>
                 </a>
               </li>
-              <li class="ms-3" onClick={ballonEffect1}>
+              <li className="ms-3" onClick={ballonEffect1}>
                 {popMail ? (
                   <div className="popUpDiv">
                     <p className="ballon">
@@ -80,11 +84,11 @@ function Bottom() {
                 ) : (
                   <></>
                 )}
-                <svg class="bi" width="30" height="30">
+                <svg className="bi" width="30" height="30">
                   <FontAwesomeIcon icon={faEnvelope} color="#00cfd5" />
                 </svg>
               </li>
-              <li class="ms-3" onClick={ballonEffect2}>
+              <li className="ms-3" onClick={ballonEffect2}>
                 {popAddress ? (
                   <div className="popUpDiv">
                     <p className="ballon2">
@@ -96,7 +100,7 @@ function Bottom() {
                 ) : (
                   <></>
                 )}
-                <svg class="bi" width="30" height="30">
+                <svg className="bi" width="30" height="30">
                   <FontAwesomeIcon icon={faPhone} color="black" />
                 </svg>
               </li>

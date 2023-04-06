@@ -23,13 +23,13 @@ function SearchForm() {
     <>
       {/* <form id="searchForm" action="search"> */}
       {/* <div className="searchInput"> */}
-      <div id="searchForm" class="d-flex align-items-center bg-light">
-        <form class="w-100 me-3" action="search">
+      <div id="searchForm" className="d-flex align-items-center bg-light">
+        <form className="w-100 me-3" action="search">
           <input
             type="search"
             name="searchText"
             onChange={handleChange}
-            class="form-control"
+            className="form-control"
             placeholder="Search..."
             aria-label="Search"
           />
