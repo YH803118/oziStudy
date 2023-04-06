@@ -7,7 +7,7 @@ const INITIAL_VALUES = {
   leader: "",
   title: "",
   content: "",
-  tag: "",
+  tag: [],
 };
 
 const inputName = {
@@ -24,14 +24,12 @@ function StudyInputForm({ userId }) {
     let study;
     if (studyId) {
       study = await getStudy(studyId);
-      document.querySelector("#title").value = study.title;
-      document.querySelector("textarea").value = study.content;
       setRegiData({
         ...regiData,
         leader: study.leader,
         title: study.title,
         content: study.content,
-        tag: study.tag,
+        tag: study.tag.split(","),
       });
     }
   };
@@ -39,23 +37,22 @@ function StudyInputForm({ userId }) {
   const handleRegiSubmit = async () => {
     var inputs = document.querySelectorAll(".studyInput");
     for (let i = 0; i < inputs.length; i++) {
-      if (inputs[i].value == "") {
+      if (inputs[i].value === "") {
         alert(`${inputName[inputs[i].name]}을 입력해주세요`);
         return;
       }
     }
-    if (regiData.tag == "") {
+    if (regiData.tag === "") {
       alert("태그를 달아주세요!");
     } else {
       const formData = new FormData();
       formData.append("leader", userId);
       formData.append("title", regiData.title);
       formData.append("content", regiData.content);
-      formData.append("tag", regiData.tag);
+      formData.append("tag", regiData.tag.join(","));
       formData.append("userList", userId);
       if (studyId) await modTable(studyId, formData);
       else await regiStudy(formData);
-      console.log(regiData);
       document.getElementById("submit").submit();
     }
   };
@@ -81,9 +78,16 @@ function StudyInputForm({ userId }) {
       <div id="creater">
         {/* <form action="/api/input" id="submit" method="post"> */}
         <form action="/" id="submit">
-          <input type="text" name="title" placeholder="제목" onChange={handleInputChange} id="title" />
+          <input
+            type="text"
+            name="title"
+            placeholder="제목"
+            onChange={handleInputChange}
+            id="title"
+            value={regiData.title}
+          />
           <div className="tags">
-            {regiData.tag ? <Tag onChange={handleChange} tags={regiData.tag} /> : <Tag onChange={handleChange} />}
+            <Tag onChange={handleChange} tags={regiData.tag} />
           </div>
           <hr></hr>
           <textarea
@@ -93,10 +97,11 @@ function StudyInputForm({ userId }) {
             placeholder="내용을 입력해주세요.."
             onChange={handleInputChange}
             id="content"
+            value={regiData.content}
           />
         </form>
         <button onClick={handleRegiSubmit} id="submitButton">
-          작성하기
+          {studyId ? "수정하기" : "작성하기"}
         </button>{" "}
         {/*폼 안에 버튼이 있으면 태그입력을 위해 엔터를 눌렀을때 submit이 되어버리기때문에 바깥에버튼을 두고 서브밋 역할을하는 함수를 설정*/}
       </div>

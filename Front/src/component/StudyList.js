@@ -8,7 +8,7 @@ function StudyList({ items, handleClick }) {
       <div className="row row-cols-1 row-cols-sm-2 g-2">
         {items &&
           items.map((item) => {
-            return <StudyForm key={item.id} item={item} />;
+            return <StudyForm item={item} />;
           })}
       </div>
       <div className="downBtn align-items-center">
