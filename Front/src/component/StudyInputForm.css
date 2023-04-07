@@ -1,7 +1,6 @@
 #creater {
   margin: 30px auto;
   width: 800px;
-  /* height: 700px; */
   border: 1px solid rgb(168, 168, 168);
   border-radius: 5px;
   padding: 10px;
@@ -19,7 +18,7 @@
 
 #content {
   border: 0px;
-  width: 800px;
+  width: 100%;
   resize: none;
 }
 
@@ -37,4 +36,10 @@
 }
 #submitButton:hover {
   background-color: rgb(168, 168, 168);
+}
+
+@media (max-width: 860px) {
+  #creater {
+    width: 95%;
+  }
 }
