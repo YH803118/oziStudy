@@ -41,20 +41,14 @@ function App() {
             path="/"
             element={
               <>
-                <TopMenu
-                  onMyStudy={handleMyStudy}
-                  onLoad={handleLoad}
-                  onLogin={setLogin}
-                  // onSessionClear={handleSessionClear}
-                />
-                {/* <hr id="topHR"></hr> */}
+                <TopMenu onMyStudy={handleMyStudy} onLoad={handleLoad} onLogin={setLogin} />
                 <div className="album  bg-light">
                   <SearchForm onLoad={handleLoad} />
                   <StudyList items={item} handleClick={additionLoad} />
                   <Bottom />
                   {sessionStorage.getItem("userId") && (
-                    <Link to="/studyInputForm" id="studyInputBtn">
-                      스터디만들기
+                    <Link to="/studyInputForm" className="studyInputBtn btn">
+                      +
                     </Link>
                   )}
                 </div>
@@ -74,8 +68,26 @@ function App() {
               />
             }
           />
-          <Route path="/studyInputForm" element={<StudyInputForm userId={login} />} />
-          <Route path="/studyInputForm/modify/:studyId" element={<StudyInputForm userId={login} />} />
+          <Route
+            path="/studyInputForm"
+            element={
+              <>
+                <TopMenu onMyStudy={handleMyStudy} onLoad={handleLoad} onLogin={setLogin} />
+                <StudyInputForm userId={login} />
+                <Bottom />
+              </>
+            }
+          />
+          <Route
+            path="/studyInputForm/:studyId"
+            element={
+              <>
+                <TopMenu onMyStudy={handleMyStudy} onLoad={handleLoad} onLogin={setLogin} />
+                <StudyInputForm userId={login} />
+                <Bottom />
+              </>
+            }
+          />
           <Route path="/modForm" element={<ModForm />} />
           <Route
             path="/studyFormDetail/:id"

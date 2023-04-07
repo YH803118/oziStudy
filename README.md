@@ -12,7 +12,7 @@
 
 `JavaScript`
 `React`
-`Node.js` `Express` `Sequelize` `Heroku`
+`Node.js` `Express` `Sequelize` `Heroku` `BootStrap`
 
 ---
 

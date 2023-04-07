@@ -101,7 +101,7 @@ function StudyFormDetail({ item }) {
         <div className="btnDiv">
           {leaderCheck && (
             <>
-              <Link className="detailBtn" to={`/studyInputForm/modify/${id}`}>
+              <Link className="detailBtn" to={`/studyInputForm/${id}`}>
                 수정
               </Link>
               <Link className="detailBtn" to="/" onClick={handleEndStudy}>
